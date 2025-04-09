@@ -28,7 +28,6 @@ function Carousel() {
                 }}
                 navigation={true}
                 modules={[Autoplay, Pagination, Navigation]}
-                className="mySwiper"
             >
                 {poster.map((post) => {
                     return (

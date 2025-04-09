@@ -1,5 +1,6 @@
 import React from 'react'
 import Carousel from '../../component/carousel'
+import Cards from '../../component/card'
 
 function Body() {
   return (
@@ -8,7 +9,7 @@ function Body() {
             <Carousel />
         </div>
         <div>
-            
+            <Cards />
         </div>
     </>
   )

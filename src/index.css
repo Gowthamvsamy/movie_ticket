@@ -2,13 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-@theme {
-  --font-Montserrat: 'Montserrat', sans-serif; /* heading */
-  --font-Roboto: 'Roboto', sans-serif; /* body */
+
+:root {
+  --font-Montserrat: 'Montserrat', sans-serif;
+  /* heading */
+  --font-Roboto: 'Roboto', sans-serif;
+  /* body */
+}
+
+h2 {
+  font-family: var(--font-Montserrat);
+  font-size: large;
+  letter-spacing: 1px;
+}
+
+p {
+  font-family: var(--font-Roboto);
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
 }
 
 .main-body {
-  @apply bg-gradient-to-b from-background-gray to-white w-screen h-screen
+  @apply bg-gradient-to-b from-background-gray to-white w-full h-screen
 }
 
 .first-nav {
@@ -35,8 +55,8 @@ ul {
   @apply flex justify-center items-center gap-5
 }
 
-ul li{
-  @apply hover:text-primary-yellow 
+ul li {
+  @apply hover:text-primary-yellow
 }
 
 .logo-img {
@@ -67,4 +87,28 @@ ul li{
   object-fit: fill;
   margin: auto;
   border-radius: 30px;
+}
+
+.main-card {
+  @apply px-10 grid grid-cols-5 gap-10
+}
+
+.card {
+  @apply shadow-md shadow-secondary-gray rounded
+}
+
+.card-text{
+  @apply p-2
+}
+
+.card-img {
+  @apply object-fill h-80 w-full rounded-t-md
+}
+
+.rating-box {
+  @apply bg-black rounded-b-md text-white px-3 py-2
+}
+
+.star {
+  @apply flex gap-2 justify-start items-center
 }
