@@ -1,66 +1,79 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { FaStar } from 'react-icons/fa';
+import ListContext from '../context/listContext';
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+
+type TabItem = {
+    label: string;
+    onClick: () => void;
+};
+
 
 function Cards() {
 
-    interface MovieData {
-        id: number,
-        title?: string,
-        year?: string,
-        genre?: string[],
-        rating?: string,
-        director?: string,
-        actors?: string[],
-        plot?: string,
-        poster?: string,
-        cover_img?: string,
-        runtime?: string,
-        awards?: string,
-        language?: string[],
-        boxoffice?: string,
-        production?: string[],
-        certified?: string,
+    const tabs: TabItem[] = [
+        { label: "All", onClick: all },
+        { label: "Movies", onClick: movies },
+        { label: "Series", onClick: series },
+    ];
 
+    const listMovie = useContext(ListContext)
+
+    const all = (): void => {
+        const result = listMovie
+        console.log(result)
     }
 
-    const [showMovie, setShowMovie] = useState<MovieData[] | null>(null);
-
-    async function getData() {
-        try {
-            const response = await fetch('https://run.mocky.io/v3/f5935baf-764f-4bde-8fc8-59fe0f5c10aa');
-            const movieCardData = await response.json();
-            setShowMovie(movieCardData);
-        } catch (error) {
-            console.error(error);
-        }
+    const movies = (): void => {
+        const result = listMovie?.filter(t => t.type === 'movie')
+        console.log(result)
     }
 
-    useEffect(() => {
-        getData();
-    }, []);
-
-    const movieDetails = () => {
-        
+    const series = (): void => {
+        const result = listMovie?.filter(t => t.type === 'series')
+        console.log(result)
     }
-    
+
 
 
     return (
         <>
-            <div className='main-card'>
-                {showMovie && showMovie.map(movie => (
-                    <div key={movie.id} className='card' onClick={movieDetails(movie.id)}>
-                        <img src={movie.poster} alt="404" className='card-img' />
-                        <div className='rating-box'>
-                            <p className='star'><FaStar color="#FFD700" />{movie.rating}</p>
-                        </div>
-                        <div className='card-text'>
-                            <h2 className='font-Montserrat'><b>{movie.title}</b></h2>
-                            <p className='font-Roboto'>{movie.genre?.join(' / ')}</p>
-                        </div>
+            <div className='tab-card'>
+                <Tabs>
+                    <div className='tablist-style'>
+                        <TabList className="tablist">
+                            {tabs.map((tab, index) => (
+                                <Tab key={index} className="tab" onClick={tab.onClick}>
+                                    {tab.label}
+                                </Tab>
+                            ))}
+                        </TabList>
                     </div>
-                ))}
+                    <TabPanel>
+                        <div className='main-card'>
+                            {listMovie && listMovie.map(movie => (
+                                <div key={movie.id} className='card' >{/* onClick={movieDetails(movie.id)} */}
+                                    <img src={movie.poster} alt="404" className='card-img' />
+                                    <div className='rating-box'>
+                                        <p className='star'><FaStar color="#FFD700" />{movie.rating}</p>
+                                    </div>
+                                    <div className='card-text'>
+                                        <h2 className='font-Montserrat'><b>{movie.title}</b></h2>
+                                        <p className='font-Roboto'>{movie.genre?.join(' / ')}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </TabPanel>
+                    <TabPanel>
+
+                    </TabPanel>
+                    <TabPanel>
+
+                    </TabPanel>
+                </Tabs>
             </div>
+
         </>
     )
 }

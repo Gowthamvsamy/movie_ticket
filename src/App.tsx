@@ -1,13 +1,16 @@
 import React from 'react'
 import Index from './pages'
+import ListProvider from './context/listProvider'
 
 
 function App() {
   return (
     <>
-      <div className='main-body'>
-        <Index />
-      </div>
+      <ListProvider>
+        <div className='main-body'>
+          <Index />
+        </div>
+      </ListProvider>
     </>
   )
 }

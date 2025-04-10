@@ -32,11 +32,11 @@ p {
 }
 
 .first-nav {
-  @apply bg-secondary-blue/90 flex justify-start items-center gap-5 p-3 shadow-md shadow-primary-blue
+  @apply bg-secondary-blue/90 flex justify-between items-center p-3 shadow-md shadow-primary-blue
 }
 
-.second-nav {
-  @apply bg-primary-blue text-white flex justify-between items-center px-10
+.nav-box {
+  @apply flex justify-start w-full gap-5
 }
 
 .search-box {
@@ -51,12 +51,32 @@ p {
   @apply text-primary-blue size-6
 }
 
-ul {
-  @apply flex justify-center items-center gap-5
+.nav-menu {
+  @apply size-6
 }
 
-ul li {
-  @apply hover:text-primary-yellow
+.Offers, .nav-menu {
+  @apply text-white hover:text-primary-yellow cursor-pointer hover:scale-105
+}
+
+.nav-button{
+  @apply border border-primary-yellow bg-primary-yellow px-2 py-1 text-blue-800 font-semibold rounded
+}
+
+.side-msg {
+  @apply flex flex-col
+}
+
+.right-nav {
+  @apply flex justify-end items-center gap-5
+}
+
+.Sidebar {
+  @apply absolute w-full flex justify-end h-full z-10
+}
+
+.bg-secondary {
+  @apply bg-secondary-gray
 }
 
 .logo-img {
@@ -72,7 +92,6 @@ ul li {
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: #fff;
 
   /* Center slide text vertically */
   display: flex;
@@ -89,6 +108,10 @@ ul li {
   border-radius: 30px;
 }
 
+.tab-card{
+  @apply w-full
+}
+
 .main-card {
   @apply px-10 grid grid-cols-5 gap-10
 }
@@ -97,7 +120,7 @@ ul li {
   @apply shadow-md shadow-secondary-gray rounded
 }
 
-.card-text{
+.card-text {
   @apply p-2
 }
 
@@ -111,4 +134,16 @@ ul li {
 
 .star {
   @apply flex gap-2 justify-start items-center
+}
+
+.tablist{
+  @apply flex justify-start items-center w-[50%]
+}
+
+.tab{
+  @apply w-full text-center py-2 outline-none hover:bg-blue-100 rounded-t-md focus:bg-blue-200 cursor-pointer focus:border-b-2 focus:border-yellow-400
+}
+
+.tablist-style{
+  @apply mx-10 my-5 border-b
 }
