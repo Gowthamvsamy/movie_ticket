@@ -16,4 +16,5 @@ export interface MovieData {
     production?: string[],
     certified?: string,
     type?: string,
+    musician?: string,
 }

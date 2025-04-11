@@ -13,13 +13,13 @@
 h2 {
   font-family: var(--font-Montserrat);
   font-size: large;
-  letter-spacing: 1px;
+  letter-spacing: .5px;
 }
 
 p {
   font-family: var(--font-Roboto);
   font-size: 15px;
-  letter-spacing: 1px;
+  letter-spacing: .7px;
 }
 
 * {
@@ -141,9 +141,48 @@ p {
 }
 
 .tab{
-  @apply w-full text-center py-2 outline-none hover:bg-blue-100 rounded-t-md focus:bg-blue-200 cursor-pointer focus:border-b-2 focus:border-yellow-400
+  @apply w-full text-center py-2 outline-none hover:bg-blue-100 rounded-t-md focus:bg-blue-200 cursor-pointer focus:border-b-2 focus:border-yellow-400 active:border-b-2 active:border-yellow-400 active:bg-blue-200
 }
 
 .tablist-style{
   @apply mx-10 my-5 border-b
+}
+
+.cover-img{
+  @apply h-[80vh] bg-cover bg-center flex justify-start p-[2rem] text-white gap-14
+}
+
+.detail-content{
+  @apply flex flex-col gap-y-3
+}
+
+.title-text{
+  @apply text-4xl font-semibold
+}
+
+.detail-rating {
+  @apply flex justify-start items-center gap-2 text-xl
+}
+
+.detail-language {
+  @apply bg-gray-300/90 py-2 px-4 text-black rounded-md w-fit
+}
+
+.detail-list{
+  @apply flex justify-start items-center gap-5
+}
+
+.detail-list p {
+  @apply text-lg
+}
+
+.book-button {
+  @apply bg-primary-blue rounded-md py-2
+}
+
+.about, .cast, .crew{
+  @apply py-6 px-10 flex flex-col gap-y-3
+}
+.about-heading, .cast-heading, .crew-heading{
+  @apply text-3xl font-bold
 }
