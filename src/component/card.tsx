@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { FaStar } from 'react-icons/fa';
 import ListContext from '../context/listContext';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
@@ -51,6 +51,7 @@ function Cards({ setMovieData }: { setMovieData: (id: number) => void }) {
         setMovieData(id)
     }
 
+    const [active, setActive] = useState<string>("All")
 
     return (
         <>
@@ -59,7 +60,7 @@ function Cards({ setMovieData }: { setMovieData: (id: number) => void }) {
                     <div className='tablist-style'>
                         <TabList className="tablist">
                             {tabs.map((tab, index) => (
-                                <Tab key={index} className="tab">
+                                <Tab key={index}  onClick={() => setActive(tab.label)} className={`tab ${active === tab.label ? 'active' : ''}`}>
                                     {tab.label}
                                 </Tab>
                             ))}

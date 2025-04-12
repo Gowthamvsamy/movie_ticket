@@ -144,6 +144,10 @@ p {
   @apply w-full text-center py-2 outline-none hover:bg-blue-100 rounded-t-md focus:bg-blue-200 cursor-pointer focus:border-b-2 focus:border-yellow-400 active:border-b-2 active:border-yellow-400 active:bg-blue-200
 }
 
+.active {
+  @apply border-b-2 border-yellow-400 bg-blue-200
+}
+
 .tablist-style{
   @apply mx-10 my-5 border-b
 }
@@ -153,7 +157,7 @@ p {
 }
 
 .detail-content{
-  @apply flex flex-col gap-y-3
+  @apply flex flex-col gap-y-3 my-10
 }
 
 .title-text{

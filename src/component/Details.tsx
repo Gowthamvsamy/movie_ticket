@@ -24,7 +24,7 @@ function Details() {
                         <div className='detail-content'>
                             <h2 className='title-text'>{movie.title}</h2>
                             <p className='detail-rating'><FaStar color="#FFD700" />{movie.rating}</p>
-                            <p className='detail-language'>{movie.language}</p>
+                            <p className='detail-language'>{movie.language?.join(' / ')}</p>
                             <div className='detail-list'>
                                 <p>{movie.runtime}</p>
                                 <p>{movie.genre?.join(' / ')}</p>
