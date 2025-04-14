@@ -5,7 +5,7 @@ import { useState } from 'react'
 import SideBar from '../../component/sideBar'
 import { FaRegBell } from 'react-icons/fa'
 import { LuCircleUser } from 'react-icons/lu'
-// import ListContext from '../../context/listContext'
+import { Link } from 'react-router-dom'
 
 function SearchNav() {
 
@@ -16,22 +16,6 @@ function SearchNav() {
 
     }
 
-    // const listMovies = useContext(ListContext)
-
-    // const all = () => {
-    //     const result = listMovies?.filter(t => t.type === 'movie' || t.type === 'series' )
-    //     console.log(result)
-    // }
-
-    // const movies = () => {
-    //     const result = listMovies?.filter(t => t.type === 'movie')
-    //     console.log(result)
-    // }
-
-    // const series = () => {
-    //     const result = listMovies?.filter(t => t.type === 'series')
-    //     console.log(result)
-    // }
     return (
         <>
             <div className='first-nav'>
@@ -51,28 +35,9 @@ function SearchNav() {
                     <p className='Offers'>Offers</p>
                     <LuCircleUser className='nav-menu'/>
                     <FaRegBell className='nav-menu' onClick={showSideBar} />
-                    <button className='nav-button'>Login</button>
+                    <button className='nav-button'><Link to="/register">Login</Link></button>
                 </div>
 
-
-
-
-                {/* <div>
-                    <div>
-                        <ul>
-                            <li onClick={all}>All</li>
-                            <li onClick={movies}>Movies</li>
-                            <li onClick={series}>Series</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <ul>
-                            <li>Offers</li>
-                            <li>My Bookings</li>
-                            <li>Notification</li>
-                        </ul>
-                    </div>
-                </div> */}
             </div>
             {!sideBar && (
                 <SideBar />

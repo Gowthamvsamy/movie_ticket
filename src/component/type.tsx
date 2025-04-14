@@ -18,3 +18,16 @@ export interface MovieData {
     type?: string,
     musician?: string,
 }
+
+export type UserRegister = {
+    username: string;
+    email: string;
+    password: string;
+};
+
+export interface Field {
+    name: string;
+    type: string;
+    placeholder: string;
+    required: boolean;
+}
