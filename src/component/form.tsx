@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { FormProps } from './type';
+import { Link } from 'react-router-dom';
 
 
 
@@ -36,6 +37,11 @@ const Form: React.FC<FormProps> = ({ title, btn, fields, onSubmitForm }) => {
                     </div>
                 ))}
                 <button type="submit" className='form-btn'>{btn}</button>
+                {btn === 'Register' ? (
+                    <p className='change-text'>Already have an account?&nbsp;<Link to="/login" className='change-form'>Login now</Link></p>
+                ) : (
+                    <p className='change-text'>Don't have an account yet?&nbsp;<Link to="/register" className='change-form'>Sign up</Link></p>
+                )}
             </form>
         </div>
     )

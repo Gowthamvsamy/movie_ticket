@@ -4,6 +4,7 @@ import Body from './body/body'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Details from '../component/Details'
 import Register from './auth/register'
+import Login from './auth/login'
 
 function Index() {
   return (
@@ -14,6 +15,7 @@ function Index() {
           <Route path="/" element={<Body />} />
           <Route path="/details/:id" element={<Details />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </Router>
     </>

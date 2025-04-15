@@ -1,5 +1,5 @@
 import axios from "axios";
-import { MovieData, UserRegister } from "../../component/type";
+import { MovieData, UserLogin, UserRegister } from "../../component/type";
 
 const BASE_URL = 'http://localhost:8000';
 
@@ -24,6 +24,23 @@ export async function registerUser(userData: UserRegister): Promise<unknown> {
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
       console.error('Failed to register user:', error.response?.data || error.message);
+      throw error.response?.data || new Error(error.message);
+    } else {
+      console.error('Unexpected error:', error);
+      throw new Error('An unknown error occurred');
+    }
+  }
+}
+
+
+// user Login
+export async function loginUser(userData: UserLogin): Promise<unknown> {
+  try {
+    const response = await axios.post(`${BASE_URL}/login`, userData);
+    return response.data;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error('Failed to login user:', error.response?.data || error.message);
       throw error.response?.data || new Error(error.message);
     } else {
       console.error('Unexpected error:', error);

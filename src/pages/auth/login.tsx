@@ -1,37 +1,33 @@
 import React from 'react'
+import { Field, UserLogin } from '../../component/type';
 import Form from '../../component/form';
-import { Field, UserRegister } from '../../component/type';
-import { registerUser } from '../../context/service/movieService';
+import { loginUser } from '../../context/service/movieService';
 import { useNavigate } from 'react-router-dom';
 
-
-
-function Register() {
+function Login() {
 
     const navigator = useNavigate()
 
-    const fields: Field[] = [
-        { name: 'username', type: 'text', placeholder: 'User Name', required: true },
+    const LoginFields: Field[] = [
         { name: 'email', type: 'email', placeholder: 'Email', required: true },
         { name: 'password', type: 'password', placeholder: 'Password', required: true }
     ];
 
     const onSubmitForm = (formData: { [key: string]: string }) => {
-        registerUser(formData as UserRegister);
+        loginUser(formData as UserLogin);
         navigator("/")
-
     }
 
     return (
         <>
             <Form
-                title="Registration Form"
-                btn="Register"
-                fields={fields}
+                title="Login Form"
+                btn="Login"
+                fields={LoginFields}
                 onSubmitForm={onSubmitForm}
             />
         </>
     )
 }
 
-export default Register
+export default Login

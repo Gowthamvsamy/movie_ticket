@@ -25,6 +25,12 @@ export type UserRegister = {
     password: string,
 };
 
+export type UserLogin = {
+    email: string,
+    password: string,
+};
+
+
 export interface Field {
     name: string,
     type: string,
@@ -33,8 +39,9 @@ export interface Field {
 }
 
 export interface FormProps {
-    title: string;
-    btn: string;
-    fields: Field[];
-    onSubmitForm?: (data: { [key: string]: string }) => void;
+    title: string,
+    btn: string,
+    fields: Field[],
+    onSubmitForm?: (data: { [key: string]: string }) => void,
+    // statement: string,
 }

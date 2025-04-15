@@ -35,7 +35,7 @@ function SearchNav() {
                     <p className='Offers'>Offers</p>
                     <LuCircleUser className='nav-menu'/>
                     <FaRegBell className='nav-menu' onClick={showSideBar} />
-                    <button className='nav-button'><Link to="/register">Login</Link></button>
+                    <button className='nav-button'><Link to="/login">Login</Link></button>
                 </div>
 
             </div>

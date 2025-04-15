@@ -214,3 +214,11 @@ p {
 .form-btn{
   @apply w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-200
 }
+
+.change-form{
+  @apply text-primary-blue text-[16px]
+}
+
+.change-text {
+  @apply text-sm text-center
+}
