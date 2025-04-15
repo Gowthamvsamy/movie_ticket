@@ -2,6 +2,7 @@ import React from 'react'
 import Carousel from '../../component/carousel'
 import Cards from '../../component/card'
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 function Body() {
 
@@ -13,6 +14,7 @@ function Body() {
 
   return (
     <>
+      <ToastContainer />
       <div>
         <div>
           <Carousel />

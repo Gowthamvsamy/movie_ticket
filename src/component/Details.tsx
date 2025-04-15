@@ -13,6 +13,8 @@ function Details() {
 
     const movie = listMovie?.find((m): m is MovieData => m.id === movieId);
 
+    console.log('movieId', movieId)
+
     return (
         <>
             {movie ? (

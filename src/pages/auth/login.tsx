@@ -3,6 +3,7 @@ import { Field, UserLogin } from '../../component/type';
 import Form from '../../component/form';
 import { loginUser } from '../../context/service/movieService';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function Login() {
 
@@ -13,9 +14,16 @@ function Login() {
         { name: 'password', type: 'password', placeholder: 'Password', required: true }
     ];
 
-    const onSubmitForm = (formData: { [key: string]: string }) => {
-        loginUser(formData as UserLogin);
-        navigator("/")
+    const onSubmitForm = async (formData: { [key: string]: string }) => {
+        try {
+            await loginUser(formData as UserLogin);
+            toast.success("Login successfuly")
+            navigator("/")
+        } catch (error: unknown) {
+            navigator("/");
+            toast.error("Login failed. please try again.")
+            console.error("Login Error:", error);
+        }
     }
 
     return (

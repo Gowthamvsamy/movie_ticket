@@ -3,6 +3,7 @@ import Form from '../../component/form';
 import { Field, UserRegister } from '../../component/type';
 import { registerUser } from '../../context/service/movieService';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 
 
@@ -16,11 +17,17 @@ function Register() {
         { name: 'password', type: 'password', placeholder: 'Password', required: true }
     ];
 
-    const onSubmitForm = (formData: { [key: string]: string }) => {
-        registerUser(formData as UserRegister);
-        navigator("/")
-
-    }
+    const onSubmitForm = async (formData: { [key: string]: string }) => {
+        try {
+            await registerUser(formData as UserRegister);
+            toast.success("Registered successfully!");
+            navigator("/");
+        } catch (error: unknown) {
+            navigator("/");
+            toast.error("Registration failed. Please try again.");
+            console.error("Registration Error:", error);
+        }
+    };
 
     return (
         <>

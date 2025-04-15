@@ -1,11 +1,16 @@
+export interface innerArray {
+    name?: string,
+    image?: string,
+}
+
 export interface MovieData {
     id: number,
     title?: string,
     year?: string,
     genre?: string[],
     rating?: string,
-    director?: string,
-    actors?: string[],
+    director?: innerArray[],
+    actors?: innerArray[],
     plot?: string,
     poster?: string,
     cover_img?: string,
@@ -13,10 +18,10 @@ export interface MovieData {
     awards?: string,
     language?: string[],
     boxoffice?: string,
-    production?: string[],
+    production?: innerArray[],
     certified?: string,
     type?: string,
-    musician?: string,
+    musician?: innerArray[],
 }
 
 export type UserRegister = {
