@@ -20,14 +20,21 @@ export interface MovieData {
 }
 
 export type UserRegister = {
-    username: string;
-    email: string;
-    password: string;
+    username: string,
+    email: string,
+    password: string,
 };
 
 export interface Field {
-    name: string;
-    type: string;
-    placeholder: string;
-    required: boolean;
+    name: string,
+    type: string,
+    placeholder: string,
+    required: boolean,
+}
+
+export interface FormProps {
+    title: string;
+    btn: string;
+    fields: Field[];
+    onSubmitForm?: (data: { [key: string]: string }) => void;
 }

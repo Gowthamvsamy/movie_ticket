@@ -1,18 +1,27 @@
-import React from 'react'
-import { Field } from './type';
+import React, { useState } from 'react'
+import { FormProps } from './type';
 
-interface FormProps {
-    title: string;
-    btn: string;
-    fields: Field[];
-}
 
-const Form: React.FC<FormProps> = ({ title, btn, fields }) => {
+
+const Form: React.FC<FormProps> = ({ title, btn, fields, onSubmitForm }) => {
+
+    const [formData, setFormData] = useState<{ [key: string]: string }>({});
+
+
+    const handelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    }
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        onSubmitForm?.(formData);
+    }
 
 
     return (
         <div className='form-bg'>
-            <form className='form-popup'>
+            <form className='form-popup' onSubmit={handleSubmit}>
                 <h2 className='form-title'>{title}</h2>
                 {fields.map((field) => (
                     <div key={field.name} className='form-box'>
@@ -22,6 +31,7 @@ const Form: React.FC<FormProps> = ({ title, btn, fields }) => {
                             placeholder={field.placeholder}
                             required={field.required}
                             className='form-input'
+                            onChange={handelChange}
                         />
                     </div>
                 ))}
