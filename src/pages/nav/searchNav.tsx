@@ -7,20 +7,14 @@ import { LuCircleUser } from 'react-icons/lu'
 import { Link } from 'react-router-dom'
 import SearchContext from '../../context/searchContext'
 
-// type SearchData = { [key: string]: string }
-
 const SearchNav = () => {
 
     const [sideBar, setSideBar] = useState<boolean>(true);
-    // const [formData, setFormData] = useState<SearchData>({});
     const [searchValue, setSearchValue] = useState<string>('');
-
 
     const context = useContext(SearchContext)
 
-    if (!context) {
-        throw new Error("SearchProvider")
-    }
+    if (!context) throw new Error("SearchProvider")
 
     const { setSearchData } = context
 
@@ -30,14 +24,11 @@ const SearchNav = () => {
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setSearchValue(e.target.value);
-      };
-      
+    };
 
-      useEffect(() => {
+    useEffect(() => {
         setSearchData(searchValue);
-      }, [searchValue]);
-      
-
+    }, [searchValue]);
 
     return (
         <>
@@ -62,7 +53,6 @@ const SearchNav = () => {
                     <FaRegBell className='nav-menu' onClick={showSideBar} />
                     <button className='nav-button'><Link to="/login">Login</Link></button>
                 </div>
-
             </div>
             {!sideBar && (
                 <SideBar />

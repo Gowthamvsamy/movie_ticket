@@ -96,8 +96,6 @@ p {
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-
-  /* Center slide text vertically */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -236,8 +234,6 @@ p {
   @apply h-24 w-24 rounded-full mx-auto
 }
 
-
 .cast-crew p {
   @apply text-wrap text-center mx-auto w-[80%]
-  /* whitespace-pre-line */
 }

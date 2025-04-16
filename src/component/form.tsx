@@ -2,12 +2,9 @@ import React, { useState } from 'react'
 import { FormProps } from './type';
 import { Link } from 'react-router-dom';
 
-
-
 const Form: React.FC<FormProps> = ({ title, btn, fields, onSubmitForm }) => {
 
     const [formData, setFormData] = useState<{ [key: string]: string }>({});
-
 
     const handelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -18,7 +15,6 @@ const Form: React.FC<FormProps> = ({ title, btn, fields, onSubmitForm }) => {
         e.preventDefault();
         onSubmitForm?.(formData);
     }
-
 
     return (
         <div className='form-bg'>

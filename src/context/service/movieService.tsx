@@ -3,7 +3,6 @@ import { MovieData, UserLogin, UserRegister } from "../../component/type";
 
 const BASE_URL = 'http://localhost:8000';
 
-
 // movie list fetching
 export async function fetchMovieData(): Promise<MovieData[]> {
   try {
@@ -14,7 +13,6 @@ export async function fetchMovieData(): Promise<MovieData[]> {
     return [];
   }
 }
-
 
 // user register
 export async function registerUser(userData: UserRegister): Promise<unknown> {
@@ -32,7 +30,6 @@ export async function registerUser(userData: UserRegister): Promise<unknown> {
     }
   }
 }
-
 
 // user Login
 export async function loginUser(userData: UserLogin): Promise<unknown> {

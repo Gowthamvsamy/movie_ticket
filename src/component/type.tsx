@@ -56,3 +56,21 @@ export interface SearchContextType {
     searchData: string;
     setSearchData: React.Dispatch<React.SetStateAction<string>>;
 }
+
+export type TabItem = {
+    label: string;
+};
+
+export interface Movie {
+    id: number,
+    rating?: string,
+    title?: string,
+    genre?: string[],
+    poster?: string,
+    type?: 'movie' | 'series'
+}
+
+export type MovieCardProps = {
+    movie: Movie;
+    onClick: () => void;
+};

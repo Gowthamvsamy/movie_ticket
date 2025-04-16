@@ -4,30 +4,9 @@ import { FaStar } from 'react-icons/fa';
 import ListContext from '../context/listContext';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import SearchContext from '../context/searchContext';
-
-type TabItem = {
-    label: string;
-};
-
-interface Movie {
-    id: number,
-    rating?: string,
-    title?: string,
-    genre?: string[],
-    poster?: string,
-    type?: 'movie' | 'series'
-}
-
-type MovieCardProps = {
-    movie: Movie;
-    onClick: () => void;
-};
+import { Movie, MovieCardProps, TabItem } from './type';
 
 const Tabpanel: React.FC<MovieCardProps> = ({ movie, onClick }) => {
-
-
-
-
     return (
         <div key={movie.id} className='card' onClick={onClick}>
             <img src={movie.poster} alt="404" className='card-img' />
@@ -48,12 +27,9 @@ function Cards({ setMovieData }: { setMovieData: (id: number) => void }) {
 
     const context = useContext(SearchContext);
 
-    if (!context) {
-        throw new Error("SearchProvider")
-    }
+    if (!context) throw new Error("SearchProvider")
 
     const { searchData } = context;
-    
 
     const filteredData = listMovie?.filter((mov) => mov?.title?.toLowerCase().includes(searchData || '')); 
 
