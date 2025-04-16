@@ -35,12 +35,16 @@ p {
   @apply bg-secondary-blue/90 flex justify-between items-center p-3 shadow-md shadow-primary-blue
 }
 
+.search{
+  @apply w-full
+}
+
 .nav-box {
   @apply flex justify-start w-full gap-5
 }
 
 .search-box {
-  @apply flex justify-center items-center border-2 border-primary-yellow outline-none rounded-full bg-white p-2 w-1/3
+  @apply flex justify-center items-center border-2 border-primary-yellow outline-none rounded-full bg-white p-2
 }
 
 .search-box input {
@@ -59,7 +63,7 @@ p {
   @apply text-white hover:text-primary-yellow cursor-pointer hover:scale-105
 }
 
-.nav-button{
+.nav-button {
   @apply border border-primary-yellow bg-primary-yellow px-2 py-1 text-blue-800 font-semibold rounded
 }
 
@@ -68,7 +72,7 @@ p {
 }
 
 .right-nav {
-  @apply flex justify-end items-center gap-5
+  @apply flex justify-end items-center gap-5 w-full
 }
 
 .Sidebar {
@@ -108,7 +112,7 @@ p {
   border-radius: 30px;
 }
 
-.tab-card{
+.tab-card {
   @apply w-full
 }
 
@@ -136,11 +140,11 @@ p {
   @apply flex gap-2 justify-start items-center
 }
 
-.tablist{
+.tablist {
   @apply flex justify-start items-center w-[50%]
 }
 
-.tab{
+.tab {
   @apply w-full text-center py-2 outline-none hover:bg-blue-100 rounded-t-md focus:bg-blue-200 cursor-pointer focus:border-b-2 focus:border-yellow-400 active:border-b-2 active:border-yellow-400 active:bg-blue-200
 }
 
@@ -148,19 +152,19 @@ p {
   @apply border-b-2 border-yellow-400 bg-blue-200
 }
 
-.tablist-style{
+.tablist-style {
   @apply mx-10 my-5 border-b
 }
 
-.cover-img{
+.cover-img {
   @apply h-[80vh] bg-cover bg-center flex justify-start p-[2rem] text-white gap-14
 }
 
-.detail-content{
+.detail-content {
   @apply flex flex-col gap-y-3 my-10
 }
 
-.title-text{
+.title-text {
   @apply text-4xl font-semibold
 }
 
@@ -172,7 +176,7 @@ p {
   @apply bg-gray-300/90 py-2 px-4 text-black rounded-md w-fit
 }
 
-.detail-list{
+.detail-list {
   @apply flex justify-start items-center gap-5
 }
 
@@ -184,14 +188,15 @@ p {
   @apply bg-primary-blue rounded-md py-2
 }
 
-.about, .cast, .crew{
-  @apply py-6 px-10 flex flex-col gap-y-3
+.about, .cast, .crew {
+  @apply py-6 mx-10 px-5 flex flex-col gap-y-3 border-b-2
 }
-.about-heading, .cast-heading, .crew-heading{
+
+.about-heading, .cast-heading, .crew-heading {
   @apply text-3xl font-bold
 }
 
-.form-bg{
+.form-bg {
   @apply flex items-center justify-center h-[89%] bg-gray-100
 }
 
@@ -199,26 +204,40 @@ p {
   @apply bg-white p-8 rounded-2xl shadow-md w-full max-w-md space-y-6
 }
 
-.form-title{
-  @apply text-2xl font-semibold text-center 
+.form-title {
+  @apply text-2xl font-semibold text-center
 }
 
 .form-box {
   @apply flex flex-col gap-1
 }
 
-.form-input{
+.form-input {
   @apply border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500
 }
 
-.form-btn{
+.form-btn {
   @apply w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-200
 }
 
-.change-form{
+.change-form {
   @apply text-primary-blue text-[16px]
 }
 
 .change-text {
   @apply text-sm text-center
+}
+
+.cast-crew {
+  @apply flex gap-10
+}
+
+.cast-crew-img {
+  @apply h-24 w-24 rounded-full mx-auto
+}
+
+
+.cast-crew p {
+  @apply text-wrap text-center mx-auto w-[80%]
+  /* whitespace-pre-line */
 }

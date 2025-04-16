@@ -48,5 +48,11 @@ export interface FormProps {
     btn: string,
     fields: Field[],
     onSubmitForm?: (data: { [key: string]: string }) => void,
-    // statement: string,
+}
+
+export type CrewKey = 'director' | 'production' | 'musician';
+
+export interface SearchContextType {
+    searchData: string;
+    setSearchData: React.Dispatch<React.SetStateAction<string>>;
 }

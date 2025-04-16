@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import ListContext from '../context/listContext';
-import { MovieData } from './type';
+import { CrewKey, MovieData } from './type';
 import { FaStar } from 'react-icons/fa';
 
 function Details() {
@@ -13,7 +13,7 @@ function Details() {
 
     const movie = listMovie?.find((m): m is MovieData => m.id === movieId);
 
-    console.log('movieId', movieId)
+    const crewKeys: CrewKey[] = ['director', 'production', 'musician'];
 
     return (
         <>
@@ -42,13 +42,27 @@ function Details() {
                     </div>
                     <div className='cast'>
                         <h2 className='cast-heading'>Cast</h2>
-                        <p>{movie.actors}</p>
+                        <div className='cast-crew'>
+                            {movie.actors?.map((list) => (
+                                <div>
+                                    <img src={list.image} alt="404" className='cast-crew-img' />
+                                    <p>{list.name?.split(' ').join('\n')}</p>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                     <div className='crew'>
                         <h2 className='crew-heading'>Crew</h2>
-                        <p>{movie.director}</p>
-                        <p>{movie.production}</p>
-                        <p>{movie.musician}</p>
+                        <div className='cast-crew'>
+                            {crewKeys.map((role) =>
+                                movie[role]?.map((person, index) => (
+                                    <div key={`${role}-${index}`}>
+                                        <img src={person.image} alt="404" className='cast-crew-img' />
+                                        <p>{person.name?.split(' ').join('\n')}</p>
+                                    </div>
+                                ))
+                            )}
+                        </div>
                     </div>
                 </>
             ) : (

@@ -20,7 +20,9 @@ function Body() {
           <Carousel />
         </div>
         <div>
-          <Cards setMovieData={handleMovieClick}/>
+          <Cards 
+            setMovieData={handleMovieClick}
+          />
         </div>
       </div>
     </>

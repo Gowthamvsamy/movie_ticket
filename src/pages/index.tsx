@@ -6,7 +6,8 @@ import Details from '../component/Details'
 import Register from './auth/register'
 import Login from './auth/login'
 
-function Index() {
+function Index() {  
+  
   return (
     <>
       <Router>
