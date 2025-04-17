@@ -56,7 +56,19 @@ p {
 }
 
 .nav-menu {
-  @apply size-6
+  @apply size-6 relative
+}
+
+.dropdown-menu {
+  @apply absolute bg-gray-50 z-10 rounded-md shadow-lg 
+}
+
+.dropdown-menu ul li {
+  @apply border-b-2 px-5 py-2
+}
+
+.dropdown-menu ul li:last-child{
+  @apply border-0
 }
 
 .Offers, .nav-menu {
@@ -237,3 +249,4 @@ p {
 .cast-crew p {
   @apply text-wrap text-center mx-auto w-[80%]
 }
+

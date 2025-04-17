@@ -19,7 +19,7 @@ export async function registerUser(userData: UserRegister): Promise<unknown> {
   try {
     const response = await axios.post(`${BASE_URL}/register`, userData);
     return response.data;
-    
+
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
       console.error('Failed to register user:', error.response?.data || error.message);
@@ -35,6 +35,11 @@ export async function registerUser(userData: UserRegister): Promise<unknown> {
 export async function loginUser(userData: UserLogin): Promise<unknown> {
   try {
     const response = await axios.post(`${BASE_URL}/login`, userData);
+
+    if (response) {
+      localStorage.setItem('token', response.data.token);      
+    }
+
     return response.data;
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {

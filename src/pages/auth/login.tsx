@@ -19,6 +19,9 @@ function Login() {
             await loginUser(formData as UserLogin);
             toast.success("Login successfuly")
             navigator("/")
+            setTimeout(() => {
+                window.location.reload();
+            }, 2000);
         } catch (error: unknown) {
             navigator("/");
             toast.error("Login failed. please try again.")
@@ -26,6 +29,8 @@ function Login() {
         }
     }
 
+
+    // console.log(localStorage.token);
     return (
         <>
             <Form

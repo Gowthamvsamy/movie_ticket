@@ -74,3 +74,7 @@ export type MovieCardProps = {
     movie: Movie;
     onClick: () => void;
 };
+
+export interface JwtPayload {
+    exp: number;
+}
