@@ -195,7 +195,7 @@ p {
 }
 
 .book-button {
-  @apply bg-primary-blue rounded-md py-2
+  @apply bg-primary-blue rounded-md py-2 w-3/4
 }
 
 .about, .cast, .crew {
@@ -250,3 +250,74 @@ p {
   @apply text-wrap text-center mx-auto w-[80%]
 }
 
+.offer-bg{
+  @apply h-[89%] bg-gray-100 px-14 py-10
+}
+
+.offer-heading{
+  @apply text-3xl mb-10 text-center font-bold
+}
+
+.offer-cards{
+  @apply flex gap-3
+}
+
+.card-offer{
+  @apply flex justify-center items-center px-5 gap-3 border text-white rounded-xl shadow-lg w-[350px] h-[200px] bg-gradient-to-r from-primary-blue to-blue-400
+}
+
+.offer-img{
+  @apply h-16 w-20 rounded-full
+}
+
+.card h2{
+  @apply font-bold
+}
+
+.card p{
+  @apply text-sm my-1.5
+}
+
+.card-copy{
+  @apply flex gap-2 justify-start items-center
+}
+
+.card-copy p {
+  @apply text-[16px] font-semibold
+}
+
+.capy-text{
+  @apply border border-dashed rounded-md bg-gray-50/10 px-2 py-1
+}
+
+.copy-icon{
+  @apply size-5
+}
+
+.theatre-list {
+  @apply bg-gray-50
+}
+
+.theatre-list div {
+  @apply border-b-[2px]
+}
+
+.theatre-heading-box{
+  @apply px-10 py-6
+}
+
+.theatre-heading{
+  @apply text-2xl mb-1 font-semibold tracking-normal
+}
+
+.theatre-heading-box p {
+  @apply flex gap-1
+}
+
+.theatre-heading-box p span {
+  @apply border rounded-full py-0.5 px-2 border-black/70 text-xs
+}
+
+.date-list{
+  @apply px-10 py-6 flex gap-2
+}

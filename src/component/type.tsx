@@ -4,6 +4,7 @@ export interface innerArray {
 }
 
 export interface MovieData {
+    [x: string]: any;
     id: number,
     title?: string,
     year?: string,
@@ -77,4 +78,19 @@ export type MovieCardProps = {
 
 export interface JwtPayload {
     exp: number;
+}
+
+export type ListProviderProps = {
+    children: React.ReactNode;
+};
+
+export interface SearchProviderProps {
+    children: React.ReactNode;
+};
+
+export interface card {
+    img: string,
+    title: string,
+    valid: string,
+    coupon: string,
 }

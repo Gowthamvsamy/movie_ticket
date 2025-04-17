@@ -79,7 +79,7 @@ const SearchNav = () => {
                     </div>
                 </div>
                 <div className='right-nav'>
-                    <p className='Offers'>Offers</p>
+                    <p className='Offers'><Link to="/offers">Offers</Link></p>
                     {token ? (
                         <>
                             <button

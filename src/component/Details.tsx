@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import ListContext from '../context/listContext';
 import { CrewKey, MovieData } from './type';
 import { FaStar } from 'react-icons/fa';
@@ -33,7 +33,7 @@ function Details() {
                                 <p>{movie.certified}</p>
                                 <p>{movie.year}</p>
                             </div>
-                            <button className='book-button'>Book Tickets</button>
+                            <Link to={`/details/${movie.id}/theatres`}><button className='book-button'>Book Tickets</button></Link>
                         </div>
                     </div>
                     <div className='about'>
@@ -43,8 +43,8 @@ function Details() {
                     <div className='cast'>
                         <h2 className='cast-heading'>Cast</h2>
                         <div className='cast-crew'>
-                            {movie.actors?.map((list) => (
-                                <div>
+                            {movie.actors?.map((list, index) => (
+                                <div key={index}>
                                     <img src={list.image} alt="404" className='cast-crew-img' />
                                     <p>{list.name?.split(' ').join('\n')}</p>
                                 </div>

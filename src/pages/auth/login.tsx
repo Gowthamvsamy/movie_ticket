@@ -29,8 +29,6 @@ function Login() {
         }
     }
 
-
-    // console.log(localStorage.token);
     return (
         <>
             <Form
