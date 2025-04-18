@@ -58,8 +58,6 @@ const SearchNav = () => {
     const logoutsession = () => {
         localStorage.removeItem('token')
     }
-
-    console.log(token);
     
     return (
         <>

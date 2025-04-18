@@ -1,10 +1,13 @@
 import { useContext } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import ListContext from '../context/listContext';
 import { CrewKey, MovieData } from './type';
 import { FaStar } from 'react-icons/fa';
 
 function Details() {
+
+    const navigator = useNavigate();
+
     const { id } = useParams();
 
     const listMovie = useContext(ListContext)
@@ -14,6 +17,16 @@ function Details() {
     const movie = listMovie?.find((m): m is MovieData => m.id === movieId);
 
     const crewKeys: CrewKey[] = ['director', 'production', 'musician'];
+
+    const token = localStorage.getItem('token');    
+
+    const checkLogin = () => {
+        if(token && movie){
+            navigator(`/details/${movie.id}/theatres`)
+        }else {
+            navigator('/login')
+        }
+    }
 
     return (
         <>
@@ -33,7 +46,7 @@ function Details() {
                                 <p>{movie.certified}</p>
                                 <p>{movie.year}</p>
                             </div>
-                            <Link to={`/details/${movie.id}/theatres`}><button className='book-button'>Book Tickets</button></Link>
+                            <button onClick={checkLogin} className='book-button'>Book Tickets</button>
                         </div>
                     </div>
                     <div className='about'>

@@ -290,16 +290,20 @@ p {
   @apply border border-dashed rounded-md bg-gray-50/10 px-2 py-1
 }
 
-.copy-icon{
-  @apply size-5
+.copy-icon{ 
+  @apply size-5 cursor-pointer hover:scale-105
 }
 
 .theatre-list {
   @apply bg-gray-50
 }
 
-.theatre-list div {
+.theatre-list .li-div {
   @apply border-b-[2px]
+}
+
+.theatre-list .li-div:last-child {
+  @apply border-b-0
 }
 
 .theatre-heading-box{
@@ -320,4 +324,44 @@ p {
 
 .date-list{
   @apply px-10 py-6 flex gap-2
+}
+
+.date-list p {
+  @apply w-12 border py-2 px-3 flex justify-center items-center text-center rounded-md bg-primary-blue text-white hover:text-primary-yellow cursor-pointer
+}
+
+.theatres{
+  @apply px-10 py-8
+}
+
+.theatres-box{
+  @apply bg-white border border-gray-50/50 shadow-lg py-3 px-5 rounded-md
+}
+
+.theatres-ui{
+  @apply grid grid-cols-3 items-center p-5
+}
+
+.theatre-flex{
+  @apply flex justify-start items-center
+}
+
+.theatre-flex-2{
+  @apply flex gap-5 justify-start col-span-2 relative
+}
+
+.show-time{
+  @apply border border-green-500 rounded px-5 py-1 bg-green-50 cursor-pointer
+}
+
+.info{
+  @apply cursor-pointer 
+}
+
+.info-box{
+  @apply h-96 w-96 border rounded bg-white absolute z-10
+}
+
+.close-icon{
+  @apply border px-1 rounded w-fit ms-auto mt-2 me-2 text-gray-700 cursor-pointer
 }
