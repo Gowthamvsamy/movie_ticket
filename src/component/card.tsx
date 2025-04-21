@@ -14,8 +14,8 @@ const Tabpanel: React.FC<MovieCardProps> = ({ movie, onClick }) => {
                 <p className='star'><FaStar color="#FFD700" />{movie.rating}</p>
             </div>
             <div className='card-text'>
-                <h2 className='font-Montserrat'><b>{movie.title}</b></h2>
                 <p className='font-Roboto'>{movie.genre?.join(' / ')}</p>
+                <h2 className='font-Montserrat'><b>{movie.title}</b></h2>
             </div>
         </div>
     )
@@ -31,7 +31,7 @@ function Cards({ setMovieData }: { setMovieData: (id: number) => void }) {
 
     const { searchData } = context;
 
-    const filteredData = listMovie?.filter((mov) => mov?.title?.toLowerCase().includes(searchData || '')); 
+    const filteredData = listMovie?.filter((mov) => mov?.title?.toLowerCase().includes(searchData || ''));
 
     const tabs: TabItem[] = [
         { label: "All" },
@@ -67,14 +67,14 @@ function Cards({ setMovieData }: { setMovieData: (id: number) => void }) {
                     </TabPanel>
                     <TabPanel>
                         <div className='main-card'>
-                            {filteredData && filteredData?.filter((movie): movie is Movie & { type: 'movie' } => movie.type === 'movie').map((movie) => (
+                            {(filteredData as Movie[]).filter((movie): movie is Movie & { type: "movie" } => movie.type === 'movie').map((movie) => (
                                 <Tabpanel key={movie.id} movie={movie} onClick={() => movieDetails(movie.id)} />
                             ))}
                         </div>
                     </TabPanel>
                     <TabPanel>
                         <div className='main-card'>
-                            {filteredData && filteredData?.filter((movie): movie is Movie & { type: 'series' } => movie.type === 'series').map((movie) => (
+                            {(filteredData as Movie[]).filter((movie): movie is Movie & { type: "series" } => movie.type === 'series').map((movie) => (
                                 <Tabpanel key={movie.id} movie={movie} onClick={() => movieDetails(movie.id)} />
                             ))}
                         </div>

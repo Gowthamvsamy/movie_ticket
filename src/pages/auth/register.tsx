@@ -18,7 +18,7 @@ function Register() {
     const onSubmitForm = async (formData: { [key: string]: string }) => {
         try {
             await registerUser(formData as UserRegister);
-            toast.success("Registered successfully!");
+            toast.success("Account created successfully!");
             navigator("/");
         } catch (error: unknown) {
             navigator("/");

@@ -4,7 +4,7 @@ export interface innerArray {
 }
 
 export interface MovieData {
-    [x: string]: any;
+    [x: string]: unknown;
     id: number,
     title?: string,
     year?: string,
@@ -93,4 +93,23 @@ export interface card {
     title: string,
     valid: string,
     coupon: string,
+}
+
+export interface Theatres {
+  name: string,
+  place: string,
+  showtime: string[],
+  address: string
+}
+
+export interface Facilities {
+  icon: React.ElementType,
+  name: string,
+}
+
+export interface LocationState {
+    place: string;
+    name: string;
+    date: string;
+    showtime?: string;
 }

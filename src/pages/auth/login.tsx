@@ -17,14 +17,14 @@ function Login() {
     const onSubmitForm = async (formData: { [key: string]: string }) => {
         try {
             await loginUser(formData as UserLogin);
-            toast.success("Login successfuly")
+            toast.success("Logged in successfully!")
             navigator("/")
             setTimeout(() => {
                 window.location.reload();
             }, 2000);
         } catch (error: unknown) {
             navigator("/");
-            toast.error("Login failed. please try again.")
+            toast.error("Login failed. Please try again.")
             console.error("Login Error:", error);
         }
     }

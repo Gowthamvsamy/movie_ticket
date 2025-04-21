@@ -1,24 +1,40 @@
 import React, { useContext, useState } from 'react'
 import ListContext from '../context/listContext';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { AiOutlineExclamationCircle } from 'react-icons/ai';
 import { IoFastFoodOutline, IoLocationOutline, IoRestaurantOutline, IoTicketOutline } from 'react-icons/io5';
 import { IoIosCar } from 'react-icons/io';
-
-interface theatres {
-  name: string,
-  place: string,
-  showtime: string[]
-}
+import { Facilities, MovieData, Theatres } from './type';
+import theatresData from './theatre.json';
 
 function TheatreList() {
 
+  const navigator = useNavigate();
+
   const [selectedInfoIndex, setSelectedInfoIndex] = useState<number | null>(null);
-  const listMovie = useContext(ListContext);
+  const [selectedDateIndex, setSelectedDateIndex] = useState(0);
+
   const { id } = useParams();
+
+  const listMovie = useContext(ListContext);
+
   const movieId = Number(id);
 
-  const movie = listMovie?.find((m) => m.id === movieId);
+  const movie = listMovie?.find((m): m is MovieData => m.id === movieId);
+
+  const showSeat = (time: string, place: string, name: string) => {
+    if (movie) {
+      navigator(`/details/${movie.id}/theatres/seat`,
+        {
+          state: {
+            showtime: time,
+            place: place,
+            name: name,
+            date: formattedDates[selectedDateIndex]
+          }
+        })
+    }
+  }
 
   const today = new Date();
   const dayNames = ["Sun", "Mon", "Tues", "Wed", "Thur", "Fri", "Sat"];
@@ -38,22 +54,25 @@ function TheatreList() {
     formattedDates.push(formatted);
   }
 
-  const theatres: theatres[] = [
+  const theatres: Theatres[] = theatresData;
+
+  const facilities: Facilities[] = [
     {
-      name: "Mayajaal Multiplex",
-      place: "ECR, CHennai",
-      showtime: ["4:10", "7:00", "8:30", "10:00"]
+      icon: IoFastFoodOutline,
+      name: "F&B"
     },
     {
-      name: "Miraj Cinemas",
-      place: "Sekaran Mall, CHennai",
-      showtime: ["4:10", "7:00", "8:30"]
+      icon: IoTicketOutline,
+      name: "M-Tickets"
     },
     {
-      name: "Rohini Silver Screens",
-      place: "Koyambedu",
-      showtime: ["4:10", "7:00"]
+      icon: IoIosCar,
+      name: "Parking"
     },
+    {
+      icon: IoRestaurantOutline,
+      name: "Food Court"
+    }
   ]
 
   return (
@@ -72,7 +91,13 @@ function TheatreList() {
       }
       <div className='date-list li-div'>
         {formattedDates.map((day, index) => (
-          <p key={index}>{day}</p>
+          <p
+            key={index}
+            className={selectedDateIndex === index ? 'selected-date' : ''}
+            onClick={() => setSelectedDateIndex(index)}
+          >
+            {day}
+          </p>
         ))}
       </div>
       <div className='theatres'>
@@ -94,22 +119,28 @@ function TheatreList() {
                 {selectedInfoIndex === index && (
                   <div className='info-box'>
                     <p className='close-icon' onClick={() => setSelectedInfoIndex(null)}>X</p>
-                    <div>
-                      <p><IoLocationOutline /><span>No. 34/1, East Coast Road, Kanathur, Near Toll Plaza, Chennai, Tamil Nadu 603112, India</span></p>
+                    <div className='theatre-location'>
+                      <IoLocationOutline className='icon-size' />
+                      <p className='theatre-address'>{th.address}</p>
                     </div>
-                    <div>
-                      <p>Available Facilities</p>
-                      <div>
-                        <IoFastFoodOutline />
-                        <IoTicketOutline />
-                        <IoIosCar />
-                        <IoRestaurantOutline />
+                    <div className='theatre-facilities'>
+                      <h2>Available Facilities</h2>
+                      <div className='facilities-icon'>
+                        {facilities.map((f, index) => {
+                          const Icon = f.icon;
+                          return (
+                            <div key={index}>
+                              <p><Icon size={25} /></p>
+                              <p>{f.name}</p>
+                            </div>
+                          );
+                        })}
                       </div>
                     </div>
                   </div>
                 )}
                 {th.showtime?.map((s, index) => (
-                  <span key={index} className='show-time'>{s}</span>
+                  <span key={index} className='show-time' onClick={() => showSeat(s, th.place, th.name)}>{s}</span>
                 ))}
               </div>
             </div>

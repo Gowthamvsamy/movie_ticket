@@ -23,9 +23,9 @@ function Offers() {
     const copyCode = async () => {
         try {
             await navigator.clipboard.writeText("First");
-            toast.success("copied")
+            toast.success("Coupon code copied!")
         } catch {
-            toast.error("Failed to copy")
+            toast.error("Failed to copy coupon.")
         }
     }
 

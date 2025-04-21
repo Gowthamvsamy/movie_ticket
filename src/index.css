@@ -295,7 +295,7 @@ p {
 }
 
 .theatre-list {
-  @apply bg-gray-50
+  @apply bg-gray-50 pb-10
 }
 
 .theatre-list .li-div {
@@ -359,9 +359,77 @@ p {
 }
 
 .info-box{
-  @apply h-96 w-96 border rounded bg-white absolute z-10
+  @apply  w-96 border rounded bg-white absolute z-10
 }
 
 .close-icon{
   @apply border px-1 rounded w-fit ms-auto mt-2 me-2 text-gray-700 cursor-pointer
+}
+
+.icon-size{
+  @apply size-7 w-20
+}
+
+.theatre-location{
+  @apply flex justify-center items-center gap-2 px-4 py-2 border-b-2 pb-6 mb-5
+}
+
+.theatre-facilities{
+  @apply px-4 py-2
+}
+
+.facilities-icon{
+  @apply flex justify-evenly items-center my-3
+}
+
+.theatre-facilities h2{
+  @apply text-xl font-semibold
+}
+
+.theatre-address{
+  @apply flex text-sm
+}
+
+.facilities-icon p:first-child{
+  @apply text-center justify-center flex pb-2
+}
+
+.seat-heading{
+  @apply bg-white px-10 py-4
+}
+
+.seat-heading p:first-child {
+  @apply font-semibold text-lg
+}
+
+.selected-date{
+  @apply !text-primary-yellow  font-semibold scale-105
+}
+
+.seat-map{
+  @apply flex flex-col items-center mt-5
+}
+
+.seat-row {
+  @apply flex
+}
+
+.seat{
+  @apply w-10 h-10 m-1 bg-[#eee] hover:bg-[#c7c7c7] border border-[#ccc] leading-10 text-center cursor-pointer select-none rounded-md
+}
+
+.seat.selected {
+  @apply bg-[#4caf50] text-white
+}
+
+.swiper-button-prev, .swiper-button-next{
+  @apply scale-50 font-extrabold
+}
+
+.elite-seat{
+  @apply border-b-2 
+}
+
+.elite-seat h2{
+  @apply py-3 px-10
 }
