@@ -34,7 +34,7 @@ function Details() {
                 <>
                     <div className="cover-img" style={{ backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.2)), url(${movie.cover_img})` }}>
                         <div>
-                            <img src={movie.poster} alt="Poster-img" />
+                            <img src={movie.poster} alt="Poster-img" className='card-img'  />
                         </div>
                         <div className='detail-content'>
                             <h2 className='title-text'>{movie.title}</h2>
@@ -46,7 +46,7 @@ function Details() {
                                 <p>{movie.certified}</p>
                                 <p>{movie.year}</p>
                             </div>
-                            <button onClick={checkLogin} className='book-button'>Book Tickets</button>
+                            <button onClick={checkLogin} className={`book-button ${movie.type === 'series ' ? 'hidden' : ''}`}>Book Tickets</button>
                         </div>
                     </div>
                     <div className='about'>

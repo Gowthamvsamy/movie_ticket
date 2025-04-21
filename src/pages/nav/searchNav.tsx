@@ -1,6 +1,6 @@
 import { GoSearch } from 'react-icons/go'
 import logo from '../../assets/show-time.png'
-import { ChangeEvent, useContext, useEffect, useState } from 'react'
+import { ChangeEvent, useContext, useEffect, useRef, useState } from 'react'
 import SideBar from '../../component/sideBar'
 import { FaRegBell } from 'react-icons/fa'
 import { LuCircleUser } from 'react-icons/lu'
@@ -17,6 +17,7 @@ const SearchNav = () => {
     const [showDropDown, setShowDropDown] = useState<boolean>(false)
 
     const context = useContext(SearchContext)
+    const dropdownRef = useRef<HTMLDivElement>(null);
 
     if (!context) throw new Error("SearchProvider")
 
@@ -51,6 +52,7 @@ const SearchNav = () => {
         }
     }, []);
 
+
     const userProfile = () => {
         setShowDropDown((prevMode => prevMode === true ? false : true))
     }
@@ -58,7 +60,23 @@ const SearchNav = () => {
     const logoutsession = () => {
         localStorage.removeItem('token')
     }
-    
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                dropdownRef.current &&
+                !dropdownRef.current.contains(event.target as Node)
+            ) {
+                setShowDropDown(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
     return (
         <>
             <div className='first-nav'>
@@ -80,20 +98,22 @@ const SearchNav = () => {
                     <p className='Offers'><Link to="/offers">Offers</Link></p>
                     {token ? (
                         <>
-                            <button
-                                onClick={(): void => userProfile()}
-                            >
-                                <LuCircleUser className='nav-menu' />
-                                {showDropDown && (
-                                    <div className='dropdown-menu'>
-                                        <ul>
-                                            <li>Profile</li>
-                                            <li onClick={logoutsession}>Logout</li>
-                                        </ul>
-                                    </div>
-                                )}
-                            </button>
-                            <FaRegBell className='nav-menu' onClick={showSideBar} />
+                            <div ref={dropdownRef} className='profile-menu'>
+                                <button
+                                    onClick={(): void => userProfile()}
+                                >
+                                    <LuCircleUser className='nav-menu' />
+                                    {showDropDown && (
+                                        <div className='dropdown-menu' id='dropdown-menu'>
+                                            <ul>
+                                                {/* <li>Profile</li> */}
+                                                <li onClick={logoutsession}>Logout</li>
+                                            </ul>
+                                        </div>
+                                    )}
+                                </button>
+                                <FaRegBell className='nav-menu' onClick={showSideBar} />
+                            </div>
                         </>
                     ) : null}
                     <button className='nav-button'><Link to="/login">Login</Link></button>

@@ -55,6 +55,10 @@ p {
   @apply text-primary-blue size-6
 }
 
+.profile-menu {
+  @apply flex gap-5
+}
+
 .nav-menu {
   @apply size-6 relative
 }
@@ -131,7 +135,7 @@ p {
 }
 
 .card {
-  @apply shadow-md shadow-secondary-gray rounded
+  @apply shadow-md shadow-secondary-gray rounded cursor-pointer
 }
 
 .card-text {
@@ -139,7 +143,7 @@ p {
 }
 
 .card-img {
-  @apply object-fill h-80 w-full rounded-t-md
+  @apply object-fill w-[222px] h-[340px] rounded-t-md 
 }
 
 .rating-box {
@@ -407,11 +411,15 @@ p {
 }
 
 .seat-map{
-  @apply flex flex-col items-center mt-5
+  @apply flex flex-col items-center my-5
 }
 
 .seat-row {
   @apply flex
+}
+
+.aisle{
+  @apply w-36
 }
 
 .seat{
@@ -432,4 +440,21 @@ p {
 
 .elite-seat h2{
   @apply py-3 px-10
+}
+
+.row-label{
+  @apply mt-3 me-5
+}
+
+.screen {
+  width: 800px; 
+  height: 100px;  
+  border: solid 5px #000;
+  border-color:  transparent transparent #000 transparent;
+  border-radius: 50%;
+  margin: 0 auto 0 auto;
+}
+
+.selected-info{
+  @apply py-14 text-center
 }
