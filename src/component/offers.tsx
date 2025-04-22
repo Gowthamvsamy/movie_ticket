@@ -1,3 +1,4 @@
+// import
 import React from 'react'
 import { FiCopy } from 'react-icons/fi'
 import { toast, ToastContainer } from 'react-toastify';
@@ -5,21 +6,23 @@ import { card } from './type';
 
 function Offers() {
 
+    // Coupon card details
     const cardData: card[] = [
         {
             img: "https://logowik.com/content/uploads/images/1st2784.jpg",
             title: "Save up to RS 50 on first booking",
             valid: "Valid till 30 Apr",
-            coupon: "First"
+            coupon: "FIRST"
         },
         {
             img: "https://logowik.com/content/uploads/images/1st2784.jpg",
             title: "Save up to RS 50 on first booking",
             valid: "Valid till 30 Apr",
-            coupon: "First"
+            coupon: "FIRST"
         }
     ]
 
+    // Copy the coupon code
     const copyCode = async () => {
         try {
             await navigator.clipboard.writeText("First");
@@ -32,6 +35,7 @@ function Offers() {
 
     return (
         <>
+            {/* toast */}
             <ToastContainer />
             <div className='offer-bg'>
                 <h2 className='offer-heading'>OFFERS</h2>

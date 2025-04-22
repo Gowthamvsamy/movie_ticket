@@ -1,3 +1,4 @@
+// import
 import { useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import ListContext from '../context/listContext';
@@ -6,20 +7,28 @@ import { FaStar } from 'react-icons/fa';
 
 function Details() {
 
+    // navigator
     const navigator = useNavigate();
 
+    // Get the data from router path
     const { id } = useParams();
 
+    // Movie list context
     const listMovie = useContext(ListContext)
 
+    // Declare the current movie id 
     const movieId = Number(id);
 
+    // Compare the movie ID from the database to the current ID.
     const movie = listMovie?.find((m): m is MovieData => m.id === movieId);
 
+    // Crew types
     const crewKeys: CrewKey[] = ['director', 'production', 'musician'];
 
-    const token = localStorage.getItem('token');    
+    // Get the token in localstorage
+    const token = localStorage.getItem('token');
 
+    // Ensure the user is logged in
     const checkLogin = () => {
         if(token && movie){
             navigator(`/details/${movie.id}/theatres`)

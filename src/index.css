@@ -35,7 +35,7 @@ p {
   @apply bg-secondary-blue/90 flex justify-between items-center p-3 shadow-md shadow-primary-blue
 }
 
-.search{
+.search {
   @apply w-full
 }
 
@@ -64,14 +64,14 @@ p {
 }
 
 .dropdown-menu {
-  @apply absolute bg-gray-50 z-10 rounded-md shadow-lg 
+  @apply absolute bg-gray-50 z-10 rounded-md shadow-lg
 }
 
 .dropdown-menu ul li {
   @apply border-b-2 px-5 py-2
 }
 
-.dropdown-menu ul li:last-child{
+.dropdown-menu ul li:last-child {
   @apply border-0
 }
 
@@ -143,7 +143,7 @@ p {
 }
 
 .card-img {
-  @apply object-fill w-[222px] h-[340px] rounded-t-md 
+  @apply object-fill w-[222px] h-[340px] rounded-t-md
 }
 
 .rating-box {
@@ -254,35 +254,35 @@ p {
   @apply text-wrap text-center mx-auto w-[80%]
 }
 
-.offer-bg{
+.offer-bg {
   @apply h-[89%] bg-gray-100 px-14 py-10
 }
 
-.offer-heading{
+.offer-heading {
   @apply text-3xl mb-10 text-center font-bold
 }
 
-.offer-cards{
+.offer-cards {
   @apply flex gap-3
 }
 
-.card-offer{
+.card-offer {
   @apply flex justify-center items-center px-5 gap-3 border text-white rounded-xl shadow-lg w-[350px] h-[200px] bg-gradient-to-r from-primary-blue to-blue-400
 }
 
-.offer-img{
+.offer-img {
   @apply h-16 w-20 rounded-full
 }
 
-.card h2{
+.card h2 {
   @apply font-bold
 }
 
-.card p{
+.card p {
   @apply text-sm my-1.5
 }
 
-.card-copy{
+.card-copy {
   @apply flex gap-2 justify-start items-center
 }
 
@@ -290,11 +290,11 @@ p {
   @apply text-[16px] font-semibold
 }
 
-.capy-text{
+.capy-text {
   @apply border border-dashed rounded-md bg-gray-50/10 px-2 py-1
 }
 
-.copy-icon{ 
+.copy-icon {
   @apply size-5 cursor-pointer hover:scale-105
 }
 
@@ -310,11 +310,11 @@ p {
   @apply border-b-0
 }
 
-.theatre-heading-box{
+.theatre-heading-box {
   @apply px-10 py-6
 }
 
-.theatre-heading{
+.theatre-heading {
   @apply text-2xl mb-1 font-semibold tracking-normal
 }
 
@@ -326,7 +326,7 @@ p {
   @apply border rounded-full py-0.5 px-2 border-black/70 text-xs
 }
 
-.date-list{
+.date-list {
   @apply px-10 py-6 flex gap-2
 }
 
@@ -334,71 +334,71 @@ p {
   @apply w-12 border py-2 px-3 flex justify-center items-center text-center rounded-md bg-primary-blue text-white hover:text-primary-yellow cursor-pointer
 }
 
-.theatres{
+.theatres {
   @apply px-10 py-8
 }
 
-.theatres-box{
+.theatres-box {
   @apply bg-white border border-gray-50/50 shadow-lg py-3 px-5 rounded-md
 }
 
-.theatres-ui{
+.theatres-ui {
   @apply grid grid-cols-3 items-center p-5
 }
 
-.theatre-flex{
+.theatre-flex {
   @apply flex justify-start items-center
 }
 
-.theatre-flex-2{
+.theatre-flex-2 {
   @apply flex gap-5 justify-start col-span-2 relative
 }
 
-.show-time{
+.show-time {
   @apply border border-green-500 rounded px-5 py-1 bg-green-50 cursor-pointer
 }
 
-.info{
-  @apply cursor-pointer 
+.info {
+  @apply cursor-pointer
 }
 
-.info-box{
-  @apply  w-96 border rounded bg-white absolute z-10
+.info-box {
+  @apply w-96 border rounded bg-white absolute z-10
 }
 
-.close-icon{
+.close-icon {
   @apply border px-1 rounded w-fit ms-auto mt-2 me-2 text-gray-700 cursor-pointer
 }
 
-.icon-size{
+.icon-size {
   @apply size-7 w-20
 }
 
-.theatre-location{
+.theatre-location {
   @apply flex justify-center items-center gap-2 px-4 py-2 border-b-2 pb-6 mb-5
 }
 
-.theatre-facilities{
+.theatre-facilities {
   @apply px-4 py-2
 }
 
-.facilities-icon{
+.facilities-icon {
   @apply flex justify-evenly items-center my-3
 }
 
-.theatre-facilities h2{
+.theatre-facilities h2 {
   @apply text-xl font-semibold
 }
 
-.theatre-address{
+.theatre-address {
   @apply flex text-sm
 }
 
-.facilities-icon p:first-child{
+.facilities-icon p:first-child {
   @apply text-center justify-center flex pb-2
 }
 
-.seat-heading{
+.seat-heading {
   @apply bg-white px-10 py-4
 }
 
@@ -406,11 +406,11 @@ p {
   @apply font-semibold text-lg
 }
 
-.selected-date{
-  @apply !text-primary-yellow  font-semibold scale-105
+.selected-date {
+  @apply !text-primary-yellow font-semibold scale-105
 }
 
-.seat-map{
+.seat-map {
   @apply flex flex-col items-center my-5
 }
 
@@ -418,11 +418,11 @@ p {
   @apply flex
 }
 
-.aisle{
+.aisle {
   @apply w-36
 }
 
-.seat{
+.seat {
   @apply w-10 h-10 m-1 bg-[#eee] hover:bg-[#c7c7c7] border border-[#ccc] leading-10 text-center cursor-pointer select-none rounded-md
 }
 
@@ -430,31 +430,127 @@ p {
   @apply bg-[#4caf50] text-white
 }
 
-.swiper-button-prev, .swiper-button-next{
+.swiper-button-prev, .swiper-button-next {
   @apply scale-50 font-extrabold
 }
 
-.elite-seat{
-  @apply border-b-2 
+.elite-seat {
+  @apply border-b-2
 }
 
-.elite-seat h2{
+.elite-seat h2 {
   @apply py-3 px-10
 }
 
-.row-label{
+.row-label {
   @apply mt-3 me-5
 }
 
 .screen {
-  width: 800px; 
-  height: 100px;  
+  width: 800px;
+  height: 100px;
   border: solid 5px #000;
-  border-color:  transparent transparent #000 transparent;
+  border-color: transparent transparent #000 transparent;
   border-radius: 50%;
   margin: 0 auto 0 auto;
 }
 
-.selected-info{
+.selected-info {
   @apply py-14 text-center
+}
+
+.pay-btn {
+  @apply flex justify-center items-center
+}
+
+.totalPrice {
+  @apply border rounded-md bg-primary-blue text-white w-2/6 py-3 mb-10 mx-auto
+}
+
+.tickets {
+  @apply flex items-center justify-center h-screen bg-gray-100
+}
+
+.ticket-box {
+  @apply border shadow-md  w-2/6 rounded-md bg-slate-950 p-3
+}
+
+.ticket-poster {
+  @apply h-28
+}
+
+.ticket-boxOne, .ticket-boxTwo {
+  @apply flex items-center gap-6 p-6
+}
+
+.text-small p, .ticket-boxTwo p {
+  @apply text-gray-500
+}
+
+.ticket-boxTwo {
+  @apply justify-evenly my-2 border relative
+}
+
+.ticket-bg {
+  @apply bg-white rounded-md
+}
+
+.top-left {
+  @apply absolute -top-2 -left-2 w-4 h-4 bg-slate-950 rounded-full
+}
+
+.top-right {
+  @apply absolute -top-2 -right-2 w-4 h-4 bg-slate-950 rounded-full
+}
+
+.bottom-left{
+  @apply absolute -bottom-2 -left-2 w-4 h-4 bg-slate-950 rounded-full
+}
+
+.bottom-right{
+  @apply absolute -bottom-2 -right-2 w-4 h-4 bg-slate-950 rounded-full
+}
+
+.qr-code{
+  @apply h-28 w-28 p-3 mx-auto
+}
+
+.pay-popup{
+  @apply fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50
+}
+
+.pay-bg{
+  @apply bg-white rounded-lg p-6 w-80
+}
+
+.payment{
+  @apply text-lg font-bold mb-4
+}
+
+.my{
+  @apply my-3
+}
+
+.coupon-label{
+  @apply block text-sm font-medium mb-1
+}
+
+.coupon-input{
+  @apply w-full border border-gray-300 rounded px-3 py-2
+}
+
+.pay-btn{
+  @apply flex justify-end mt-4
+}
+
+.pay{
+  @apply bg-blue-500 text-white px-4 py-2 rounded mr-2
+}
+
+.cancel{
+  @apply bg-gray-300 px-4 py-2 rounded
+}
+
+.cancel-ticket{
+  @apply text-red-500
 }

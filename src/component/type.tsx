@@ -111,5 +111,10 @@ export interface LocationState {
     place: string;
     name: string;
     date: string;
-    showtime?: string;
+    showtime: string;
+    price: string;
+    seats: string;
+    discountedPrice: string;
+    couponCode: string;
+    setOpen: boolean;
 }

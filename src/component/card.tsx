@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+// imports
 import React, { useContext, useState } from 'react'
 import { FaStar } from 'react-icons/fa';
 import ListContext from '../context/listContext';
@@ -6,6 +7,7 @@ import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import SearchContext from '../context/searchContext';
 import { Movie, MovieCardProps, TabItem } from './type';
 
+// Movie card list
 const Tabpanel: React.FC<MovieCardProps> = ({ movie, onClick }) => {
     return (
         <div key={movie.id} className='card' onClick={onClick}>
@@ -21,18 +23,23 @@ const Tabpanel: React.FC<MovieCardProps> = ({ movie, onClick }) => {
     )
 }
 
+
 function Cards({ setMovieData }: { setMovieData: (id: number) => void }) {
 
+    // Movie list context
     const listMovie = useContext(ListContext)
 
+    // search context
     const context = useContext(SearchContext);
 
+    // Destructuring
     if (!context) throw new Error("SearchProvider")
-
     const { searchData } = context;
 
+    // Filter the Movie or Series
     const filteredData = listMovie?.filter((mov) => mov?.title?.toLowerCase().includes(searchData || ''));
 
+    // Tab
     const tabs: TabItem[] = [
         { label: "All" },
         { label: "Movies" },

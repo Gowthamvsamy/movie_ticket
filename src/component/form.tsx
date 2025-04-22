@@ -1,16 +1,20 @@
+// import
 import React, { useState } from 'react'
 import { FormProps } from './type';
 import { Link } from 'react-router-dom';
 
 const Form: React.FC<FormProps> = ({ title, btn, fields, onSubmitForm }) => {
 
+    // Form state
     const [formData, setFormData] = useState<{ [key: string]: string }>({});
 
+    // Listen to the form input.
     const handelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
     }
 
+    // Store the formDat to the onSubmitForm
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         onSubmitForm?.(formData);

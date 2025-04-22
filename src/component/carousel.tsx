@@ -1,3 +1,4 @@
+// import
 import React from 'react'
 import two from '../assets/poster-2.jpg'
 import three from '../assets/poster-3.jpg'
