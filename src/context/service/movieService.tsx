@@ -1,5 +1,5 @@
 import axios from "axios";
-import { MovieData, UserLogin, UserRegister } from "../../component/type";
+import { Booking, MovieData, UserLogin, UserRegister } from "../../component/type";
 
 const BASE_URL = 'http://localhost:8000';
 
@@ -49,5 +49,33 @@ export async function loginUser(userData: UserLogin): Promise<unknown> {
       console.error('Unexpected error:', error);
       throw new Error('An unknown error occurred');
     }
+  }
+}
+
+// Post Booking
+export async function booking(bookingData: Booking): Promise<unknown> {
+  try {
+    const response = await axios.post(`${BASE_URL}/booking`, bookingData);
+    return response.data;
+    
+  } catch (error: unknown) {
+    if(axios.isAxiosError(error)) {
+      console.error('Failed to book ticket:', error.response?.data || error.message);
+      throw error.response?.data || new Error(error.message);
+    } else {
+      console.error('Unexpected error:', error);
+      throw new Error('An unknown error occurred');
+    }
+  }
+}
+
+// Get booking
+export async function getBooking(): Promise<Booking[]> {
+  try {
+    const response = await axios.get(`${BASE_URL}/booking/getBooking`);
+    return response.data;
+  } catch (error) {
+    console.error('Failed to fetch booking data:', error);
+    return [];  
   }
 }

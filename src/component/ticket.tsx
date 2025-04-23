@@ -1,8 +1,9 @@
 import React, { useContext } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { LocationState } from './type';
+import { Booking, LocationState } from './type';
 import ListContext from '../context/listContext';
 import QRCode from "react-qr-code";
+import { booking } from '../context/service/movieService';
 
 function Ticket() {
 
@@ -16,7 +17,7 @@ function Ticket() {
     const listMovie = useContext(ListContext);
 
     const movie = listMovie?.find((m) => m.id === movieId);
-    
+
     // Cancelation 
     const calcRefund = () => {
         const canc = Number(discountedPrice) + 50;
@@ -24,25 +25,47 @@ function Ticket() {
     };
 
     // Ticket cancelation and refund
-    const cancelTicket = () => {
+    const cancelTicket = async () => {
         let refund = 0;
-    
+
         if (couponCode === 'FIRST' && typeof discountedPrice === 'number') {
             refund = calcRefund();
         } else if (couponCode === '' && typeof discountedPrice === 'number') {
             refund = discountedPrice / 2;
         }
-    
+
         if (refund > 0) {
             alert(`${refund} is returned to your account`);
-            localStorage.setItem('refund', refund.toString())
+            localStorage.setItem('refund', refund.toString());
+
+            // Prepare data for logging cancellation (optional)
+            const bookingData: Booking = {
+                certified: movie?.certified || '',
+                language: movie?.language?.[0] || '',
+                title: movie?.title || '',
+                theatre: name,
+                place: place,
+                date: date,
+                time: showtime,
+                price: discountedPrice ?? 0,
+                screen: 'Screen-1',
+                seats: seats.join(','),
+                isBooked: false, // Since it's cancelled
+            };
+
+            try {
+                await booking(bookingData);
+            } catch (error) {
+                console.error('Failed to log cancellation:', error);
+            }
+
             navigator('/');
         } else {
             alert('No refund available.');
         }
     };
-    
-    
+
+
 
     return (
         <>
@@ -68,14 +91,19 @@ function Ticket() {
                             <span className="bottom-left"></span>
                             <span className="bottom-right"></span>
                             <div>
-                                <p>Screen</p>
-                                <h2>Screen-1</h2>
+                                <div>
+                                    <p>Screen</p>
+                                    <h2>Screen-1</h2>
+                                </div>
+                                <div>
+                                    <p>Seats</p>
+                                    <h2>{seats.join(', ')}</h2>
+                                </div>
                             </div>
-                            <div>
-                                <p>Seats</p>
-                                <h2>{seats.join(', ')}</h2>
+                            <div className='flex flex-col'>
+                                <button className='cancel-ticket' onClick={cancelTicket}>Cancel Ticket</button>
+                                <button>close</button>
                             </div>
-                            <div className='cancel-ticket' onClick={cancelTicket}>Cancel Ticket</div>
                         </div>
                         <div>
                             <QRCode

@@ -492,7 +492,7 @@ p {
 }
 
 .ticket-boxTwo {
-  @apply justify-evenly my-2 border border-dashed relative
+  @apply justify-evenly my-2 border-2 border-dashed relative
 }
 
 .ticket-bg {

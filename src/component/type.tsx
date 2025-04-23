@@ -122,3 +122,17 @@ export interface LocationState {
 export interface SeatSelectProps {
     onData: (price: number | undefined, seats: string[]) => void;
 }
+
+export interface Booking {
+    certified: string;
+    language: string;
+    title: string;
+    theatre: string;
+    place: string;
+    date: string;
+    time: string;
+    price: string;
+    screen: string;
+    seats: string;
+    isBooked: boolean;
+}
