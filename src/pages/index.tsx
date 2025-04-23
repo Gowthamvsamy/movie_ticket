@@ -9,6 +9,7 @@ import Offers from '../component/offers'
 import TheatreList from '../component/theatreList'
 import Seat from '../component/seat'
 import Ticket from '../component/ticket'
+import Wallet from '../component/wallet'
 
 function AppRoutes() {
   const location = useLocation();
@@ -28,6 +29,7 @@ function AppRoutes() {
         <Route path="/details/:id/theatres" element={<TheatreList />} />
         <Route path="/details/:id/theatres/seat" element={<Seat />} />
         <Route path="/details/:id/theatres/seat/ticket" element={<Ticket />} />
+        <Route path="/wallet" element={<Wallet />} />
       </Routes>
     </>
   );

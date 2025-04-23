@@ -55,7 +55,7 @@ function Details() {
                                 <p>{movie.certified}</p>
                                 <p>{movie.year}</p>
                             </div>
-                            <button onClick={checkLogin} className={`book-button ${movie.type === 'series ' ? 'hidden' : ''}`}>Book Tickets</button>
+                            <button onClick={checkLogin} className={`book-button ${movie.type === 'series' ? 'hidden' : ''}`}>Book Tickets</button>
                         </div>
                     </div>
                     <div className='about'>

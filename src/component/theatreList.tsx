@@ -86,7 +86,7 @@ function TheatreList() {
       {/* Selected movie title and language */}
       {movie ? (
         <div className='theatre-heading-box li-div'>
-          <h2 className='theatre-heading'>{`${movie.title} - (${movie.language})`}</h2>
+          <h2 className='theatre-heading'>{`${movie.title} - (${movie.language?.[0]})`}</h2>
           <p>
             <span>{movie.certified}</span>
             {movie.genre?.map((g, index) => (

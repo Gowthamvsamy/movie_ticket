@@ -94,7 +94,7 @@ function SeatSelect({ onData }: SeatSelectProps) {
                     className={`seat ${isSelected ? 'selected' : ''}`}
                     onClick={() => toggleSeat(seatId)}
                   >
-                    {colIndex + 1}
+                    {colIndex + 12}
                   </div>
                 );
               })}
@@ -136,7 +136,7 @@ function SeatSelect({ onData }: SeatSelectProps) {
         })}
       </div>
 
-      <div className="screen"></div>
+      <div className="screen"><span>SCREEN THIS WAY</span></div>
       {/* Show selected seat */}
       <div className='selected-info'>
         <p>Selected Seats: {selectedSeats.join(', ') || 'None'}</p>

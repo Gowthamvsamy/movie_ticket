@@ -16,18 +16,33 @@ function Ticket() {
     const listMovie = useContext(ListContext);
 
     const movie = listMovie?.find((m) => m.id === movieId);
+    
+    // Cancelation 
+    const calcRefund = () => {
+        const canc = Number(discountedPrice) + 50;
+        return canc / 2;
+    };
 
     // Ticket cancelation and refund
     const cancelTicket = () => {
+        let refund = 0;
+    
         if (couponCode === 'FIRST' && typeof discountedPrice === 'number') {
-            const canc = discountedPrice + 50
-            const cancellation = canc / 2;
-            alert(`${cancellation} is returned to your account`);
-            navigator('/')
+            refund = calcRefund();
+        } else if (couponCode === '' && typeof discountedPrice === 'number') {
+            refund = discountedPrice / 2;
+        }
+    
+        if (refund > 0) {
+            alert(`${refund} is returned to your account`);
+            localStorage.setItem('refund', refund.toString())
+            navigator('/');
         } else {
             alert('No refund available.');
         }
     };
+    
+    
 
     return (
         <>

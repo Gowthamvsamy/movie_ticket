@@ -5,10 +5,11 @@ import { ChangeEvent, useContext, useEffect, useRef, useState } from 'react'
 import SideBar from '../../component/sideBar'
 import { FaRegBell } from 'react-icons/fa'
 import { LuCircleUser } from 'react-icons/lu'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import SearchContext from '../../context/searchContext'
 import { jwtDecode } from 'jwt-decode'
 import { JwtPayload } from '../../component/type'
+import Wallet from '../../component/wallet'
 
 
 const SearchNav = () => {
@@ -17,6 +18,8 @@ const SearchNav = () => {
     const [sideBar, setSideBar] = useState<boolean>(true);
     const [searchValue, setSearchValue] = useState<string>('');
     const [showDropDown, setShowDropDown] = useState<boolean>(false)
+
+    const navigator = useNavigate();
 
     // Search context
     const context = useContext(SearchContext)
@@ -85,9 +88,14 @@ const SearchNav = () => {
         };
     }, []);
 
+    const Wallet = () => {
+        navigator('/wallet');
+    }
+
+
     return (
         <>
-            <div className='first-nav'>
+            <nav className='first-nav'>
                 {/* Logo */}
                 <div className='nav-box'> <Link to="/">
                     <img src={logo} alt="404" className='logo-img' />
@@ -119,7 +127,8 @@ const SearchNav = () => {
                                     {showDropDown && (
                                         <div className='dropdown-menu' id='dropdown-menu'>
                                             <ul>
-                                                {/* <li>Profile</li> */}
+                                                <li>My Bookings</li>
+                                                <li onClick={Wallet}>Wallet</li>
                                                 <li onClick={logoutsession}>Logout</li>
                                             </ul>
                                         </div>
@@ -131,7 +140,7 @@ const SearchNav = () => {
                     ) : null}
                     <button className='nav-button'><Link to="/login">Login</Link></button>
                 </div>
-            </div>
+            </nav>
 
             {/* Side Bar */}
             {!sideBar && (

@@ -32,7 +32,7 @@ p {
 }
 
 .first-nav {
-  @apply bg-secondary-blue/90 flex justify-between items-center p-3 shadow-md shadow-primary-blue
+  @apply bg-secondary-blue flex justify-between items-center p-3 shadow-md shadow-primary-blue sticky top-0 w-full z-50
 }
 
 .search {
@@ -455,6 +455,10 @@ p {
   margin: 0 auto 0 auto;
 }
 
+.screen span {
+  @apply text-xs flex justify-center mt-16 text-amber-700
+}
+
 .selected-info {
   @apply py-14 text-center
 }
@@ -553,4 +557,8 @@ p {
 
 .cancel-ticket{
   @apply text-red-500
+}
+
+.footer-space{
+  @apply pb-10
 }

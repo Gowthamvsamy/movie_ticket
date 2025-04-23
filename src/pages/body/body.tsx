@@ -16,7 +16,7 @@ function Body() {
     <>
       {/* Toast */}
       <ToastContainer />
-      <div>
+      <div className='footer-space'>
         <div>
           <Carousel />
         </div>
