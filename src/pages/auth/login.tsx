@@ -9,11 +9,13 @@ function Login() {
 
     const navigator = useNavigate()
 
+    // Login form field
     const LoginFields: Field[] = [
         { name: 'email', type: 'email', placeholder: 'Email', required: true },
         { name: 'password', type: 'password', placeholder: 'Password', required: true }
     ];
 
+    // Login process
     const onSubmitForm = async (formData: { [key: string]: string }) => {
         try {
             await loginUser(formData as UserLogin);
@@ -31,6 +33,7 @@ function Login() {
 
     return (
         <>
+            {/* Form */}
             <Form
                 title="Login Form"
                 btn="Login"

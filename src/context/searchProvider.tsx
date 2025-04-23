@@ -2,6 +2,7 @@ import { useState } from "react";
 import SearchContext from "./searchContext";
 import { SearchProviderProps } from "../component/type";
 
+// Context Provider
 const SearchProvider: React.FC<SearchProviderProps> = ({children}) => {
 
     const [searchData, setSearchData] = useState<string>('');

@@ -1,8 +1,10 @@
+// import
 import React, { useEffect, useState } from 'react'
 import { ListProviderProps, MovieData } from '../component/type';
 import ListContext from './listContext';
 import { fetchMovieData } from './service/movieService';
 
+// Context provider
 function ListProvider({ children }: ListProviderProps){
 
     const [listMovie, setListMovie] = useState<MovieData[]>([]);

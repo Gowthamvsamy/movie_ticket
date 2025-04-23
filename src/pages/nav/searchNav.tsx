@@ -1,3 +1,4 @@
+// import
 import { GoSearch } from 'react-icons/go'
 import logo from '../../assets/show-time.png'
 import { ChangeEvent, useContext, useEffect, useRef, useState } from 'react'
@@ -12,21 +13,25 @@ import { JwtPayload } from '../../component/type'
 
 const SearchNav = () => {
 
+    // State
     const [sideBar, setSideBar] = useState<boolean>(true);
     const [searchValue, setSearchValue] = useState<string>('');
     const [showDropDown, setShowDropDown] = useState<boolean>(false)
 
+    // Search context
     const context = useContext(SearchContext)
-    const dropdownRef = useRef<HTMLDivElement>(null);
-
     if (!context) throw new Error("SearchProvider")
-
     const { setSearchData } = context
 
+    // useRef to handel the dropdown
+    const dropdownRef = useRef<HTMLDivElement>(null);
+
+    // show sidebar
     const showSideBar = () => {
         setSideBar(prevMode => prevMode === true ? false : true);
     }
 
+    // listen the search value
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setSearchValue(e.target.value);
     };
@@ -37,6 +42,7 @@ const SearchNav = () => {
 
     const token = localStorage.getItem('token');
 
+    // Verify the token and log out the user if the token has expired.
     useEffect(() => {
         if (token) {
             try {
@@ -52,15 +58,17 @@ const SearchNav = () => {
         }
     }, []);
 
-
+    // open dropdown
     const userProfile = () => {
         setShowDropDown((prevMode => prevMode === true ? false : true))
     }
 
+    // logout the user
     const logoutsession = () => {
         localStorage.removeItem('token')
     }
 
+    // Use a mouse event to close the user dropdown when clicking outside of it.
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (
@@ -80,9 +88,12 @@ const SearchNav = () => {
     return (
         <>
             <div className='first-nav'>
+                {/* Logo */}
                 <div className='nav-box'> <Link to="/">
                     <img src={logo} alt="404" className='logo-img' />
                 </Link></div>
+
+                {/* Search input */}
                 <div className='search'>
                     <div className='search-box'>
                         <input
@@ -94,6 +105,8 @@ const SearchNav = () => {
                         <GoSearch className='goSearch' />
                     </div>
                 </div>
+
+                {/* Offers */}
                 <div className='right-nav'>
                     <p className='Offers'><Link to="/offers">Offers</Link></p>
                     {token ? (
@@ -119,6 +132,8 @@ const SearchNav = () => {
                     <button className='nav-button'><Link to="/login">Login</Link></button>
                 </div>
             </div>
+
+            {/* Side Bar */}
             {!sideBar && (
                 <SideBar />
             )}

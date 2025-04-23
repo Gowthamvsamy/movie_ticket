@@ -9,12 +9,14 @@ function Register() {
 
     const navigator = useNavigate()
 
+    // Registration field
     const fields: Field[] = [
         { name: 'username', type: 'text', placeholder: 'User Name', required: true },
         { name: 'email', type: 'email', placeholder: 'Email', required: true },
         { name: 'password', type: 'password', placeholder: 'Password', required: true }
     ];
 
+    // Registration process
     const onSubmitForm = async (formData: { [key: string]: string }) => {
         try {
             await registerUser(formData as UserRegister);

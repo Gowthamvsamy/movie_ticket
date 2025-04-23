@@ -1,3 +1,4 @@
+// import
 import React, { useContext, useState } from 'react'
 import ListContext from '../context/listContext';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -22,6 +23,7 @@ function TheatreList() {
 
   const movie = listMovie?.find((m): m is MovieData => m.id === movieId);
 
+  // send a data via router path
   const showSeat = (time: string, place: string, name: string) => {
     if (movie) {
       navigator(`/details/${movie.id}/theatres/seat`,
@@ -36,12 +38,14 @@ function TheatreList() {
     }
   }
 
+  // Days and Months converter
   const today = new Date();
   const dayNames = ["Sun", "Mon", "Tues", "Wed", "Thur", "Fri", "Sat"];
   const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
   const formattedDates: string[] = [];
 
+  // show current date to next seven dates
   for (let i = 0; i < 7; i++) {
     const nextDate = new Date();
     nextDate.setDate(today.getDate() + i);
@@ -56,6 +60,7 @@ function TheatreList() {
 
   const theatres: Theatres[] = theatresData;
 
+  // Theatre facilities
   const facilities: Facilities[] = [
     {
       icon: IoFastFoodOutline,
@@ -77,6 +82,8 @@ function TheatreList() {
 
   return (
     <div className='theatre-list'>
+
+      {/* Selected movie title and language */}
       {movie ? (
         <div className='theatre-heading-box li-div'>
           <h2 className='theatre-heading'>{`${movie.title} - (${movie.language})`}</h2>
@@ -89,6 +96,8 @@ function TheatreList() {
         </div>
       ) : (null)
       }
+
+      {/* Moveie date */}
       <div className='date-list li-div'>
         {formattedDates.map((day, index) => (
           <p
@@ -100,6 +109,8 @@ function TheatreList() {
           </p>
         ))}
       </div>
+
+      {/* Theatre list and show time */}
       <div className='theatres'>
         <div className='theatres-box'>
           {theatres.map((th, index) => (

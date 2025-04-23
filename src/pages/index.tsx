@@ -13,6 +13,7 @@ import Ticket from '../component/ticket'
 function AppRoutes() {
   const location = useLocation();
 
+  // Hide the navbar when the seat selection page is open.
   const shouldHideSearchNav = location.pathname.includes('/theatres/seat');
 
   return (

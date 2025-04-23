@@ -1,24 +1,26 @@
+// import
 import React, { useEffect, useState } from 'react'
-
-interface SeatSelectProps {
-  onData: (price: number | undefined, seats: string[]) => void;
-}
+import { SeatSelectProps } from './type';
 
 function SeatSelect({ onData }: SeatSelectProps) {
 
+  // Seat rows and columns
   const eliteRow = 8;
   const eliteCol = 22;
   const budgetRow = 2;
   const budgetCol = 24;
 
+  // Seat and price controller state
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
   const [totalPrice, setTotalPrice] = useState<number>();
 
+  // Generate seat using CharCode
   const generateSeatId = (row: number, col: number): string => {
     const rowChar = String.fromCharCode(65 + row);
     return `${rowChar}${col + 1}`;
   };
 
+  // Set a seat price ELITE and BUDGET
   const getSeatPrice = (seatId: string): number => {
     const rowChar = seatId.charAt(0).toUpperCase();
     if (['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'].includes(rowChar)) {
@@ -35,12 +37,13 @@ function SeatSelect({ onData }: SeatSelectProps) {
     setTotalPrice(price);
   }, [selectedSeats]);
 
+  // send a Ticket price and selected seat count to seat.tsx
   const handleClick = () => {
     onData(totalPrice, selectedSeats);
   };
-  
-  const toggleSeat = (seatId: string): void => {
 
+  // Seat select and remove process
+  const toggleSeat = (seatId: string): void => {
     setSelectedSeats((prevSelected) =>
       prevSelected.includes(seatId)
         ? prevSelected.filter((s) => s !== seatId)
@@ -77,8 +80,8 @@ function SeatSelect({ onData }: SeatSelectProps) {
                 );
               })}
 
-              {/* Aisle */}
-              <div className='aisle'></div>
+              {/* footpath */}
+              <div className='footpath'></div>
 
               {/* Second half of seats */}
               {[...Array(eliteCol / 2)].map((_, colIndex) => {
@@ -134,11 +137,12 @@ function SeatSelect({ onData }: SeatSelectProps) {
       </div>
 
       <div className="screen"></div>
-
+      {/* Show selected seat */}
       <div className='selected-info'>
         <p>Selected Seats: {selectedSeats.join(', ') || 'None'}</p>
       </div>
 
+      {/* Pay Button */}
       <div className='pay-btn'>
         <button onClick={handleClick} className={`totalPrice ${(selectedSeats.length === 0) ? 'hidden' : ''}`}>Pay Rs.{totalPrice}</button>
       </div>

@@ -96,15 +96,15 @@ export interface card {
 }
 
 export interface Theatres {
-  name: string,
-  place: string,
-  showtime: string[],
-  address: string
+    name: string,
+    place: string,
+    showtime: string[],
+    address: string
 }
 
 export interface Facilities {
-  icon: React.ElementType,
-  name: string,
+    icon: React.ElementType,
+    name: string,
 }
 
 export interface LocationState {
@@ -117,4 +117,8 @@ export interface LocationState {
     discountedPrice: string;
     couponCode: string;
     setOpen: boolean;
+}
+
+export interface SeatSelectProps {
+    onData: (price: number | undefined, seats: string[]) => void;
 }

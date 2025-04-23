@@ -418,7 +418,7 @@ p {
   @apply flex
 }
 
-.aisle {
+.footpath {
   @apply w-36
 }
 
@@ -488,7 +488,7 @@ p {
 }
 
 .ticket-boxTwo {
-  @apply justify-evenly my-2 border relative
+  @apply justify-evenly my-2 border border-dashed relative
 }
 
 .ticket-bg {

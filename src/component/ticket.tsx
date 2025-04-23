@@ -17,6 +17,7 @@ function Ticket() {
 
     const movie = listMovie?.find((m) => m.id === movieId);
 
+    // Ticket cancelation and refund
     const cancelTicket = () => {
         if (couponCode === 'FIRST' && typeof discountedPrice === 'number') {
             const canc = discountedPrice + 50
@@ -46,6 +47,7 @@ function Ticket() {
                             </div>
                         ) : null}
                         <div className='ticket-boxTwo'>
+                            {/* four circle in the ticket */}
                             <span className="top-left "></span>
                             <span className="top-right"></span>
                             <span className="bottom-left"></span>
