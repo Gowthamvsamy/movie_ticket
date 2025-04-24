@@ -124,6 +124,7 @@ export interface SeatSelectProps {
 }
 
 export interface Booking {
+    poster: string;
     certified: string;
     language: string;
     title: string;
@@ -134,5 +135,6 @@ export interface Booking {
     price: string;
     screen: string;
     seats: string;
-    isBooked: boolean;
+    isBooked?: boolean;
+    _id?: string;
 }

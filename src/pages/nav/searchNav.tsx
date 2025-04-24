@@ -5,11 +5,10 @@ import { ChangeEvent, useContext, useEffect, useRef, useState } from 'react'
 import SideBar from '../../component/sideBar'
 import { FaRegBell } from 'react-icons/fa'
 import { LuCircleUser } from 'react-icons/lu'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import SearchContext from '../../context/searchContext'
 import { jwtDecode } from 'jwt-decode'
 import { JwtPayload } from '../../component/type'
-import Wallet from '../../component/wallet'
 
 
 const SearchNav = () => {
@@ -18,8 +17,6 @@ const SearchNav = () => {
     const [sideBar, setSideBar] = useState<boolean>(true);
     const [searchValue, setSearchValue] = useState<string>('');
     const [showDropDown, setShowDropDown] = useState<boolean>(false)
-
-    const navigator = useNavigate();
 
     // Search context
     const context = useContext(SearchContext)
@@ -88,11 +85,6 @@ const SearchNav = () => {
         };
     }, []);
 
-    const Wallet = () => {
-        navigator('/wallet');
-    }
-
-
     return (
         <>
             <nav className='first-nav'>
@@ -127,8 +119,8 @@ const SearchNav = () => {
                                     {showDropDown && (
                                         <div className='dropdown-menu' id='dropdown-menu'>
                                             <ul>
-                                                <li>My Bookings</li>
-                                                <li onClick={Wallet}>Wallet</li>
+                                                <li><Link to="/mybooking">My Bookings</Link></li>
+                                                <li><Link to="/wallet">Wallet</Link></li>
                                                 <li onClick={logoutsession}>Logout</li>
                                             </ul>
                                         </div>
@@ -138,7 +130,7 @@ const SearchNav = () => {
                             </div>
                         </>
                     ) : null}
-                    <button className='nav-button'><Link to="/login">Login</Link></button>
+                    <button className={`nav-button ${token ? 'hidden':'block'}`}><Link to="/login">Login</Link></button>
                 </div>
             </nav>
 

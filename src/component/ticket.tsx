@@ -4,6 +4,7 @@ import { Booking, LocationState } from './type';
 import ListContext from '../context/listContext';
 import QRCode from "react-qr-code";
 import { booking } from '../context/service/movieService';
+import { IoClose } from 'react-icons/io5';
 
 function Ticket() {
 
@@ -24,6 +25,21 @@ function Ticket() {
         return canc / 2;
     };
 
+    // Prepare data for booking
+    const bookingData: Booking = {
+        poster: movie?.poster || '',
+        certified: movie?.certified || '',
+        language: movie?.language?.[0] || '',
+        title: movie?.title || '',
+        theatre: name,
+        place: place,
+        date: date,
+        time: showtime,
+        price: discountedPrice ?? 0,
+        screen: 'Screen-1',
+        seats: seats.join(',')
+    };
+
     // Ticket cancelation and refund
     const cancelTicket = async () => {
         let refund = 0;
@@ -34,29 +50,19 @@ function Ticket() {
             refund = discountedPrice / 2;
         }
 
+        const updatedBookingData = {
+            ...bookingData,
+            isBooked: false,
+        };
+
         if (refund > 0) {
             alert(`${refund} is returned to your account`);
             localStorage.setItem('refund', refund.toString());
 
-            // Prepare data for logging cancellation (optional)
-            const bookingData: Booking = {
-                certified: movie?.certified || '',
-                language: movie?.language?.[0] || '',
-                title: movie?.title || '',
-                theatre: name,
-                place: place,
-                date: date,
-                time: showtime,
-                price: discountedPrice ?? 0,
-                screen: 'Screen-1',
-                seats: seats.join(','),
-                isBooked: false, // Since it's cancelled
-            };
-
             try {
-                await booking(bookingData);
+                await booking(updatedBookingData);
             } catch (error) {
-                console.error('Failed to log cancellation:', error);
+                console.error('Failed to cancellation:', error);
             }
 
             navigator('/');
@@ -65,6 +71,21 @@ function Ticket() {
         }
     };
 
+    const closeTicket = async () => {
+
+        const updatedBookingData = {
+            ...bookingData,
+            isBooked: true,
+        };
+
+        try {
+            await booking(updatedBookingData);
+        } catch (error) {
+            console.error('Failed to close', error);
+        }
+        navigator('/');
+    }
+
 
 
     return (
@@ -72,6 +93,7 @@ function Ticket() {
             <div className='tickets'>
                 <div className='ticket-box'>
                     <div className='ticket-bg'>
+                        <button className='close-ticket' onClick={closeTicket}><IoClose size={25} /></button>
                         {movie ? (
                             <div className='ticket-boxOne'>
                                 <img src={movie.poster} alt="404" className='ticket-poster' />
@@ -102,7 +124,6 @@ function Ticket() {
                             </div>
                             <div className='flex flex-col'>
                                 <button className='cancel-ticket' onClick={cancelTicket}>Cancel Ticket</button>
-                                <button>close</button>
                             </div>
                         </div>
                         <div>

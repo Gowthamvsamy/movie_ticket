@@ -56,7 +56,7 @@ p {
 }
 
 .profile-menu {
-  @apply flex gap-5
+  @apply flex gap-8 me-10
 }
 
 .nav-menu {
@@ -88,7 +88,7 @@ p {
 }
 
 .right-nav {
-  @apply flex justify-end items-center gap-5 w-full
+  @apply flex justify-end items-center gap-8 w-full
 }
 
 .Sidebar {
@@ -476,7 +476,7 @@ p {
 }
 
 .ticket-box {
-  @apply border shadow-md  w-2/6 rounded-md bg-slate-950 p-3
+  @apply border shadow-md w-2/6 rounded-md bg-slate-950 p-3
 }
 
 .ticket-poster {
@@ -484,7 +484,7 @@ p {
 }
 
 .ticket-boxOne, .ticket-boxTwo {
-  @apply flex items-center gap-6 p-6
+  @apply flex items-center gap-6 p-6 pt-2
 }
 
 .text-small p, .ticket-boxTwo p {
@@ -507,58 +507,94 @@ p {
   @apply absolute -top-2 -right-2 w-4 h-4 bg-slate-950 rounded-full
 }
 
-.bottom-left{
+.bottom-left {
   @apply absolute -bottom-2 -left-2 w-4 h-4 bg-slate-950 rounded-full
 }
 
-.bottom-right{
+.bottom-right {
   @apply absolute -bottom-2 -right-2 w-4 h-4 bg-slate-950 rounded-full
 }
 
-.qr-code{
+.qr-code {
   @apply h-28 w-28 p-3 mx-auto
 }
 
-.pay-popup{
+.pay-popup {
   @apply fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50
 }
 
-.pay-bg{
+.pay-bg {
   @apply bg-white rounded-lg p-6 w-80
 }
 
-.payment{
+.payment {
   @apply text-lg font-bold mb-4
 }
 
-.my{
+.my {
   @apply my-3
 }
 
-.coupon-label{
+.coupon-label {
   @apply block text-sm font-medium mb-1
 }
 
-.coupon-input{
+.coupon-input {
   @apply w-full border border-gray-300 rounded px-3 py-2
 }
 
-.pay-btn{
+.pay-btn {
   @apply flex justify-end mt-4
 }
 
-.pay{
+.pay {
   @apply bg-blue-500 text-white px-4 py-2 rounded mr-2
 }
 
-.cancel{
+.cancel {
   @apply bg-gray-300 px-4 py-2 rounded
 }
 
-.cancel-ticket{
-  @apply text-red-500
+.cancel-ticket {
+  @apply text-white bg-red-600 border rounded-md shadow-md px-3 py-1
 }
 
-.footer-space{
+.footer-space {
   @apply pb-10
+}
+
+.close-ticket {
+  @apply text-red-500 flex justify-end items-center w-full pt-3 pr-3
+}
+
+.booked-container {
+  @apply flex flex-wrap gap-5 justify-between items-center p-8
+}
+
+.booked-ticket {
+  @apply bg-gray-200 p-4 rounded-lg shadow-md flex gap-5
+}
+
+.booked-ticket {
+  flex: 0 1 calc(50% - 16px);
+}
+
+.poster-img {
+  @apply h-40 w-44
+}
+
+.bold {
+  @apply font-bold text-gray-800
+}
+
+.booking-detail p {
+  @apply text-sm text-gray-500
+}
+
+.booking-detail {
+  @apply leading-7 w-full
+}
+
+.booking-cancel {
+  @apply flex justify-end mt-auto
 }

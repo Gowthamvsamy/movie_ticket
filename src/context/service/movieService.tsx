@@ -79,3 +79,19 @@ export async function getBooking(): Promise<Booking[]> {
     return [];  
   }
 }
+
+// Update Booking
+export async function updateBooking(id: string, updatedData: Partial<Booking>): Promise<Booking> {
+  try {
+    const response = await axios.patch(`${BASE_URL}/booking/updateBooking/${id}`, updatedData);
+    return response.data;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error('Failed to update booking:', error.response?.data || error.message);
+      throw error.response?.data || new Error(error.message);
+    } else {
+      console.error('Unexpected error during booking update:', error);
+      throw new Error('An unknown error occurred while updating booking');
+    }
+  }
+}
