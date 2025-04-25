@@ -1,12 +1,13 @@
 import React, { useContext } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { Booking, LocationState } from './type';
+import { Booking, LocationState, MyTokenPayload } from './type';
 import ListContext from '../context/listContext';
 import QRCode from "react-qr-code";
 import { booking } from '../context/service/movieService';
 import { IoClose } from 'react-icons/io5';
+import { jwtDecode } from 'jwt-decode';
 
-function Ticket() {    
+function Ticket() {
 
     const location = useLocation();
     const navigator = useNavigate();
@@ -24,6 +25,10 @@ function Ticket() {
         const canc = Number(discountedPrice) + 50;
         return canc / 2;
     };
+
+    const token = localStorage.getItem('token')
+    const decoded = jwtDecode<MyTokenPayload>(token!);
+    localStorage.setItem('user_id', decoded.id);
 
     // Prepare data for booking
     const bookingData: Booking = {

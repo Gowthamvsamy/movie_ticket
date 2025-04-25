@@ -72,7 +72,7 @@ p {
 }
 
 .dropdown-menu {
-  @apply absolute bg-gray-50 z-10 rounded-md shadow-lg
+  @apply absolute bg-gray-50 z-10 rounded-md shadow-lg mt-7
 }
 
 .dropdown-menu ul li {
@@ -91,20 +91,8 @@ p {
   @apply border border-primary-yellow bg-primary-yellow px-2 py-1 text-blue-800 font-semibold rounded
 }
 
-.side-msg {
-  @apply flex flex-col
-}
-
 .right-nav {
   @apply flex justify-end items-center gap-8 w-full
-}
-
-.Sidebar {
-  @apply absolute w-full flex justify-end h-full z-10
-}
-
-.bg-secondary {
-  @apply bg-secondary-gray
 }
 
 .logo-img {
@@ -605,4 +593,56 @@ p {
 
 .booking-cancel {
   @apply flex justify-end mt-auto
+}
+
+.sidebar{
+  @apply w-[25%] fixed top-[68px] right-0 bg-gray-200 z-40 p-5 overflow-y-auto h-[89%]
+}
+
+.sell-box{
+  @apply border shadow-md mb-3 p-2 rounded-md bg-gray-400/70
+}
+
+.sell-img{
+  @apply h-20
+}
+
+.movie-box p:first-child, .movie-box p:last-child, .sell-bold {
+  @apply font-semibold !text-black
+}
+
+.movie-box p {
+  @apply text-xs text-black/70
+}
+
+.offer-box{
+  @apply justify-evenly items-center p-3 relative border-t-2 border-dashed border-gray-200
+}
+
+.top-left {
+  @apply absolute -top-[9px] -left-4 w-4 h-4 bg-gray-200 rounded-full
+}
+
+.top-right {
+  @apply absolute -top-[9px] -right-4 w-4 h-4 bg-gray-200 rounded-full
+}
+
+.gray{
+  @apply text-gray-500 text-sm
+}
+
+.red{
+  @apply text-red-900 font-semibold
+}
+
+.book-now{
+  @apply rounded-md px-3 py-1 bg-primary-blue shadow-md text-white hover:text-primary-yellow
+}
+
+.notification-box{
+  @apply relative
+}
+
+.notification-count{
+  @apply absolute -mt-3 -right-2 h-5 w-5 bg-red-500 rounded-full text-white flex justify-center items-center
 }

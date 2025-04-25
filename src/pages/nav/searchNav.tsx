@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom'
 import SearchContext from '../../context/searchContext'
 import { jwtDecode } from 'jwt-decode'
 import { JwtPayload } from '../../component/type'
+import { getBooking } from '../../context/service/movieService'
 
 
 const SearchNav = () => {
@@ -17,6 +18,7 @@ const SearchNav = () => {
     const [sideBar, setSideBar] = useState<boolean>(true);
     const [searchValue, setSearchValue] = useState<string>('');
     const [showDropDown, setShowDropDown] = useState<boolean>(false)
+    const [unbookedCount, setUnbookedCount] = useState<number>(0);
 
     // Search context
     const context = useContext(SearchContext)
@@ -55,7 +57,6 @@ const SearchNav = () => {
             } catch (error) {
                 console.error("Invalid token", error);
                 localStorage.removeItem('token');
-                // localStorage.removeItem('user_id');
             }
         }
     }, []);
@@ -68,8 +69,7 @@ const SearchNav = () => {
     // logout the user
     const logoutsession = () => {
         localStorage.removeItem('token');
-        // localStorage.removeItem('user_id');
-        
+
     }
 
     // Use a mouse event to close the user dropdown when clicking outside of it.
@@ -90,6 +90,18 @@ const SearchNav = () => {
     }, []);
 
     const u_name = localStorage.getItem('u_name');
+
+    useEffect(() => {
+        const getData = async () => {
+            try {
+                const booking = await getBooking();
+                setUnbookedCount(booking.filter((b) => b.isBooked === false).length);
+            } catch (err) {
+                console.error("Fetch Booking error: ", err);
+            }
+        }
+        getData();
+    }, [])
 
 
     return (
@@ -133,11 +145,16 @@ const SearchNav = () => {
                                         </div>
                                     )}
                                 </button>
-                                <FaRegBell className='nav-menu' onClick={showSideBar} />
+                                <div className='notification-box'>
+                                    {unbookedCount > 0 && (
+                                        <p className="notification-count">{unbookedCount}</p>
+                                    )}
+                                    <FaRegBell className='nav-menu' onClick={showSideBar} />
+                                </div>
                             </div>
                         </>
                     ) : null}
-                    <button className={`nav-button ${token ? 'hidden':'block'}`}><Link to="/login">Login</Link></button>
+                    <button className={`nav-button ${token ? 'hidden' : 'block'}`}><Link to="/login">Login</Link></button>
                 </div>
             </nav>
 
