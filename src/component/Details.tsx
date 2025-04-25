@@ -28,6 +28,9 @@ function Details() {
     // Get the token in localstorage
     const token = localStorage.getItem('token');
 
+    console.log(token);
+    
+
     // Ensure the user is logged in
     const checkLogin = () => {
         if(token && movie){

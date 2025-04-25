@@ -117,6 +117,7 @@ export interface LocationState {
     discountedPrice: string;
     couponCode: string;
     setOpen: boolean;
+    user_id: string;
 }
 
 export interface SeatSelectProps {
@@ -136,5 +137,11 @@ export interface Booking {
     screen: string;
     seats: string;
     isBooked?: boolean;
+    user_id?: string;
     _id?: string;
+}
+
+export interface MyTokenPayload {
+    id: string;
+    username: string;
 }

@@ -1,5 +1,6 @@
 import axios from "axios";
-import { Booking, MovieData, UserLogin, UserRegister } from "../../component/type";
+import { Booking, MovieData, MyTokenPayload, UserLogin, UserRegister } from "../../component/type";
+import { jwtDecode } from "jwt-decode";
 
 const BASE_URL = 'http://localhost:8000';
 
@@ -37,8 +38,13 @@ export async function loginUser(userData: UserLogin): Promise<unknown> {
     const response = await axios.post(`${BASE_URL}/login`, userData);
 
     if (response) {
-      localStorage.setItem('token', response.data.token);      
+      localStorage.setItem('token', response.data.token);
     }
+
+    const token = localStorage.getItem('token')
+    const decoded = jwtDecode<MyTokenPayload>(token!);
+    localStorage.setItem('user_id', decoded.id);
+    localStorage.setItem('u_name', decoded.username)
 
     return response.data;
   } catch (error: unknown) {
@@ -57,9 +63,9 @@ export async function booking(bookingData: Booking): Promise<unknown> {
   try {
     const response = await axios.post(`${BASE_URL}/booking`, bookingData);
     return response.data;
-    
+
   } catch (error: unknown) {
-    if(axios.isAxiosError(error)) {
+    if (axios.isAxiosError(error)) {
       console.error('Failed to book ticket:', error.response?.data || error.message);
       throw error.response?.data || new Error(error.message);
     } else {
@@ -76,7 +82,7 @@ export async function getBooking(): Promise<Booking[]> {
     return response.data;
   } catch (error) {
     console.error('Failed to fetch booking data:', error);
-    return [];  
+    return [];
   }
 }
 

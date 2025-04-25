@@ -59,6 +59,14 @@ p {
   @apply flex gap-8 me-10
 }
 
+.profile-menu button {
+  @apply flex gap-1
+}
+
+.profile-menu span {
+@apply text-white
+}
+
 .nav-menu {
   @apply size-6 relative
 }

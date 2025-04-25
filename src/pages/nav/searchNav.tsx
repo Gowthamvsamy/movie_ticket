@@ -50,10 +50,12 @@ const SearchNav = () => {
                 const isExpired = decoded.exp * 1000 < Date.now();
                 if (isExpired) {
                     localStorage.removeItem('token');
+                    // localStorage.removeItem('user_id');
                 }
             } catch (error) {
                 console.error("Invalid token", error);
                 localStorage.removeItem('token');
+                // localStorage.removeItem('user_id');
             }
         }
     }, []);
@@ -65,7 +67,9 @@ const SearchNav = () => {
 
     // logout the user
     const logoutsession = () => {
-        localStorage.removeItem('token')
+        localStorage.removeItem('token');
+        // localStorage.removeItem('user_id');
+        
     }
 
     // Use a mouse event to close the user dropdown when clicking outside of it.
@@ -84,6 +88,9 @@ const SearchNav = () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, []);
+
+    const u_name = localStorage.getItem('u_name');
+
 
     return (
         <>
@@ -115,7 +122,7 @@ const SearchNav = () => {
                                 <button
                                     onClick={(): void => userProfile()}
                                 >
-                                    <LuCircleUser className='nav-menu' />
+                                    <LuCircleUser className='nav-menu' /><span>{u_name ? u_name.charAt(0).toUpperCase() + u_name.slice(1) : 'Welcome'}</span>
                                     {showDropDown && (
                                         <div className='dropdown-menu' id='dropdown-menu'>
                                             <ul>

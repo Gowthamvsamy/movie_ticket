@@ -19,19 +19,23 @@ const MyBooking: React.FC = () => {
   }, [])
 
   const cancelTicket = async (id: string) => {
-  try {
-    await updateBooking(id, { isBooked: false });
-    setData(prev => prev.map(item => item._id === id ? { ...item, isBooked: false } : item));
-  } catch (error) {
-    console.error('Failed to cancel ticket:', error);
+    try {
+      await updateBooking(id, { isBooked: false });
+      setData(prev => prev.map(item => item._id === id ? { ...item, isBooked: false } : item));
+    } catch (error) {
+      console.error('Failed to cancel ticket:', error);
+    }
   }
-}
+
+  const u_id = localStorage.getItem('user_id');
+
+
 
 
   return (
     <div className="booked-container">
       {data.map((b) => (
-        b.isBooked === true && b._id ? (
+        b.isBooked === true && b._id && b.user_id === u_id ? (
           <div key={b._id} className="booked-ticket">
             <div>
               <img src={b.poster} alt="poster" className='poster-img' />

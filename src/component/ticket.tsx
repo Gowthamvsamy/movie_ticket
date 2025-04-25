@@ -6,7 +6,7 @@ import QRCode from "react-qr-code";
 import { booking } from '../context/service/movieService';
 import { IoClose } from 'react-icons/io5';
 
-function Ticket() {
+function Ticket() {    
 
     const location = useLocation();
     const navigator = useNavigate();
@@ -37,7 +37,8 @@ function Ticket() {
         time: showtime,
         price: discountedPrice ?? 0,
         screen: 'Screen-1',
-        seats: seats.join(',')
+        seats: seats.join(','),
+        user_id: decoded.id,
     };
 
     // Ticket cancelation and refund
@@ -85,7 +86,6 @@ function Ticket() {
         }
         navigator('/');
     }
-
 
 
     return (
