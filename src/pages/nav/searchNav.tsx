@@ -95,7 +95,16 @@ const SearchNav = () => {
     const getData = async () => {
       try {
         const booking = await getBooking();
-        setUnbookedCount(booking.filter((b) => b.isBooked === false).length);
+        const todayDate = new Date().getDate();
+        
+        const unbookedToday = booking.filter((b) => {
+          if (typeof b.date !== 'string') return false;
+          const [_, date] = b.date.split(' ');
+          const bookingDate = parseInt(date, 10);
+          return b.isBooked === false && bookingDate === todayDate;
+        }).length;
+  
+        setUnbookedCount(unbookedToday);
       } catch (err) {
         console.error("Fetch Booking error: ", err);
       }
@@ -134,7 +143,8 @@ const SearchNav = () => {
                 <button
                   onClick={(): void => userProfile()}
                 >
-                  <LuCircleUser className='nav-menu' /><span>{u_name ? u_name.charAt(0).toUpperCase() + u_name.slice(1) : 'Welcome'}</span>
+                  <LuCircleUser className='nav-menu' />
+                  <span>{u_name ? u_name.charAt(0).toUpperCase() + u_name.slice(1) : 'Welcome'}</span>
                   {showDropDown && (
                     <div className='dropdown-menu' id='dropdown-menu'>
                       <ul>
@@ -160,7 +170,7 @@ const SearchNav = () => {
 
       {/* Side Bar */}
       {!sideBar && (
-        <SideBar />
+        <SideBar sideBar={setSideBar}/>
       )}
     </>
   )

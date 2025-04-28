@@ -63,10 +63,6 @@ p {
   @apply flex gap-1
 }
 
-.profile-menu span {
-@apply text-white
-}
-
 .nav-menu {
   @apply size-6 relative
 }
@@ -83,7 +79,7 @@ p {
   @apply border-0
 }
 
-.Offers, .nav-menu {
+.Offers, .nav-menu, .profile-menu span {
   @apply text-white hover:text-primary-yellow cursor-pointer hover:scale-105
 }
 
@@ -195,7 +191,7 @@ p {
 }
 
 .book-button {
-  @apply bg-primary-blue rounded-md py-2 w-3/4
+  @apply bg-primary-blue rounded-md py-2 w-3/4 hover:text-primary-yellow hover:scale-105
 }
 
 .about, .cast, .crew {
@@ -351,7 +347,7 @@ p {
 }
 
 .show-time {
-  @apply border border-green-500 rounded px-5 py-1 bg-green-50 cursor-pointer
+  @apply border border-green-500 rounded px-5 py-1 bg-green-50 cursor-pointer hover:bg-green-200
 }
 
 .info {
