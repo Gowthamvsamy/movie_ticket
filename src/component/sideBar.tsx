@@ -78,8 +78,8 @@ function SideBar({ sideBar }: MyComponentProps) {
             </div>
 
             <div className='offer-cards offer-box'>
-              <span className="top-left"></span>
-              <span className="top-right"></span>
+              <span className="side-top-left"></span>
+              <span className="side-top-right"></span>
               <div>
                 <p className='gray'><del>Rs.{b.price}.00</del></p>
                 <p className='red'>Rs.{(Number(b.price) * 0.7).toFixed(2)}</p>

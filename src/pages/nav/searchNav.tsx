@@ -96,14 +96,14 @@ const SearchNav = () => {
       try {
         const booking = await getBooking();
         const todayDate = new Date().getDate();
-        
+
         const unbookedToday = booking.filter((b) => {
           if (typeof b.date !== 'string') return false;
           const [_, date] = b.date.split(' ');
           const bookingDate = parseInt(date, 10);
           return b.isBooked === false && bookingDate === todayDate;
         }).length;
-  
+
         setUnbookedCount(unbookedToday);
       } catch (err) {
         console.error("Fetch Booking error: ", err);
@@ -117,9 +117,11 @@ const SearchNav = () => {
     <>
       <nav className='first-nav'>
         {/* Logo */}
-        <div className='nav-box'> <Link to="/">
-          <img src={logo} alt="404" className='logo-img' />
-        </Link></div>
+        <div className='nav-box'>
+          <Link to="/">
+            <img src={logo} alt="404" className='logo-img' />
+          </Link>
+        </div>
 
         {/* Search input */}
         <div className='search'>
@@ -144,7 +146,7 @@ const SearchNav = () => {
                   onClick={(): void => userProfile()}
                 >
                   <LuCircleUser className='nav-menu' />
-                  <span>{u_name ? u_name.charAt(0).toUpperCase() + u_name.slice(1) : 'Welcome'}</span>
+                  <span className='user-name'>{u_name ? u_name.charAt(0).toUpperCase() + u_name.slice(1) : 'Welcome'}</span>
                   {showDropDown && (
                     <div className='dropdown-menu' id='dropdown-menu'>
                       <ul>
@@ -170,7 +172,7 @@ const SearchNav = () => {
 
       {/* Side Bar */}
       {!sideBar && (
-        <SideBar sideBar={setSideBar}/>
+        <SideBar sideBar={setSideBar} />
       )}
     </>
   )

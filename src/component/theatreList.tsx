@@ -46,7 +46,7 @@ function TheatreList() {
   const formattedDates: string[] = [];
 
   // show current date to next seven dates
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < 6; i++) {
     const nextDate = new Date();
     nextDate.setDate(today.getDate() + i);
 
@@ -121,12 +121,14 @@ function TheatreList() {
               </div>
 
               <div className='theatre-flex-2'>
-                <p
-                  className='theatre-flex info'
-                  onClick={() => setSelectedInfoIndex(selectedInfoIndex === index ? null : index)}
-                >
-                  <AiOutlineExclamationCircle />&nbsp;info
-                </p>
+                <div>
+                  <p
+                    className='theatre-flex info'
+                    onClick={() => setSelectedInfoIndex(selectedInfoIndex === index ? null : index)}
+                  >
+                    <AiOutlineExclamationCircle />&nbsp;info
+                  </p>
+                </div>
                 {selectedInfoIndex === index && (
                   <div className='info-box'>
                     <p className='close-icon' onClick={() => setSelectedInfoIndex(null)}>X</p>
@@ -150,9 +152,11 @@ function TheatreList() {
                     </div>
                   </div>
                 )}
-                {th.showtime?.map((s, index) => (
-                  <span key={index} className='show-time' onClick={() => showSeat(s, th.place, th.name)}>{s}</span>
-                ))}
+                <div className='show-time-flex'>
+                  {th.showtime?.map((s, index) => (
+                    <div key={index} className='show-time' onClick={() => showSeat(s, th.place, th.name)}>{s}</div>
+                  ))}
+                </div>
               </div>
             </div>
           ))}

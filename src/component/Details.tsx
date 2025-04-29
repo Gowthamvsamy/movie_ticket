@@ -46,7 +46,7 @@ function Details() {
                 <>
                     <div className="cover-img" style={{ backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.2)), url(${movie.cover_img})` }}>
                         <div>
-                            <img src={movie.poster} alt="Poster-img" className='card-img'  />
+                            <img src={movie.poster} alt="Poster-img" className='details-img'  />
                         </div>
                         <div className='detail-content'>
                             <h2 className='title-text'>{movie.title}</h2>

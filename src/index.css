@@ -32,7 +32,7 @@ p {
 }
 
 .first-nav {
-  @apply bg-secondary-blue flex justify-between items-center p-3 shadow-md shadow-primary-blue sticky top-0 w-full z-50
+  @apply bg-secondary-blue flex justify-between items-center p-3 shadow-md shadow-primary-blue fixed top-0 w-full z-50
 }
 
 .search {
@@ -40,7 +40,7 @@ p {
 }
 
 .nav-box {
-  @apply flex justify-start w-full gap-5
+  @apply flex justify-start w-[25%] sm:w-[50%] md:w-full gap-5
 }
 
 .search-box {
@@ -56,7 +56,7 @@ p {
 }
 
 .profile-menu {
-  @apply flex gap-8 me-10
+  @apply flex gap-2 sm:gap-4 md:gap-8 me-2 md:me-10
 }
 
 .profile-menu button {
@@ -65,6 +65,10 @@ p {
 
 .nav-menu {
   @apply size-6 relative
+}
+
+.user-name{
+  @apply hidden sm:inline
 }
 
 .dropdown-menu {
@@ -88,7 +92,7 @@ p {
 }
 
 .right-nav {
-  @apply flex justify-end items-center gap-8 w-full
+  @apply flex justify-end items-center gap-2 sm:gap-4 md:gap-8 w-full
 }
 
 .logo-img {
@@ -111,11 +115,18 @@ p {
 
 .swiper-slide img {
   display: block;
-  width: 85%;
   height: 250px;
   object-fit: fill;
   margin: auto;
   border-radius: 30px;
+}
+
+.swiper-wrapper{
+  @apply w-fit
+}
+
+.swiper-slide img{
+  @apply w-[95%] sm:w-[90%] md:w-[85%]
 }
 
 .tab-card {
@@ -123,11 +134,11 @@ p {
 }
 
 .main-card {
-  @apply px-10 grid grid-cols-5 gap-10
+  @apply px-10 flex flex-wrap justify-evenly gap-10
 }
 
 .card {
-  @apply shadow-md shadow-secondary-gray rounded cursor-pointer
+  @apply shadow-md shadow-secondary-gray rounded cursor-pointer w-[250px] sm:w-[222px]
 }
 
 .card-text {
@@ -135,7 +146,7 @@ p {
 }
 
 .card-img {
-  @apply object-fill w-[222px] h-[340px] rounded-t-md
+  @apply object-fill w-full h-[340px] rounded-t-md
 }
 
 .rating-box {
@@ -147,7 +158,7 @@ p {
 }
 
 .tablist {
-  @apply flex justify-start items-center w-[50%]
+  @apply flex justify-start items-center sm:w-[50%]
 }
 
 .tab {
@@ -163,11 +174,15 @@ p {
 }
 
 .cover-img {
-  @apply h-[80vh] bg-cover bg-center flex justify-start p-[2rem] text-white gap-14
+  @apply bg-cover bg-center flex justify-center sm:justify-start flex-wrap sm:flex-nowrap p-[2rem] text-white gap-4 sm:gap-6 md:gap-10 lg:gap-14
+}
+
+.details-img{
+  @apply object-fill w-full min-w-[180px] h-[320px] md:h-[340px] rounded-md
 }
 
 .detail-content {
-  @apply flex flex-col gap-y-3 my-10
+  @apply flex flex-col items-center sm:items-start gap-y-3 my-10 
 }
 
 .title-text {
@@ -183,7 +198,7 @@ p {
 }
 
 .detail-list {
-  @apply flex justify-start items-center gap-5
+  @apply flex justify-center sm:justify-start items-center flex-wrap gap-5
 }
 
 .detail-list p {
@@ -200,6 +215,10 @@ p {
 
 .about-heading, .cast-heading, .crew-heading {
   @apply text-3xl font-bold
+}
+
+.about p {
+  @apply text-justify
 }
 
 .form-bg {
@@ -235,7 +254,7 @@ p {
 }
 
 .cast-crew {
-  @apply flex gap-10
+  @apply flex flex-wrap justify-center sm:justify-start gap-5
 }
 
 .cast-crew-img {
@@ -319,15 +338,15 @@ p {
 }
 
 .date-list {
-  @apply px-10 py-6 flex gap-2
+  @apply px-5 sm:px-10 py-6 flex gap-1 sm:gap-2
 }
 
 .date-list p {
-  @apply w-12 border py-2 px-3 flex justify-center items-center text-center rounded-md bg-primary-blue text-white hover:text-primary-yellow cursor-pointer
+  @apply w-12 border py-2 px-2 flex justify-center items-center text-center rounded-md bg-primary-blue text-white hover:text-primary-yellow cursor-pointer
 }
 
 .theatres {
-  @apply px-10 py-8
+  @apply px-4 sm:px-10 py-8
 }
 
 .theatres-box {
@@ -335,7 +354,7 @@ p {
 }
 
 .theatres-ui {
-  @apply grid grid-cols-3 items-center p-5
+  @apply grid grid-flow-col grid-cols-1 lg:grid-cols-3 grid-rows-2 gap-y-3 lg:grid-rows-1 items-center py-5 sm:px-5
 }
 
 .theatre-flex {
@@ -343,7 +362,11 @@ p {
 }
 
 .theatre-flex-2 {
-  @apply flex gap-5 justify-start col-span-2 relative
+  @apply flex flex-wrap gap-5 justify-start items-center col-span-2 relative
+}
+
+.show-time-flex {
+  @apply flex gap-3 flex-wrap
 }
 
 .show-time {
@@ -402,8 +425,16 @@ p {
   @apply !text-primary-yellow font-semibold scale-105
 }
 
+.seatlist-width {
+  @apply w-full overflow-x-auto;
+}
+
+.seat-list {
+  @apply min-w-[800px] flex flex-wrap gap-2;
+}
+
 .seat-map {
-  @apply flex flex-col items-center my-5
+  @apply flex flex-col items-center my-5 px-10
 }
 
 .seat-row {
@@ -439,12 +470,15 @@ p {
 }
 
 .screen {
-  width: 800px;
   height: 100px;
   border: solid 5px #000;
   border-color: transparent transparent #000 transparent;
   border-radius: 50%;
   margin: 0 auto 0 auto;
+}
+
+.screen {
+  @apply w-[350px] sm:w-[600px] md:w-[750px]
 }
 
 .screen span {
@@ -460,7 +494,7 @@ p {
 }
 
 .totalPrice {
-  @apply border rounded-md bg-primary-blue text-white w-2/6 py-3 mb-10 mx-auto
+  @apply border rounded-md bg-primary-blue text-white w-4/6 sm:w-2/6 py-3 mb-10 mx-auto
 }
 
 .tickets {
@@ -468,7 +502,7 @@ p {
 }
 
 .ticket-box {
-  @apply border shadow-md w-2/6 rounded-md bg-slate-950 p-3
+  @apply border shadow-md  rounded-md bg-slate-950 p-3
 }
 
 .ticket-poster {
@@ -548,11 +582,11 @@ p {
 }
 
 .cancel-ticket {
-  @apply text-white bg-red-600 border rounded-md shadow-md px-3 py-1
+  @apply text-white bg-red-600 border rounded-md shadow-md px-3 py-1 hover:scale-105
 }
 
 .footer-space {
-  @apply pb-10
+  @apply py-16
 }
 
 .close-ticket {
@@ -560,7 +594,7 @@ p {
 }
 
 .booked-container {
-  @apply flex flex-wrap gap-5 justify-between items-center p-8
+  @apply grid grid-flow-row md:grid-cols-1 lg:grid-cols-2 gap-5 justify-between p-2 sm:p-8
 }
 
 .booked-ticket {
@@ -572,7 +606,7 @@ p {
 }
 
 .poster-img {
-  @apply h-40 w-44
+  @apply h-40 
 }
 
 .bold {
@@ -588,18 +622,18 @@ p {
 }
 
 .booking-cancel {
-  @apply flex justify-end mt-auto
+  @apply flex justify-end mt-auto ms-auto
 }
 
-.sidebar{
-  @apply w-[25%] fixed top-[68px] right-0 bg-gray-200 z-40 p-5 overflow-y-auto h-[89%]
+.sidebar {
+  @apply w-[25%] fixed top-16 right-0 bg-gray-200 z-40 p-5 overflow-y-auto h-[89%]
 }
 
-.sell-box{
+.sell-box {
   @apply border shadow-md mb-3 p-2 rounded-md bg-gray-400/70
 }
 
-.sell-img{
+.sell-img {
   @apply h-20
 }
 
@@ -611,34 +645,42 @@ p {
   @apply text-xs text-black/70
 }
 
-.offer-box{
+.offer-box {
   @apply justify-evenly items-center p-3 relative border-t-2 border-dashed border-gray-200
 }
 
-.top-left {
+.side-top-left {
   @apply absolute -top-[9px] -left-4 w-4 h-4 bg-gray-200 rounded-full
 }
 
-.top-right {
+.side-top-right {
   @apply absolute -top-[9px] -right-4 w-4 h-4 bg-gray-200 rounded-full
 }
 
-.gray{
+.gray {
   @apply text-gray-500 text-sm
 }
 
-.red{
+.red {
   @apply text-red-900 font-semibold
 }
 
-.book-now{
+.book-now {
   @apply rounded-md px-3 py-1 bg-primary-blue shadow-md text-white hover:text-primary-yellow
 }
 
-.notification-box{
+.notification-box {
   @apply relative
 }
 
-.notification-count{
+.notification-count {
   @apply absolute -mt-3 -right-2 h-5 w-5 bg-red-500 rounded-full text-white flex justify-center items-center
+}
+
+.booking-tabs {
+  @apply flex w-full border-b
+}
+
+.booking-tabs .tab {
+  @apply w-full py-3 font-semibold
 }

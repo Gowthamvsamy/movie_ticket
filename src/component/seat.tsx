@@ -61,7 +61,7 @@ function Seat() {
                     <p>{movie?.title}</p>
                     <p>{name} / {place} / {date} / {showtime}</p>
                 </div>
-                <div>
+                <div className='seatlist-width'>
                     <SeatSelect onData={handleData} />
                 </div>
             </div>
