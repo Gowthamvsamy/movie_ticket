@@ -33,9 +33,8 @@ const MyBooking: React.FC = () => {
 
   const today: string = new Date().getDate().toString();
 
-  console.log(today);
-
-
+  const cTime = new Date();
+  const current = cTime.getHours();
 
 
   return (
@@ -49,7 +48,7 @@ const MyBooking: React.FC = () => {
           <div className="booked-container">
             {data.map((b) => (
               b.isBooked === true && b._id && b.user_id === u_id ? (
-                today <= b.date.slice(-6, -3) ? (
+                today <= b.date.slice(-6, -3) && current < (parseInt(b.time.slice(0, 2)) + 12) ? (
                   <div key={b._id} className="booked-ticket">
                     <div>
                       <img src={b.poster} alt="poster" className='poster-img' />
@@ -63,9 +62,15 @@ const MyBooking: React.FC = () => {
                         <p>{b.screen}</p>
                         <p><span>Ticket : {b.seats.split(',').length}</span>, Seats : {b.seats}</p>
                         <h2 className='bold'>Rs. {b.price}</h2>
+                        <p>{parseInt(b.time.slice(0, 2)) + 12}</p>
                       </div>
                       <div className="booking-cancel ">
-                        <button className={`cancel-ticket ${today > b.date.slice(-6, -3) ? 'hidden' : ''}`} onClick={() => cancelTicket(b._id!)} >Cancel&nbsp;Ticket</button>
+                        <button
+                          className={`cancel-ticket ${today > b.date.slice(-6, -3) ? 'hidden' : ''}`}
+                          onClick={() => cancelTicket(b._id!)}
+                        >
+                          Cancel&nbsp;Ticket
+                        </button>
                       </div>
                     </div>
                   </div>

@@ -4,6 +4,7 @@ import ListContext from '../context/listContext';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { LocationState } from './type';
 import SeatSelect from './seatSelect';
+import { IoIosArrowBack } from 'react-icons/io';
 
 function Seat() {
     // Movie list context
@@ -54,12 +55,19 @@ function Seat() {
         }
     }, [couponCode, paymentData.price]);
 
+    const navigateBack = () => {navigator(`/details/${movieId}/theatres`)}
+
     return (
         <>
             <div>
                 <div className='seat-heading'>
-                    <p>{movie?.title}</p>
-                    <p>{name} / {place} / {date} / {showtime}</p>
+                    <div className='theatre-back'>
+                        <IoIosArrowBack className='arrow-back' onClick={navigateBack} />
+                    </div>
+                    <div>
+                        <p>{movie?.title}</p>
+                        <p>{name} / {place} / {date} / {showtime}</p>
+                    </div>
                 </div>
                 <div className='seatlist-width'>
                     <SeatSelect onData={handleData} />

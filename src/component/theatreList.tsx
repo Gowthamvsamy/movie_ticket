@@ -4,7 +4,7 @@ import ListContext from '../context/listContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AiOutlineExclamationCircle } from 'react-icons/ai';
 import { IoFastFoodOutline, IoLocationOutline, IoRestaurantOutline, IoTicketOutline } from 'react-icons/io5';
-import { IoIosCar } from 'react-icons/io';
+import { IoIosArrowBack, IoIosCar } from 'react-icons/io';
 import { Facilities, MovieData, Theatres } from './type';
 import theatresData from './theatre.json';
 
@@ -36,6 +36,10 @@ function TheatreList() {
           }
         })
     }
+  }
+
+  const navigateBack = () => {
+    if (movie) { navigator(`/details/${movie.id}`) }
   }
 
   // Days and Months converter
@@ -85,14 +89,19 @@ function TheatreList() {
 
       {/* Selected movie title and language */}
       {movie ? (
-        <div className='theatre-heading-box li-div'>
-          <h2 className='theatre-heading'>{`${movie.title} - (${movie.language?.[0]})`}</h2>
-          <p>
-            <span>{movie.certified}</span>
-            {movie.genre?.map((g, index) => (
-              <span key={index}>{g}</span>
-            ))}
-          </p>
+        <div className='theatre-title'>
+          <div className='theatre-back'>
+            <IoIosArrowBack className='arrow-back' onClick={navigateBack} />
+          </div>
+          <div className='theatre-heading-box li-div'>
+            <h2 className='theatre-heading'>{`${movie.title} - (${movie.language?.[0]})`}</h2>
+            <p>
+              <span>{movie.certified}</span>
+              {movie.genre?.map((g, index) => (
+                <span key={index}>{g}</span>
+              ))}
+            </p>
+          </div>
         </div>
       ) : (null)
       }

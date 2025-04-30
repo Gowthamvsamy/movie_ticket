@@ -23,7 +23,6 @@ const Tabpanel: React.FC<MovieCardProps> = ({ movie, onClick }) => {
   )
 }
 
-
 function Cards({ setMovieData }: { setMovieData: (id: number) => void }) {
 
   // Movie list context
@@ -46,10 +45,9 @@ function Cards({ setMovieData }: { setMovieData: (id: number) => void }) {
     { label: "Series" },
   ];
 
-  const movieDetails = (id: number) => {
-    setMovieData(id)
-  }
+  const movieDetails = (id: number) => { setMovieData(id) }
 
+  // Set default active tab
   const [active, setActive] = useState<string>("All")
 
   return (
@@ -88,7 +86,6 @@ function Cards({ setMovieData }: { setMovieData: (id: number) => void }) {
           </TabPanel>
         </Tabs>
       </div>
-
     </>
   )
 }

@@ -42,13 +42,11 @@ function SideBar({ sideBar }: MyComponentProps) {
           if (typeof b.date !== 'string') return false;
           const [_, date] = b.date.split(' ');
           const todayDate = new Date().getDate();
-          // const todayTime = new Date().getTime();
           const bookingDate = parseInt(date, 10);
+          const cTime = new Date();
+          const current = cTime.getHours();
 
-          // console.log(todayTime);
-          
-
-          return todayDate === bookingDate && b.isBooked === false && b._id;
+          return todayDate === bookingDate && b.isBooked === false && b._id && current < (parseInt(b.time.slice(0, 2)) + 12);
         })
         .map((b) => (
           <div key={b._id} className='sell-box'>
@@ -90,7 +88,7 @@ function SideBar({ sideBar }: MyComponentProps) {
             </div>
           </div>
         ))}
-        <button onClick={() => sideBar(prev => !prev)} className='cancel-ticket'>Close</button>
+      <button onClick={() => sideBar(prev => !prev)} className='cancel-ticket'>Close</button>
     </div>
 
   )

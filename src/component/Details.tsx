@@ -4,10 +4,10 @@ import { useNavigate, useParams } from 'react-router-dom';
 import ListContext from '../context/listContext';
 import { CrewKey, MovieData } from './type';
 import { FaStar } from 'react-icons/fa';
+import { IoIosArrowBack } from 'react-icons/io';
 
 function Details() {
 
-    // navigator
     const navigator = useNavigate();
 
     // Get the data from router path
@@ -28,17 +28,16 @@ function Details() {
     // Get the token in localstorage
     const token = localStorage.getItem('token');
 
-    console.log(token);
-    
-
     // Ensure the user is logged in
     const checkLogin = () => {
-        if(token && movie){
+        if (token && movie) {
             navigator(`/details/${movie.id}/theatres`)
-        }else {
+        } else {
             navigator('/login')
         }
     }
+
+    const navigateBack = () => {navigator('/')}
 
     return (
         <>
@@ -46,7 +45,7 @@ function Details() {
                 <>
                     <div className="cover-img" style={{ backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.2)), url(${movie.cover_img})` }}>
                         <div>
-                            <img src={movie.poster} alt="Poster-img" className='details-img'  />
+                            <img src={movie.poster} alt="Poster-img" className='details-img' />
                         </div>
                         <div className='detail-content'>
                             <h2 className='title-text'>{movie.title}</h2>
@@ -59,6 +58,9 @@ function Details() {
                                 <p>{movie.year}</p>
                             </div>
                             <button onClick={checkLogin} className={`book-button ${movie.type === 'series' ? 'hidden' : ''}`}>Book Tickets</button>
+                        </div>
+                        <div className='back-btn'>
+                            <button className='back' onClick={navigateBack}><IoIosArrowBack className='arrow-back' /> Back</button>
                         </div>
                     </div>
                     <div className='about'>
@@ -90,9 +92,7 @@ function Details() {
                         </div>
                     </div>
                 </>
-            ) : (
-                <p>Movie not found.</p>
-            )}
+            ) : null}
         </>
     );
 }
