@@ -104,7 +104,9 @@ const SearchNav = () => {
           if (typeof b.date !== 'string') return false;
           const [_, date] = b.date.split(' ');
           const bookingDate = parseInt(date, 10);
-          return b.isBooked === false && bookingDate === todayDate;
+          const cTime = new Date();
+          const current = cTime.getHours();
+          return b.isBooked === false && bookingDate === todayDate && current < (parseInt(b.time.slice(0, 2)) + 12);
         }).length;
 
         setUnbookedCount(unbookedToday);

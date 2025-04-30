@@ -33,22 +33,18 @@ const MyBooking: React.FC = () => {
 
   const today: string = new Date().getDate().toString();
 
-  const cTime = new Date();
-  const current = cTime.getHours();
-
-
   return (
     <>
       <Tabs>
         <TabList className="booking-tabs">
           <Tab className={`tab ${active === "upcoming" ? 'active' : ''}`} onClick={() => setActive("upcoming")}>Upcoming</Tab>
-          <Tab className="tab" onClick={() => setActive("Completed")}>Completed</Tab>
+          <Tab className={`tab ${active === "Completed" ? 'active' : ''}`} onClick={() => setActive("Completed")}>Completed</Tab>
         </TabList>
         <TabPanel>
           <div className="booked-container">
             {data.map((b) => (
               b.isBooked === true && b._id && b.user_id === u_id ? (
-                today <= b.date.slice(-6, -3) && current < (parseInt(b.time.slice(0, 2)) + 12) ? (
+                today < b.date.slice(-6, -3) ? (
                   <div key={b._id} className="booked-ticket">
                     <div>
                       <img src={b.poster} alt="poster" className='poster-img' />
@@ -62,7 +58,6 @@ const MyBooking: React.FC = () => {
                         <p>{b.screen}</p>
                         <p><span>Ticket : {b.seats.split(',').length}</span>, Seats : {b.seats}</p>
                         <h2 className='bold'>Rs. {b.price}</h2>
-                        <p>{parseInt(b.time.slice(0, 2)) + 12}</p>
                       </div>
                       <div className="booking-cancel ">
                         <button
@@ -83,7 +78,7 @@ const MyBooking: React.FC = () => {
           <div className="booked-container">
             {data.map((b) => (
               b.isBooked === true && b._id && b.user_id === u_id ? (
-                today > b.date.slice(-6, -3) ? (
+                today >= b.date.slice(-6, -3) ? (
                   <div key={b._id} className="booked-ticket">
                     <div>
                       <img src={b.poster} alt="poster" className='poster-img' />
