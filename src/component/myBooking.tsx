@@ -24,6 +24,7 @@ const MyBooking: React.FC = () => {
     try {
       await updateBooking(id, { isBooked: false });
       setData(prev => prev.map(item => item._id === id ? { ...item, isBooked: false } : item));
+      window.location.reload();
     } catch (error) {
       console.error('Failed to cancel ticket:', error);
     }
@@ -32,6 +33,10 @@ const MyBooking: React.FC = () => {
   const u_id = localStorage.getItem('user_id');
 
   const today: string = new Date().getDate().toString();
+
+  const current: number = new Date().getHours();
+
+  
 
   return (
     <>
@@ -44,7 +49,7 @@ const MyBooking: React.FC = () => {
           <div className="booked-container">
             {data.map((b) => (
               b.isBooked === true && b._id && b.user_id === u_id ? (
-                today < b.date.slice(-6, -3) ? (
+                parseInt(today) >= parseInt(b.date.split(' ')[1]) ? (
                   <div key={b._id} className="booked-ticket">
                     <div>
                       <img src={b.poster} alt="poster" className='poster-img' />
@@ -61,7 +66,7 @@ const MyBooking: React.FC = () => {
                       </div>
                       <div className="booking-cancel ">
                         <button
-                          className={`cancel-ticket ${today > b.date.slice(-6, -3) ? 'hidden' : ''}`}
+                          className={`cancel-ticket ${today < b.date.split(' ')[1]  && current <= (parseInt(b.time.split(':')[0])+12)? 'hidden' : ''}`}
                           onClick={() => cancelTicket(b._id!)}
                         >
                           Cancel&nbsp;Ticket
@@ -78,7 +83,7 @@ const MyBooking: React.FC = () => {
           <div className="booked-container">
             {data.map((b) => (
               b.isBooked === true && b._id && b.user_id === u_id ? (
-                today >= b.date.slice(-6, -3) ? (
+                today < b.date.split(' ')[1] ? (
                   <div key={b._id} className="booked-ticket">
                     <div>
                       <img src={b.poster} alt="poster" className='poster-img' />

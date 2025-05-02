@@ -3,9 +3,9 @@
         "name": "Mayajaal Multiplex",
         "place": "ECR, Chennai",
         "showtime": [
-            "04:00",
-            "07:00",
-            "08:00"
+            "04:00 PM",
+            "07:00 PM",
+            "08:00 PM"
         ],
         "address": "No. 34/1, East Coast Road, Kanathur, Near Toll Plaza, Chennai, Tamil Nadu 603112, India"
     },
@@ -13,9 +13,10 @@
         "name": "Miraj Cinemas",
         "place": "Sekaran Mall, Chennai",
         "showtime": [
-            "04:00",
-            "07:00",
-            "08:00"
+            "04:00 PM",
+            "07:00 PM",
+            "08:00 PM",
+            "10:00 PM"
         ],
         "address": "No. 34/1, East Coast Road, Kanathur, Near Toll Plaza, Chennai, Tamil Nadu 603112, India"
     },
@@ -23,9 +24,9 @@
         "name": "Rohini Silver Screens",
         "place": "Koyambedu",
         "showtime": [
-            "04:00",
-            "05:00",
-            "06:00"
+            "04:00 PM",
+            "05:00 PM",
+            "06:00 PM"
         ],
         "address": "No. 34/1, East Coast Road, Kanathur, Near Toll Plaza, Chennai, Tamil Nadu 603112, India"
     }

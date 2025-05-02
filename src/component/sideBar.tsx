@@ -29,6 +29,7 @@ function SideBar({ sideBar }: MyComponentProps) {
     try {
       await updateBooking(id, { isBooked: true, user_id: u_id });
       setData(prev => prev.map(item => item._id === id ? { ...item, isBooked: true, user_id: u_id } : item));
+      window.location.reload();
     } catch (err) {
       console.error('Failed to Book tickets', err);
     }
