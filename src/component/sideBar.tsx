@@ -15,6 +15,7 @@ function SideBar({ sideBar }: MyComponentProps) {
     const getData = async () => {
       try {
         const booking = await getBooking();
+        console.log("Fetched bookings:", booking)
         setData(booking)
       } catch (err) {
         console.error("Fetch Booking error: ", err);

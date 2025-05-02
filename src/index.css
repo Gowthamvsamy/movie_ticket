@@ -506,7 +506,7 @@ p {
 }
 
 .tickets {
-  @apply flex items-center justify-center h-screen bg-gray-100
+  @apply flex items-center justify-center h-screen bg-gray-100 mt-5
 }
 
 .ticket-box {
@@ -711,4 +711,36 @@ p {
 
 .error-img{
   @apply mx-auto pt-[68px]
+}
+
+.wallet-bg {
+  @apply min-h-screen bg-gradient-to-br from-purple-100 to-white flex items-center justify-center
+}
+
+.wallet{
+  @apply bg-white shadow-xl rounded-2xl p-8 w-full max-w-sm
+}
+
+.wallet-heading {
+  @apply text-2xl font-bold text-gray-800 text-center mb-6
+}
+
+.balance-box{
+  @apply bg-blue-600 text-white rounded-xl p-6 text-center shadow-md
+}
+
+.balance-box p {
+  @apply text-sm
+}
+
+.balance-price {
+  @apply text-4xl font-semibold mt-2
+}
+
+.loader-img{
+  @apply w-full max-w-sm 
+}
+
+.loader{
+  @apply rounded-full h-60 w-60 mx-auto outline-2 
 }

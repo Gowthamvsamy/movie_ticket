@@ -16,8 +16,10 @@ import ErrorPage from '../component/errorPage'
 function AppRoutes() {
   const location = useLocation();
 
-  // Hide the navbar when the seat selection page is open.
-  const shouldHideSearchNav = location.pathname.includes('/theatres');
+  const path = location.pathname;
+
+  // Hide the navbar only on the seat selection page, show on ticket page
+  const shouldHideSearchNav = path.includes('/theatres/seat') && !path.endsWith('/ticket');
 
   return (
     <>

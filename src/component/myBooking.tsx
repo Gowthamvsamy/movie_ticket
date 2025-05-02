@@ -33,10 +33,14 @@ const MyBooking: React.FC = () => {
   const u_id = localStorage.getItem('user_id');
 
   const today: string = new Date().getDate().toString();
+  const mon: number = new Date().getMonth();
+  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const month: string = monthNames[mon];
 
   const current: number = new Date().getHours();
 
-  
+
+
 
   return (
     <>
@@ -49,7 +53,7 @@ const MyBooking: React.FC = () => {
           <div className="booked-container">
             {data.map((b) => (
               b.isBooked === true && b._id && b.user_id === u_id ? (
-                parseInt(today) >= parseInt(b.date.split(' ')[1]) ? (
+                month <= b.date.split(' ')[2] && parseInt(today) <= parseInt(b.date.split(' ')[1]) ? (
                   <div key={b._id} className="booked-ticket">
                     <div>
                       <img src={b.poster} alt="poster" className='poster-img' />
@@ -66,7 +70,7 @@ const MyBooking: React.FC = () => {
                       </div>
                       <div className="booking-cancel ">
                         <button
-                          className={`cancel-ticket ${today < b.date.split(' ')[1]  && current <= (parseInt(b.time.split(':')[0])+12)? 'hidden' : ''}`}
+                          className={`cancel-ticket ${current >= parseInt(b.time.split(':')[0])+11 ? 'hidden ' : ''} `}
                           onClick={() => cancelTicket(b._id!)}
                         >
                           Cancel&nbsp;Ticket
@@ -83,21 +87,23 @@ const MyBooking: React.FC = () => {
           <div className="booked-container">
             {data.map((b) => (
               b.isBooked === true && b._id && b.user_id === u_id ? (
-                today < b.date.split(' ')[1] ? (
-                  <div key={b._id} className="booked-ticket">
-                    <div>
-                      <img src={b.poster} alt="poster" className='poster-img' />
+                month >= b.date.split(' ')[2] ? (
+                  today > b.date.split(' ')[1] ? (
+                    <div key={b._id} className="booked-ticket">
+                      <div>
+                        <img src={b.poster} alt="poster" className='poster-img' />
+                      </div>
+                      <div className='booking-detail'>
+                        <h2 className='bold'>{b.title}</h2>
+                        <p>{b.certified} / {b.language}</p>
+                        <p>{b.theatre} / {b.place}</p>
+                        <p>{b.date} / {b.time}</p>
+                        <p>{b.screen}</p>
+                        <p><span>Ticket : {b.seats.split(',').length}</span>, Seats : {b.seats}</p>
+                        <h2 className='bold'>Rs. {b.price}</h2>
+                      </div>
                     </div>
-                    <div className='booking-detail'>
-                      <h2 className='bold'>{b.title}</h2>
-                      <p>{b.certified} / {b.language}</p>
-                      <p>{b.theatre} / {b.place}</p>
-                      <p>{b.date} / {b.time}</p>
-                      <p>{b.screen}</p>
-                      <p><span>Ticket : {b.seats.split(',').length}</span>, Seats : {b.seats}</p>
-                      <h2 className='bold'>Rs. {b.price}</h2>
-                    </div>
-                  </div>
+                  ) : null
                 ) : null
               ) : null
             ))}

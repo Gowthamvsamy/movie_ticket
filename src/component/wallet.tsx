@@ -1,14 +1,23 @@
-import React from 'react'
+import React from 'react';
+import Loder from './loder';
 
 function Wallet() {
-    const price = localStorage.getItem('refund')
+  const price = localStorage.getItem('refund');
+
   return (
+    // <div className="wallet-bg">
+    //   <div className="wallet">
+    //     <h1 className="wallet-heading">My Wallet</h1>
+    //     <div className="balance-box">
+    //       <p>Total Wallet Balance</p>
+    //       <h2 className="balance-price">&#x20B9; {price || "0.00"}</h2>
+    //     </div>
+    //   </div>
+    // </div>
     <>
-        <div className='form-bg'>
-            <h2>Total Wallet Balance &#x20B9; {price}</h2>
-        </div>
+    <Loder />
     </>
-  )
+  );
 }
 
-export default Wallet
+export default Wallet;
