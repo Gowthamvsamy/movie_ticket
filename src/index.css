@@ -67,7 +67,7 @@ p {
   @apply size-6 relative
 }
 
-.user-name{
+.user-name {
   @apply hidden sm:inline
 }
 
@@ -121,11 +121,11 @@ p {
   border-radius: 30px;
 }
 
-.swiper-wrapper{
+.swiper-wrapper {
   @apply w-fit
 }
 
-.swiper-slide img{
+.swiper-slide img {
   @apply w-[95%] sm:w-[90%] md:w-[85%]
 }
 
@@ -177,12 +177,12 @@ p {
   @apply bg-cover bg-center flex justify-center sm:justify-start flex-wrap sm:flex-nowrap p-[2rem] text-white gap-4 sm:gap-6 md:gap-10 lg:gap-14 mt-[68px]
 }
 
-.details-img{
+.details-img {
   @apply object-fill w-full min-w-[180px] h-[320px] md:h-[340px] rounded-md
 }
 
 .detail-content {
-  @apply flex flex-col items-center sm:items-start gap-y-3 my-10 
+  @apply flex flex-col items-center sm:items-start gap-y-3 my-10
 }
 
 .title-text {
@@ -325,7 +325,7 @@ p {
   @apply flex
 }
 
-.theatre-back{
+.theatre-back {
   @apply flex justify-center items-center ps-7
 }
 
@@ -510,7 +510,7 @@ p {
 }
 
 .ticket-box {
-  @apply border shadow-md  rounded-md bg-slate-950 p-3
+  @apply border shadow-md rounded-md bg-slate-950 p-3
 }
 
 .ticket-poster {
@@ -614,7 +614,7 @@ p {
 }
 
 .poster-img {
-  @apply h-40 
+  @apply h-40
 }
 
 .bold {
@@ -693,23 +693,23 @@ p {
   @apply w-full py-3 font-semibold
 }
 
-.back-btn{
+.back-btn {
   @apply w-1/3 flex justify-end items-start
 }
 
-.arrow-back{
+.arrow-back {
   @apply size-7 cursor-pointer
 }
 
-.back{
+.back {
   @apply text-lg flex hover:scale-105 hover:text-primary-yellow
 }
 
-.error-div{
+.error-div {
   @apply w-full h-fit
 }
 
-.error-img{
+.error-img {
   @apply mx-auto pt-[68px]
 }
 
@@ -717,7 +717,7 @@ p {
   @apply min-h-screen bg-gradient-to-br from-purple-100 to-white flex items-center justify-center
 }
 
-.wallet{
+.wallet {
   @apply bg-white shadow-xl rounded-2xl p-8 w-full max-w-sm
 }
 
@@ -725,7 +725,7 @@ p {
   @apply text-2xl font-bold text-gray-800 text-center mb-6
 }
 
-.balance-box{
+.balance-box {
   @apply bg-blue-600 text-white rounded-xl p-6 text-center shadow-md
 }
 
@@ -737,10 +737,29 @@ p {
   @apply text-4xl font-semibold mt-2
 }
 
-.loader-img{
-  @apply w-full max-w-sm 
+.loader-img {
+  @apply w-full max-w-sm relative
 }
 
-.loader{
-  @apply rounded-full h-60 w-60 mx-auto outline-2 
+.loader {
+  @apply rounded-full h-52 w-52 mx-auto absolute z-10 top-[5px] left-[5px]
+}
+
+.load{
+  border-top: 5px solid yellow;
+  border-right: 5px solid yellow;
+  animation: spin 1s linear infinite;
+  width: 218px;
+  height: 218px;
+  border-radius: 50%;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }

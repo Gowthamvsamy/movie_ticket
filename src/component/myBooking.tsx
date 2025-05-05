@@ -2,19 +2,24 @@ import React, { useEffect, useState } from 'react'
 import { Booking } from './type';
 import { getBooking, updateBooking } from '../context/service/movieService';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+import Loader from './loader';
 
 const MyBooking: React.FC = () => {
 
   const [data, setData] = useState<Booking[]>([]);
   const [active, setActive] = useState<string>("upcoming")
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const getData = async () => {
+      setLoading(true);
       try {
         const booking = await getBooking();
         setData(booking)
       } catch (err) {
         console.error("Fetch Booking error: ", err);
+      } finally {
+        setLoading(false);
       }
     }
     getData();
@@ -44,6 +49,7 @@ const MyBooking: React.FC = () => {
 
   return (
     <>
+      {loading && <Loader />}
       <Tabs>
         <TabList className="booking-tabs">
           <Tab className={`tab ${active === "upcoming" ? 'active' : ''}`} onClick={() => setActive("upcoming")}>Upcoming</Tab>
@@ -70,7 +76,7 @@ const MyBooking: React.FC = () => {
                       </div>
                       <div className="booking-cancel ">
                         <button
-                          className={`cancel-ticket ${current >= parseInt(b.time.split(':')[0])+11 ? 'hidden ' : ''} `}
+                          className={`cancel-ticket ${current >= parseInt(b.time.split(':')[0]) + 11 ? 'hidden ' : ''} `}
                           onClick={() => cancelTicket(b._id!)}
                         >
                           Cancel&nbsp;Ticket

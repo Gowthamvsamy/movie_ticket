@@ -42,6 +42,7 @@ function SideBar({ sideBar }: MyComponentProps) {
       {data
         .filter((b) => {
           if (typeof b.date !== 'string') return false;
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const [_, date] = b.date.split(' ');
           const todayDate = new Date().getDate();
           const bookingDate = parseInt(date, 10);

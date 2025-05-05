@@ -5,24 +5,30 @@ import { getBooking, updateBooking } from '../context/service/movieService';
 import { toast } from 'react-toastify';
 import QRCode from "react-qr-code";
 import { useNavigate } from 'react-router-dom';
+import Loader from './loader';
 
 function Ticket() {
 
   const [ticket, setTicket] = useState<Booking[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   const navigator = useNavigate();
 
   useEffect(() => {
     const fetchTicket = async () => {
+      setLoading(true);
       try {
         const bookings = await getBooking();
         setTicket(bookings || []);
       } catch (err) {
         toast.error("Error fetching ticket");
         console.error(err);
+      } finally {
+        setLoading(false);
       }
     };
     fetchTicket();
   }, []);
+  
 
   const closeTicket = () => {
     navigator('/');
@@ -55,6 +61,7 @@ function Ticket() {
 
   return (
     <div className='tickets'>
+      {loading && <Loader />}
       <div className='ticket-box'>
         <div className='ticket-bg'>
           <button className='close-ticket' onClick={closeTicket}><IoClose size={25} /></button>

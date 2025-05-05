@@ -122,7 +122,7 @@ function Seat() {
                       place: place,
                       date: date,
                       time: showtime,
-                      price: discountedPrice ?? paymentData.price ?? 0,
+                      price: (discountedPrice ?? paymentData.price ?? 0).toString(),
                       screen: 'Screen-1',
                       seats: paymentData.seats.join(','),
                       user_id: decoded.id,
@@ -131,7 +131,7 @@ function Seat() {
 
                     await booking(bookingData);
                     toast.success("Ticket booked successfully!");
-                    navigator(`/details/${movieId}/theatres/seat/ticket`);
+                    navigator(`/details/${movieId}/theatres/seat/ticket`)
                       
                   } catch (error) {
                     console.error("Booking failed:", error);
