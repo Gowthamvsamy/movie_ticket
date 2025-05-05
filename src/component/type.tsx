@@ -139,6 +139,7 @@ export interface Booking {
     isBooked?: boolean;
     user_id?: string;
     _id?: string;
+    discountedPrice: string | number;
 }
 
 export interface MyTokenPayload {

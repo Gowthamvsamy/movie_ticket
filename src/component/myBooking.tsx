@@ -72,7 +72,7 @@ const MyBooking: React.FC = () => {
                         <p>{b.date} / {b.time}</p>
                         <p>{b.screen}</p>
                         <p><span>Ticket : {b.seats.split(',').length}</span>, Seats : {b.seats}</p>
-                        <h2 className='bold'>Rs. {b.price}</h2>
+                        <h2 className='bold'>Rs. {b.discountedPrice && Number(b.discountedPrice) > 0 ? b.discountedPrice : b.price}</h2>
                       </div>
                       <div className="booking-cancel ">
                         <button
@@ -106,7 +106,7 @@ const MyBooking: React.FC = () => {
                         <p>{b.date} / {b.time}</p>
                         <p>{b.screen}</p>
                         <p><span>Ticket : {b.seats.split(',').length}</span>, Seats : {b.seats}</p>
-                        <h2 className='bold'>Rs. {b.price}</h2>
+                        <h2 className='bold'>Rs. {b.discountedPrice && Number(b.discountedPrice) > 0 ? b.discountedPrice : b.price}</h2>
                       </div>
                     </div>
                   ) : null
