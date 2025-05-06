@@ -310,7 +310,7 @@ p {
 }
 
 .theatre-list {
-  @apply bg-gray-100
+  @apply bg-gray-100 mt-[68px] h-full
 }
 
 .theatre-list .li-div {

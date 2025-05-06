@@ -39,7 +39,7 @@ const SearchNav = () => {
 
   // listen the search value
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value);
+    setSearchValue(e.target.value.toLowerCase());
   };
 
   useEffect(() => {

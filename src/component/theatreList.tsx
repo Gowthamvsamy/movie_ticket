@@ -15,6 +15,7 @@ function TheatreList() {
   const [selectedInfoIndex, setSelectedInfoIndex] = useState<number | null>(null);
   const [selectedDateIndex, setSelectedDateIndex] = useState(0);
 
+  
   const { id } = useParams();
 
   const listMovie = useContext(ListContext);
@@ -48,6 +49,7 @@ function TheatreList() {
   const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
   const formattedDates: string[] = [];
+  const showDate: number[] = [];
 
   // show current date to next seven dates
   for (let i = 0; i < 6; i++) {
@@ -57,6 +59,8 @@ function TheatreList() {
     const day = nextDate.getDay();
     const date = nextDate.getDate();
     const month = nextDate.getMonth();
+
+    showDate.push(date)
 
     const formatted = `${dayNames[day]} ${date} ${monthNames[month]}`;
     formattedDates.push(formatted);
@@ -83,6 +87,9 @@ function TheatreList() {
       name: "Food Court"
     }
   ]
+
+  const currentTime = new Date().getHours();
+  const currentDate = new Date().getDate();
 
   return (
     <div className='theatre-list'>
@@ -163,7 +170,17 @@ function TheatreList() {
                 )}
                 <div className='show-time-flex'>
                   {th.showtime?.map((s, index) => (
-                    <div key={index} className='show-time' onClick={() => showSeat(s, th.place, th.name)}>{s}</div>
+                    <div key={index}>
+                      {(s.trim() !== '' && (currentTime <= parseInt(s.split(':')[0]) + 10 || showDate[selectedDateIndex] !== currentDate) ) && (
+                        <div
+                          key={index}
+                          className="show-time"
+                          onClick={() => showSeat(s, th.place, th.name)}
+                        >
+                          {s}
+                        </div>
+                      )}
+                    </div>
                   ))}
                 </div>
               </div>

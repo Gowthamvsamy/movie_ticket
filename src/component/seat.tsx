@@ -127,6 +127,7 @@ function Seat() {
                       seats: paymentData.seats.join(','),
                       user_id: decoded.id,
                       isBooked: true,
+                      discountedPrice: ''
                     };
 
                     await booking(bookingData);
