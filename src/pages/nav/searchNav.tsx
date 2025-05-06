@@ -56,7 +56,6 @@ const SearchNav = () => {
         const isExpired = decoded.exp * 1000 < Date.now();
         if (isExpired) {
           localStorage.removeItem('token');
-          // localStorage.removeItem('user_id');
         }
       } catch (error) {
         console.error("Invalid token", error);

@@ -140,9 +140,17 @@ export interface Booking {
     user_id?: string;
     _id?: string;
     discountedPrice: string | number;
+    refund: string | number;
 }
 
 export interface MyTokenPayload {
     id: string;
     username: string;
+}
+
+
+export interface WalletData {
+    user_id?: string | null;
+    _id?: string;
+    balance?: number;
 }

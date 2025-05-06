@@ -1,16 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import Loader from './loader';
+import { getWallet } from '../context/service/movieService';
+import { WalletData } from './type';
 
 function Wallet() {
-  const price = localStorage.getItem('refund');
   const [loading, setLoading] = useState<boolean>(false);
+  const [balance, setBalance] = useState<WalletData | null>(null)
+
+  const user_id = localStorage.getItem('user_id');
+
+  const w_user = balance?.[0]?.user_id
+
+  console.log(w_user);
+  
+
+
 
   useEffect(() => {
-    setLoading(true)
-    setTimeout(() => {
-      setLoading(false)
-    }, 1000);
-  }, [])
+    const getBalance = async () => {
+      setLoading(true)
+
+      try {
+        const wallet = await getWallet();
+        setBalance(wallet)
+      } catch (err) {
+        console.error("Fetch wallet error: ", err);
+      } finally {
+        setLoading(false)
+      }
+    }
+    getBalance();
+  }, []);
 
   return (
     <div className="wallet-bg">
@@ -21,7 +41,11 @@ function Wallet() {
           <h1 className="wallet-heading">My Wallet</h1>
           <div className="balance-box">
             <p>Total Wallet Balance</p>
-            <h2 className="balance-price">&#x20B9; {price || "0.00"}</h2>
+            {user_id === w_user ? (
+              <h2 className="balance-price">&#x20B9; {balance?.[0]?.balance + '.00' || "0.00"}</h2>
+            ): (
+              <h2 className="balance-price">&#x20B9; 0.00</h2>
+            )}
           </div>
         </div>
       )

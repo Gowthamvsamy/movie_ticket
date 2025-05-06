@@ -11,13 +11,13 @@ function Offers() {
         {
             img: "https://logowik.com/content/uploads/images/1st2784.jpg",
             title: "Save up to RS 50 on first booking",
-            valid: "Valid till 30 Apr",
+            valid: "Valid till 30 May",
             coupon: "FIRST"
         },
         {
             img: "https://logowik.com/content/uploads/images/1st2784.jpg",
             title: "Save up to RS 50 on first booking",
-            valid: "Valid till 30 Apr",
+            valid: "Valid till 30 May",
             coupon: "FIRST"
         }
     ]

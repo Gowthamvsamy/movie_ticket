@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { IoClose } from 'react-icons/io5'
-import { Booking } from './type';
-import { getBooking, updateBooking } from '../context/service/movieService';
+import { Booking, WalletData } from './type';
+import { getBooking, updateBooking, wallet } from '../context/service/movieService';
 import { toast } from 'react-toastify';
 import QRCode from "react-qr-code";
 import { useNavigate } from 'react-router-dom';
@@ -39,7 +39,9 @@ function Ticket() {
     const ticketToCancel = ticket.find(t => t._id === id);
     if (!ticketToCancel) return;
 
-    let refund = 0;
+    const u_id = localStorage.getItem('user_id')
+
+    let refund: number = 0;
 
     // Example condition; adjust based on your coupon logic
     const price = ticketToCancel.price ? parseFloat(ticketToCancel.price) : 0;
@@ -51,6 +53,14 @@ function Ticket() {
     try {
       await updateBooking(id, { isBooked: false });
       toast.success("Ticket cancelled");
+
+      const walletData: WalletData = {
+        balance: refund,
+        user_id: u_id
+      };
+      
+      await wallet(walletData);
+
       toast.success(`₹${refund} refunded`);
       navigator('/');
     } catch (error) {

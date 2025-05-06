@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Booking, MovieData, MyTokenPayload, UserLogin, UserRegister } from "../../component/type";
+import { Booking, MovieData, MyTokenPayload, UserLogin, UserRegister, WalletData } from "../../component/type";
 import { jwtDecode } from "jwt-decode";
 
 const BASE_URL = 'http://localhost:8000';
@@ -98,6 +98,49 @@ export async function updateBooking(id: string, updatedData: Partial<Booking>): 
     } else {
       console.error('Unexpected error during booking update:', error);
       throw new Error('An unknown error occurred while updating booking');
+    }
+  }
+}
+
+//wallet creation
+export async function wallet(walletBalance: WalletData) {
+  try {
+    const response = await axios.post(`${BASE_URL}/wallet`, walletBalance)
+    return response.data
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error("Failed to create a wallet: ", error.response?.data || error.message);
+      throw error.response?.data || new Error(error.message);
+    } else {
+      console.error("Unexpected:", error);
+      throw new Error('An unknown error occurred');
+    }
+  }
+}
+
+// get wallet balance
+export async function getWallet(): Promise<WalletData> {
+  try {
+    const response = await axios.get(`${BASE_URL}/wallet/getWallet`);
+    return response.data;
+  } catch (err) {
+    console.error('Failed to fetch wallet balance:', err);
+    throw err;
+  }
+}
+
+// update wallet
+export async function updateWallet(id: string, updateData: Partial<WalletData>): Promise<WalletData> {
+  try {
+    const response =await axios.patch(`${BASE_URL}/wallet/updateWallet/${id}`, updateData);
+    return response.data;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error('Failed to update waller:', error.response?.data || error.message);
+      throw error.response?.data || new Error(error.message);
+    } else {
+      console.error('Unexpected error during wallet update:', error);
+      throw new Error('An unknown error occurred while updating wallet');
     }
   }
 }
