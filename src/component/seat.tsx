@@ -127,9 +127,11 @@ function Seat() {
                       seats: paymentData.seats.join(','),
                       user_id: decoded.id,
                       isBooked: true,
-                      discountedPrice: ''
+                      discountedPrice: '',
+                      refund: ''
                     };
 
+                    // Booking the ticket 
                     await booking(bookingData);
                     toast.success("Ticket booked successfully!");
                     navigator(`/details/${movieId}/theatres/seat/ticket`)

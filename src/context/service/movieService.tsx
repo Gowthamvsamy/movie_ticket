@@ -129,6 +129,17 @@ export async function getWallet(): Promise<WalletData> {
   }
 }
 
+// get wallet balance using user id
+export async function getUserWallet(user_id: string): Promise<WalletData> {
+  try{
+    const response = await axios.get(`${BASE_URL}/wallet/getWallet/${user_id}`);
+    return response.data;
+  } catch (err) {
+    console.error('Failed to fetch wallet balance:', err);
+    throw err;
+  }
+}
+
 // update wallet
 export async function updateWallet(id: string, updateData: Partial<WalletData>): Promise<WalletData> {
   try {

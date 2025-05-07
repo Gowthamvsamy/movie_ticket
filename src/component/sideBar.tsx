@@ -1,21 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { Booking } from './type';
+import { Booking, MyComponentProps } from './type';
 import { getBooking, updateBooking } from '../context/service/movieService';
-
-type MyComponentProps = {
-  sideBar: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
 
 function SideBar({ sideBar }: MyComponentProps) {
 
+  // useState
   const [data, setData] = useState<Booking[]>([]);
 
+  // Get the canceled ticket
   useEffect(() => {
     const getData = async () => {
       try {
         const booking = await getBooking();
-        console.log("Fetched bookings:", booking)
         setData(booking)
       } catch (err) {
         console.error("Fetch Booking error: ", err);
@@ -24,10 +20,10 @@ function SideBar({ sideBar }: MyComponentProps) {
     getData();
   }, [])
 
-
-
+  // get the user id from localstorage
   const u_id = localStorage.getItem('user_id') ?? undefined;
 
+  // update the booking ticket
   const bookNow = async (id: string, d_Price: string | number) => {
     try {
       await updateBooking(id, { isBooked: true, user_id: u_id, discountedPrice: d_Price});
@@ -37,7 +33,6 @@ function SideBar({ sideBar }: MyComponentProps) {
       console.error('Failed to Book tickets', err);
     }
   }
-
 
   return (
     <div className='sidebar'>
@@ -50,11 +45,11 @@ function SideBar({ sideBar }: MyComponentProps) {
           const bookingDate = parseInt(date, 10);
           const cTime = new Date();
           const current = cTime.getHours();
-
-          return todayDate === bookingDate && b.isBooked === false && b._id && current < (parseInt(b.time.slice(0, 2)) + 12);
+          // filter the Ticket using user_id, date, time and isBooking 
+          return todayDate === bookingDate && b.isBooked === false && b._id && u_id !== b.user_id  && current < (parseInt(b.time.slice(0, 2)) + 12);
         })
         .map((b) => {
-
+          // 30% of discount price
           const d_Price = (Number(b.price) * 0.7).toFixed(2);
 
           return (

@@ -92,8 +92,11 @@ const SearchNav = () => {
     };
   }, []);
 
+  // get user_id and the user name form the local storage
   const u_name = localStorage.getItem('u_name');
+  const u_id = localStorage.getItem('user_id');
 
+  // Get the booking details to filter out the count of canceled tickets.
   useEffect(() => {
     const getData = async () => {
       try {
@@ -106,7 +109,7 @@ const SearchNav = () => {
           const bookingDate = parseInt(date, 10);
           const cTime = new Date();
           const current = cTime.getHours();
-          return b.isBooked === false && bookingDate === todayDate && current < (parseInt(b.time.slice(0, 2)) + 12);
+          return b.isBooked === false && bookingDate === todayDate && u_id !== b.user_id && current < (parseInt(b.time.slice(0, 2)) + 12);
         }).length;
 
         setUnbookedCount(unbookedToday);
@@ -162,6 +165,7 @@ const SearchNav = () => {
                     </div>
                   )}
                 </button>
+                {/* Show a notification for canceled tickets and their count.*/}
                 <div className='notification-box'>
                   {unbookedCount > 0 && (
                     <p className="notification-count">{unbookedCount}</p>

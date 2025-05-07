@@ -4,18 +4,15 @@ import { getWallet } from '../context/service/movieService';
 import { WalletData } from './type';
 
 function Wallet() {
+
+  // use state
   const [loading, setLoading] = useState<boolean>(false);
-  const [balance, setBalance] = useState<WalletData | null>(null)
+  const [balance, setBalance] = useState<WalletData[]>([]);
 
-  const user_id = localStorage.getItem('user_id');
+  // get the user_id form local storage
+  const u_id = localStorage.getItem('user_id');
 
-  const w_user = balance?.[0]?.user_id
-
-  console.log(w_user);
-  
-
-
-
+  // get a wallet balance for the user
   useEffect(() => {
     const getBalance = async () => {
       setLoading(true)
@@ -23,6 +20,7 @@ function Wallet() {
       try {
         const wallet = await getWallet();
         setBalance(wallet)
+
       } catch (err) {
         console.error("Fetch wallet error: ", err);
       } finally {
@@ -41,15 +39,17 @@ function Wallet() {
           <h1 className="wallet-heading">My Wallet</h1>
           <div className="balance-box">
             <p>Total Wallet Balance</p>
-            {user_id === w_user ? (
-              <h2 className="balance-price">&#x20B9; {balance?.[0]?.balance + '.00' || "0.00"}</h2>
-            ): (
-              <h2 className="balance-price">&#x20B9; 0.00</h2>
-            )}
+            {/* filter the wallet balance using user_id */}
+            {balance && balance
+              .filter((b) => b.user_id === u_id)
+              .map((b, index) => (
+                <h2 key={index} className="balance-price">
+                  &#x20B9; {b.balance.toFixed(2) || "0.00"}
+                </h2>
+              ))}
           </div>
         </div>
-      )
-      }
+      )}
     </div>
   );
 }

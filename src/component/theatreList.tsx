@@ -51,7 +51,7 @@ function TheatreList() {
   const formattedDates: string[] = [];
   const showDate: number[] = [];
 
-  // show current date to next seven dates
+  // show current date to next six dates
   for (let i = 0; i < 6; i++) {
     const nextDate = new Date();
     nextDate.setDate(today.getDate() + i);
@@ -171,6 +171,7 @@ function TheatreList() {
                 <div className='show-time-flex'>
                   {th.showtime?.map((s, index) => (
                     <div key={index}>
+                      {/* Filter the showtimes using the current time to display only the upcoming shows*/}
                       {(s.trim() !== '' && (currentTime <= parseInt(s.split(':')[0]) + 10 || showDate[selectedDateIndex] !== currentDate) ) && (
                         <div
                           key={index}

@@ -9,10 +9,12 @@ import Loader from './loader';
 
 function Ticket() {
 
+  // use state
   const [ticket, setTicket] = useState<Booking[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const navigator = useNavigate();
 
+  // using get booking API to display the movie ticket
   useEffect(() => {
     const fetchTicket = async () => {
       setLoading(true);
@@ -29,40 +31,48 @@ function Ticket() {
     fetchTicket();
   }, []);
   
-
+  // close the ticket
   const closeTicket = () => {
     navigator('/');
   };
 
+  // calcel the ticket
   const cancelTicket = async (id: string) => {
 
     const ticketToCancel = ticket.find(t => t._id === id);
     if (!ticketToCancel) return;
 
+    // get user id form local storage
     const u_id = localStorage.getItem('user_id')
 
     let refund: number = 0;
 
-    // Example condition; adjust based on your coupon logic
+    // Example condition adjust based on your coupon logic
     const price = ticketToCancel.price ? parseFloat(ticketToCancel.price) : 0;
 
+    // Discout price
     if (price > 0) {
       refund = price / 2;
     }
 
+    // update the booking data and the wallet creation
     try {
       await updateBooking(id, { isBooked: false });
       toast.success("Ticket cancelled");
 
+      // POST wallet data
       const walletData: WalletData = {
         balance: refund,
-        user_id: u_id
+        user_id: u_id,
+        _id: ''
       };
       
+      // POST wallet
       await wallet(walletData);
-
       toast.success(`₹${refund} refunded`);
+      
       navigator('/');
+
     } catch (error) {
       console.error('Cancellation failed:', error);
       toast.error("Cancellation failed");
@@ -123,10 +133,10 @@ function Ticket() {
               );
             })()
           ) : (
-            <p>Loading ticket...</p>
+            <div>
+              {loading && <Loader />}
+            </div>
           )}
-
-
         </div>
       </div>
     </div>

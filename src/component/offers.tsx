@@ -32,7 +32,6 @@ function Offers() {
         }
     }
 
-
     return (
         <>
             {/* toast */}

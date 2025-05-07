@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { Booking, WalletData } from './type';
-import { getBooking, getWallet, updateBooking, updateWallet } from '../context/service/movieService';
+import { getBooking, getUserWallet, updateBooking, updateWallet } from '../context/service/movieService';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import Loader from './loader';
 import { toast, ToastContainer } from 'react-toastify';
 
 const MyBooking: React.FC = () => {
 
+  // useState
   const [data, setData] = useState<Booking[]>([]);
   const [active, setActive] = useState<string>("upcoming")
   const [loading, setLoading] = useState<boolean>(false);
-  const [balance, setBalance] = useState<WalletData | null>(null)
+  const [balance, setBalance] = useState<WalletData[]>([]);
 
+  // get Booking
   useEffect(() => {
     const getData = async () => {
+      // set loader 
       setLoading(true);
       try {
         const booking = await getBooking();
@@ -21,32 +24,38 @@ const MyBooking: React.FC = () => {
       } catch (err) {
         console.error("Fetch Booking error: ", err);
       } finally {
+        // close loader
         setLoading(false);
       }
     }
     getData();
   }, [])
 
+  // get user_id from token
+  const user_id = localStorage.getItem('user_id');
+
+  // Get wallet data for a particular user ID
   useEffect(() => {
-    const getBalance = async () => {
+    const getBalance = async (user_id: string) => {
       try {
-        const wallet = await getWallet();
+        const wallet = await getUserWallet(user_id);
         setBalance(wallet)
       } catch (err) {
         console.error("Fetch wallet error: ", err);
       }
     }
-    getBalance();
+    if (user_id) {
+    getBalance(user_id);
+  }
   }, [])
 
-  const w_id = balance?.[0]?._id
-
-
-  const cancelTicket = async (id: string, d_Price: string | number, w_id: string) => {
+  // cancel Ticket
+  const cancelTicket = async (id: string, d_Price: string | number) => {
     try {
       await updateBooking(id, { isBooked: false, refund: d_Price });
       setData(prev => prev.map(item => item._id === id ? { ...item, isBooked: false } : item));
 
+      // refunded amount
       toast.success("Ticket cancelled");
       toast.success(`₹${d_Price} refunded`);
 
@@ -58,10 +67,13 @@ const MyBooking: React.FC = () => {
       toast.error("Failed to cancel ticket");
     }
 
-    const newBalance = balance?.[0]?.balance + Number(d_Price)
-
+    // new wallet balance(add the old balance and new refund amount)
+    const newBalance = balance.balance + Number(d_Price)
+    const w_id = balance._id
+    
+    // update the wallet amount
     try {
-      await updateWallet(w_id, {balance: newBalance});
+      await updateWallet(w_id, { balance: newBalance });
       setTimeout(() => {
         window.location.reload();
       }, 1000)
@@ -69,19 +81,14 @@ const MyBooking: React.FC = () => {
       console.error('Failed to add refund:', error);
     }
   }
-  
 
-  const u_id = localStorage.getItem('user_id');
-
+  // get the date, month and hours
   const today: string = new Date().getDate().toString();
   const mon: number = new Date().getMonth();
   const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const month: string = monthNames[mon];
 
   const current: number = new Date().getHours();
-
-
-
 
   return (
     <>
@@ -95,11 +102,11 @@ const MyBooking: React.FC = () => {
         <TabPanel>
           <div className="booked-container">
             {data.map((b) => {
-
+              // Refund the value using the discounted price or the actual price
               const d_Price = (Number(b.discountedPrice && Number(b.discountedPrice) > 0 ? b.discountedPrice : b.price) * 0.5).toFixed(2);
 
               return (
-                b.isBooked === true && b._id && b.user_id === u_id ? (
+                b.isBooked === true && b._id && user_id === b.user_id ? (
                   month <= b.date.split(' ')[2] && parseInt(today) <= parseInt(b.date.split(' ')[1]) ? (
                     <div key={b._id} className="booked-ticket">
                       <div>
@@ -113,12 +120,13 @@ const MyBooking: React.FC = () => {
                           <p>{b.date} / {b.time}</p>
                           <p>{b.screen}</p>
                           <p><span>Ticket : {b.seats.split(',').length}</span>, Seats : {b.seats}</p>
+                          {/* Display the discounted price or actual price  */}
                           <h2 className='bold'>Rs. {b.discountedPrice && Number(b.discountedPrice) > 0 ? b.discountedPrice : b.price}</h2>
                         </div>
                         <div className="booking-cancel ">
                           <button
                             className={`cancel-ticket ${current >= parseInt(b.time.split(':')[0]) + 11 ? 'hidden ' : ''} `}
-                            onClick={() => cancelTicket(b._id!, d_Price, w_id!)}
+                            onClick={() => cancelTicket(b._id!, d_Price)}
                           >
                             Cancel&nbsp;Ticket
                           </button>
@@ -134,7 +142,7 @@ const MyBooking: React.FC = () => {
         <TabPanel>
           <div className="booked-container">
             {data.map((b) => (
-              b.isBooked === true && b._id && b.user_id === u_id ? (
+              b.isBooked === true && b._id && user_id === b.user_id ? (
                 month >= b.date.split(' ')[2] ? (
                   today > b.date.split(' ')[1] ? (
                     <div key={b._id} className="booked-ticket">
@@ -148,6 +156,7 @@ const MyBooking: React.FC = () => {
                         <p>{b.date} / {b.time}</p>
                         <p>{b.screen}</p>
                         <p><span>Ticket : {b.seats.split(',').length}</span>, Seats : {b.seats}</p>
+                        {/* Display the discounted price or actual price  */}
                         <h2 className='bold'>Rs. {b.discountedPrice && Number(b.discountedPrice) > 0 ? b.discountedPrice : b.price}</h2>
                       </div>
                     </div>

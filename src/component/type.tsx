@@ -154,3 +154,7 @@ export interface WalletData {
     _id?: string;
     balance?: number;
 }
+
+export type MyComponentProps = {
+    sideBar: React.Dispatch<React.SetStateAction<boolean>>;
+};
