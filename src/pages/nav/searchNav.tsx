@@ -3,13 +3,13 @@
 import { GoSearch } from 'react-icons/go'
 import logo from '../../assets/show-time-white.png'
 import { ChangeEvent, useContext, useEffect, useRef, useState } from 'react'
-import SideBar from '../../component/sideBar'
 import { FaRegBell } from 'react-icons/fa'
 import { LuCircleUser } from 'react-icons/lu'
 import { Link, useNavigate } from 'react-router-dom'
 import SearchContext from '../../context/searchContext'
 import { jwtDecode } from 'jwt-decode'
 import { JwtPayload } from '../../component/type'
+import SideBar from '../../component/sideBar'
 import { getBooking } from '../../context/service/movieService'
 
 

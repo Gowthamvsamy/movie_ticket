@@ -2,10 +2,10 @@
 // imports
 import React, { useContext, useState } from 'react'
 import { FaStar } from 'react-icons/fa';
-import ListContext from '../context/listContext';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
-import SearchContext from '../context/searchContext';
 import { Movie, MovieCardProps, TabItem } from './type';
+import ListContext from '../context/listContext';
+import SearchContext from '../context/searchContext';
 
 // Movie card list
 const Tabpanel: React.FC<MovieCardProps> = ({ movie, onClick }) => {

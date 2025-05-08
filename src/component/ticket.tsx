@@ -6,7 +6,6 @@ import { toast } from 'react-toastify';
 import QRCode from "react-qr-code";
 import { useNavigate } from 'react-router-dom';
 import Loader from './loader';
-
 function Ticket() {
 
   // use state
@@ -132,11 +131,7 @@ function Ticket() {
                 </div>
               );
             })()
-          ) : (
-            <div>
-              {loading && <Loader />}
-            </div>
-          )}
+          ) : null}
         </div>
       </div>
     </div>
