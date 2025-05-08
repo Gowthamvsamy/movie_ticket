@@ -108,7 +108,7 @@ function Ticket() {
                     <div>
                       <div>
                         <p>Screen</p>
-                        <h2>{lastTicket.screen}</h2>
+                        <h2>{lastTicket.screen}</h2> 
                       </div>
                       <div>
                         <p>Seats</p>
