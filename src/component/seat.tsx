@@ -3,11 +3,11 @@ import React, { useContext, useEffect, useState } from 'react';
 import ListContext from '../context/listContext';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Booking, LocationState, MyTokenPayload } from './type';
-import SeatSelect from './seatSelect';
 import { IoIosArrowBack } from 'react-icons/io';
 import { toast } from 'react-toastify';
 import { jwtDecode } from 'jwt-decode';
 import { booking } from '../context/service/movieService';
+import SeatSelect from './SeatSelect';
 
 function Seat() {
   // Movie list context

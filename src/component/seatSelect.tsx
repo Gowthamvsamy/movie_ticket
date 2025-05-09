@@ -137,7 +137,7 @@ function SeatSelect({ onData }: SeatSelectProps) {
           })}
         </div>
       </div>
-      <div className=''>
+      <div>
         <div className="screen"><span>SCREEN THIS WAY</span></div>
         {/* Show selected seat */}
         <div className='selected-info'>

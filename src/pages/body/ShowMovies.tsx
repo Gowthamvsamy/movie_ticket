@@ -1,8 +1,8 @@
 import React from 'react'
-import Carousel from '../../component/carousel'
-import Cards from '../../component/card'
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import Cards from '../../component/card';
+import Carousel from '../../component/carousel';
 
 function Body() {
 

@@ -1,9 +1,9 @@
 import React from 'react'
 import { Field, UserLogin } from '../../component/type';
-import Form from '../../component/form';
 import { loginUser } from '../../context/service/movieService';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Form from '../../component/form';
 
 function Login() {
 

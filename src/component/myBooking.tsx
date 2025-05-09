@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Booking, WalletData } from './type';
 import { getBooking, getUserWallet, updateBooking, updateWallet } from '../context/service/movieService';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
-import Loader from './loader';
 import { toast, ToastContainer } from 'react-toastify';
+import Loader from './loader';
 
 const MyBooking: React.FC = () => {
 

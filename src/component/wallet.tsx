@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Loader from './loader';
 import { getWallet } from '../context/service/movieService';
 import { WalletData } from './type';
+import Loader from './loader';
 
 function Wallet() {
 
