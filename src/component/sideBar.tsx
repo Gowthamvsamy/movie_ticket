@@ -36,7 +36,7 @@ function SideBar({ sideBar }: MyComponentProps) {
 
   return (
     <div className='sidebar'>
-      {data
+      {data 
         .filter((b) => {
           if (typeof b.date !== 'string') return false;
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
