@@ -71,7 +71,7 @@ p {
 }
 
 .dropdown-menu {
-  @apply absolute bg-gray-50 z-10 rounded-md shadow-lg mt-7
+  @apply absolute bg-gray-50 z-10 rounded-md shadow-lg mt-7 right-3 sm:right-16 md:right-28
 }
 
 .dropdown-menu ul li {

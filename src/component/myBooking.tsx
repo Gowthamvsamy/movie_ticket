@@ -125,7 +125,7 @@ const MyBooking: React.FC = () => {
                         </div>
                         <div className="booking-cancel ">
                           <button
-                            className={`cancel-ticket ${current >= parseInt(b.time.split(':')[0]) + 11 ? 'hidden ' : ''} `}
+                            className={`cancel-ticket ${current >= parseInt(b.time.split(':')[0]) + 11 && parseInt(today) >= parseInt(b.date.split(' ')[1]) ? 'hidden ' : ''} `}
                             onClick={() => cancelTicket(b._id!, d_Price)}
                           >
                             Cancel&nbsp;Ticket
@@ -143,7 +143,7 @@ const MyBooking: React.FC = () => {
           <div className="booked-container">
             {data.map((b) => (
               b.isBooked === true && b._id && user_id === b.user_id ? (
-                month >= b.date.split(' ')[2] ? (
+                month >= b.date.split(' ')[2] && parseInt(today) >= parseInt(b.date.split(' ')[1]) ? (
                   today > b.date.split(' ')[1] ? (
                     <div key={b._id} className="booked-ticket">
                       <div>

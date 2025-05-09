@@ -7,7 +7,7 @@ import { IoIosArrowBack } from 'react-icons/io';
 import { toast } from 'react-toastify';
 import { jwtDecode } from 'jwt-decode';
 import { booking } from '../context/service/movieService';
-import SeatSelect from './SeatSelect';
+import SeatSelect from './seatSelect';
 
 function Seat() {
   // Movie list context

@@ -21,9 +21,6 @@ function Login() {
             await loginUser(formData as UserLogin);
             toast.success("Logged in successfully!")
             navigator("/")
-            setTimeout(() => {
-                window.location.reload();
-            }, 2000);
         } catch (error: unknown) {
             navigator("/");
             toast.error("Login failed. Please try again.")

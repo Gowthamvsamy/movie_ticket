@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { Booking, MovieData, MyTokenPayload, UserLogin, UserRegister, WalletData } from "../../component/type";
 import { jwtDecode } from "jwt-decode";
 
@@ -130,13 +130,20 @@ export async function getWallet(): Promise<WalletData> {
 }
 
 // get wallet balance using user id
-export async function getUserWallet(user_id: string): Promise<WalletData> {
+export async function getUserWallet(user_id: string): Promise<WalletData | null> {
   try{
     const response = await axios.get(`${BASE_URL}/wallet/getWallet/${user_id}`);
     return response.data;
   } catch (err) {
+    const axiosError = err as AxiosError;
+
+    // Handle 404 wallet not found
+    if (axiosError.response?.status === 404) {
+      return null; // Indicate that the wallet doesn't exist
+    }
+
     console.error('Failed to fetch wallet balance:', err);
-    throw err;
+    throw err; // Re-throw other errors
   }
 }
 

@@ -56,10 +56,18 @@ const SearchNav = () => {
         const isExpired = decoded.exp * 1000 < Date.now();
         if (isExpired) {
           localStorage.removeItem('token');
+          localStorage.removeItem('user_id');
+          localStorage.removeItem('u_name');
+          navigator('/');
+          window.location.reload();
         }
       } catch (error) {
         console.error("Invalid token", error);
         localStorage.removeItem('token');
+        localStorage.removeItem('user_id');
+          localStorage.removeItem('u_name');
+        navigator('/');
+        window.location.reload();
       }
     }
   }, []);
@@ -73,6 +81,9 @@ const SearchNav = () => {
   const logoutsession = () => {
     localStorage.removeItem('token');
     navigator('/')
+    setTimeout(() => {
+      window.location.reload();
+    }, 100)
   }
 
   // Use a mouse event to close the user dropdown when clicking outside of it.

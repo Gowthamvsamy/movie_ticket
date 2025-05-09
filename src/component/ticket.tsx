@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { IoClose } from 'react-icons/io5'
-import { Booking, WalletData } from './type';
-import { getBooking, updateBooking, wallet } from '../context/service/movieService';
+import { Booking } from './type';
+import { getBooking } from '../context/service/movieService';
 import { toast } from 'react-toastify';
 import QRCode from "react-qr-code";
 import { useNavigate } from 'react-router-dom';
@@ -36,47 +36,47 @@ function Ticket() {
   };
 
   // calcel the ticket
-  const cancelTicket = async (id: string) => {
+  // const cancelTicket = async (id: string) => {
 
-    const ticketToCancel = ticket.find(t => t._id === id);
-    if (!ticketToCancel) return;
+  //   const ticketToCancel = ticket.find(t => t._id === id);
+  //   if (!ticketToCancel) return;
 
-    // get user id form local storage
-    const u_id = localStorage.getItem('user_id')
+  //   get user id form local storage
+  //   const u_id = localStorage.getItem('user_id')
 
-    let refund: number = 0;
+  //   let refund: number = 0;
 
-    // Example condition adjust based on your coupon logic
-    const price = ticketToCancel.price ? parseFloat(ticketToCancel.price) : 0;
+  //   Example condition adjust based on your coupon logic
+  //   const price = ticketToCancel.price ? parseFloat(ticketToCancel.price) : 0;
 
-    // Discout price
-    if (price > 0) {
-      refund = price / 2;
-    }
+  //   Discout price
+  //   if (price > 0) {
+  //     refund = price / 2;
+  //   }
 
-    // update the booking data and the wallet creation
-    try {
-      await updateBooking(id, { isBooked: false });
-      toast.success("Ticket cancelled");
+  //   update the booking data and the wallet creation
+  //   try {
+  //     await updateBooking(id, { isBooked: false });
+  //     toast.success("Ticket cancelled");
 
-      // POST wallet data
-      const walletData: WalletData = {
-        balance: refund,
-        user_id: u_id,
-        _id: ''
-      };
+  //     POST wallet data
+  //     const walletData: WalletData = {
+  //       balance: refund,
+  //       user_id: u_id,
+  //       _id: ''
+  //     };
       
-      // POST wallet
-      await wallet(walletData);
-      toast.success(`₹${refund} refunded`);
+  //     POST wallet
+  //     await wallet(walletData);
+  //     toast.success(`₹${refund} refunded`);
       
-      navigator('/');
+  //     navigator('/');
 
-    } catch (error) {
-      console.error('Cancellation failed:', error);
-      toast.error("Cancellation failed");
-    }
-  };
+  //   } catch (error) {
+  //     console.error('Cancellation failed:', error);
+  //     toast.error("Cancellation failed");
+  //   }
+  // };
 
   return (
     <div className='tickets'>
@@ -115,9 +115,9 @@ function Ticket() {
                         <h2>{lastTicket.seats}</h2>
                       </div>
                     </div>
-                    <div className='flex flex-col'>
+                    {/* <div className='flex flex-col'>
                       <button className='cancel-ticket' onClick={() => cancelTicket(lastTicket._id!)}>Cancel Ticket</button>
-                    </div>
+                    </div> */}
                   </div>
 
                   <div>
