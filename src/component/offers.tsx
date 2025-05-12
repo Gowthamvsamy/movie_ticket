@@ -2,7 +2,7 @@
 import React from 'react'
 import { FiCopy } from 'react-icons/fi'
 import { toast, ToastContainer } from 'react-toastify';
-import { card } from './type';
+import { card } from './Type';
 
 function Offers() {
 

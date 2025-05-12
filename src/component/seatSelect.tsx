@@ -1,6 +1,6 @@
 // import
 import React, { useEffect, useState } from 'react'
-import { SeatSelectProps } from './type';
+import { SeatSelectProps } from './Type';
 
 function SeatSelect({ onData }: SeatSelectProps) {
 

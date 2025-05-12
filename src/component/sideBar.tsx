@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Booking, MyComponentProps } from './type';
-import { getBooking, updateBooking } from '../context/service/movieService';
+import { Booking, MyComponentProps } from './Type';
+import { getBooking, updateBooking } from '../context/Service/MovieService';
 
 function SideBar({ sideBar }: MyComponentProps) {
 

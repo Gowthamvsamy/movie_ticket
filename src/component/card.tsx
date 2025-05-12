@@ -3,9 +3,9 @@
 import React, { useContext, useState } from 'react'
 import { FaStar } from 'react-icons/fa';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
-import { Movie, MovieCardProps, TabItem } from './type';
-import ListContext from '../context/listContext';
-import SearchContext from '../context/searchContext';
+import { Movie, MovieCardProps, TabItem } from './Type';
+import ListContext from '../context/ListContext';
+import SearchContext from '../context/SearchContext';
 
 // Movie card list
 const Tabpanel: React.FC<MovieCardProps> = ({ movie, onClick }) => {

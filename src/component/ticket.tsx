@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { IoClose } from 'react-icons/io5'
-import { Booking } from './type';
-import { getBooking } from '../context/service/movieService';
+import { Booking } from './Type';
+import { getBooking } from '../context/Service/MovieService';
 import { toast } from 'react-toastify';
 import QRCode from "react-qr-code";
 import { useNavigate } from 'react-router-dom';
-import Loader from './loader';
+import Loader from './Loader';
 function Ticket() {
 
   // use state

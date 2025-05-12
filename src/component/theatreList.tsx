@@ -1,11 +1,11 @@
 // import
 import React, { useContext, useState } from 'react'
-import ListContext from '../context/listContext';
+import ListContext from '../context/ListContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AiOutlineExclamationCircle } from 'react-icons/ai';
 import { IoFastFoodOutline, IoLocationOutline, IoRestaurantOutline, IoTicketOutline } from 'react-icons/io5';
 import { IoIosArrowBack, IoIosCar } from 'react-icons/io';
-import { Facilities, MovieData, Theatres } from './type';
+import { Facilities, MovieData, Theatres } from './Type';
 import theatresData from './theatre.json';
 
 function TheatreList() {

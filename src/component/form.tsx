@@ -1,6 +1,6 @@
 // import
 import React, { useState } from 'react'
-import { FormProps } from './type';
+import { FormProps } from './Type';
 import { Link } from 'react-router-dom';
 
 const Form: React.FC<FormProps> = ({ title, btn, fields, onSubmitForm }) => {

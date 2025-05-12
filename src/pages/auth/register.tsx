@@ -1,9 +1,9 @@
 import React from 'react'
-import { Field, UserRegister } from '../../component/type';
-import { registerUser } from '../../context/service/movieService';
+import { Field, UserRegister } from '../../Component/Type';
+import { registerUser } from '../../context/Service/MovieService';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import Form from '../../component/form';
+import Form from '../../Component/Form';
 
 function Register() {
 

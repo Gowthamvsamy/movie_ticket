@@ -1,8 +1,8 @@
 // import
 import { useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import ListContext from '../context/listContext';
-import { CrewKey, MovieData } from './type';
+import ListContext from '../context/ListContext';
+import { CrewKey, MovieData } from './Type';
 import { FaStar } from 'react-icons/fa';
 import { IoIosArrowBack } from 'react-icons/io';
 

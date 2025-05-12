@@ -1,9 +1,9 @@
 import React from 'react'
-import { Field, UserLogin } from '../../component/type';
-import { loginUser } from '../../context/service/movieService';
+import { Field, UserLogin } from '../../Component/Type';
+import { loginUser } from '../../context/Service/MovieService';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import Form from '../../component/form';
+import Form from '../../Component/Form';
 
 function Login() {
 
@@ -21,6 +21,9 @@ function Login() {
             await loginUser(formData as UserLogin);
             toast.success("Logged in successfully!")
             navigator("/")
+            setTimeout(() => {
+                window.location.reload();
+            }, 0)
         } catch (error: unknown) {
             navigator("/");
             toast.error("Login failed. Please try again.")

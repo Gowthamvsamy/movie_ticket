@@ -6,11 +6,11 @@ import { ChangeEvent, useContext, useEffect, useRef, useState } from 'react'
 import { FaRegBell } from 'react-icons/fa'
 import { LuCircleUser } from 'react-icons/lu'
 import { Link, useNavigate } from 'react-router-dom'
-import SearchContext from '../../context/searchContext'
+import SearchContext from '../../context/SearchContext'
 import { jwtDecode } from 'jwt-decode'
-import { JwtPayload } from '../../component/type'
-import SideBar from '../../component/sideBar'
-import { getBooking } from '../../context/service/movieService'
+import { JwtPayload } from '../../Component/Type'
+import SideBar from '../../Component/SideBar'
+import { getBooking } from '../../context/Service/MovieService'
 
 
 const SearchNav = () => {
@@ -124,6 +124,7 @@ const SearchNav = () => {
         }).length;
 
         setUnbookedCount(unbookedToday);
+        
       } catch (err) {
         console.error("Fetch Booking error: ", err);
       }

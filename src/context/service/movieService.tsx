@@ -1,5 +1,5 @@
 import axios, { AxiosError } from "axios";
-import { Booking, MovieData, MyTokenPayload, UserLogin, UserRegister, WalletData } from "../../component/type";
+import { Booking, MovieData, MyTokenPayload, UserLogin, UserRegister, WalletData } from "../../Component/Type";
 import { jwtDecode } from "jwt-decode";
 
 const BASE_URL = 'http://localhost:8000';

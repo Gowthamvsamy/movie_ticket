@@ -1,8 +1,8 @@
 // import
 import React, { useEffect, useState } from 'react'
-import { ListProviderProps, MovieData } from '../component/type';
-import ListContext from './listContext';
-import { fetchMovieData } from './service/movieService';
+import { ListProviderProps, MovieData } from '../Component/Type';
+import ListContext from './ListContext';
+import { fetchMovieData } from './Service/MovieService';
 
 // Context provider
 function ListProvider({ children }: ListProviderProps){

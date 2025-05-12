@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
-import Cards from '../../component/card';
-import Carousel from '../../component/carousel';
-import { getUserWallet, wallet } from '../../context/service/movieService';
-import { WalletData } from '../../component/type';
-import Loader from '../../component/loader';
+import Cards from '../../Component/Card';
+import Carousel from '../../Component/Carousel';
+import { getUserWallet, wallet } from '../../context/Service/MovieService';
+import { WalletData } from '../../Component/Type';
+import Loader from '../../Component/Loader';
 
 function Body() {
 
@@ -16,8 +16,6 @@ function Body() {
 
   const u_id = localStorage.getItem('user_id');
   const token = localStorage.getItem('token');
-  console.log(u_id);
-
 
   useEffect(() => {
     const postWallet = async () => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import Index from './pages'
-import ListProvider from './context/listProvider'
-import SearchProvider from './context/searchProvider'
+import ListProvider from './context/ListProvider'
+import SearchProvider from './context/SearchProvider'
 
 function App() {
   return (

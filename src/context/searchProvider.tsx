@@ -1,6 +1,6 @@
 import { useState } from "react";
-import SearchContext from "./searchContext";
-import { SearchProviderProps } from "../component/type";
+import SearchContext from "./SearchContext";
+import { SearchProviderProps } from "../Component/Type";
 
 // Context Provider
 const SearchProvider: React.FC<SearchProviderProps> = ({children}) => {
