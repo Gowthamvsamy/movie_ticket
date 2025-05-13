@@ -5,7 +5,7 @@ import logo from '../../assets/show-time-white.png'
 import { ChangeEvent, useContext, useEffect, useRef, useState } from 'react'
 import { FaRegBell } from 'react-icons/fa'
 import { LuCircleUser } from 'react-icons/lu'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import SearchContext from '../../context/SearchContext'
 import { jwtDecode } from 'jwt-decode'
 import { JwtPayload } from '../../Component/Type'
@@ -136,6 +136,8 @@ const SearchNav = () => {
     getData();
   }, [])
 
+const location = useLocation();
+
   return (
     <>
       <nav className='first-nav'>
@@ -147,7 +149,7 @@ const SearchNav = () => {
         </div>
 
         {/* Search input */}
-        <div className='search'>
+        <div className={`search ${location.pathname !== '/' ? 'hidden' : ''}`}>
           <div className='search-box'>
             <input
               type="search"
