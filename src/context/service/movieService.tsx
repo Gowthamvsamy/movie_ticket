@@ -119,7 +119,7 @@ export async function wallet(walletBalance: WalletData) {
 }
 
 // get wallet balance
-export async function getWallet(): Promise<WalletData> {
+export async function getWallet(): Promise<WalletData[]> {
   try {
     const response = await axios.get(`${BASE_URL}/wallet/getWallet`);
     return response.data;

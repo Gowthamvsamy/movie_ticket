@@ -51,7 +51,6 @@ function SeatSelect({ onData }: SeatSelectProps) {
     );
   };
 
-
   return (
     <>
       <div className='seat-list'>
@@ -103,7 +102,6 @@ function SeatSelect({ onData }: SeatSelectProps) {
             );
           })}
         </div>
-
 
         <div className='elite-seat'>
           <h2>RS: 90 BUDGET</h2>

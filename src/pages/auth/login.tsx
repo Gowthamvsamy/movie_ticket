@@ -33,7 +33,6 @@ function Login() {
 
     return (
         <>
-            {/* Form */}
             <Form
                 title="Login Form"
                 btn="Login"

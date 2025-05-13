@@ -7,7 +7,7 @@ function Wallet() {
 
   // use state
   const [loading, setLoading] = useState<boolean>(false);
-  const [balance, setBalance] = useState<WalletData[]>([]);
+  const [balance, setBalance] = useState<WalletData[] | null>(null);
 
   // get the user_id form local storage
   const u_id = localStorage.getItem('user_id');
@@ -16,11 +16,9 @@ function Wallet() {
   useEffect(() => {
     const getBalance = async () => {
       setLoading(true)
-
       try {
         const wallet = await getWallet();
         setBalance(wallet)
-
       } catch (err) {
         console.error("Fetch wallet error: ", err);
       } finally {
@@ -32,9 +30,7 @@ function Wallet() {
 
   return (
     <div className="wallet-bg">
-      {loading ? (
-        <Loader />
-      ) : (
+      {loading ? (<Loader />) : (
         <div className="wallet">
           <h1 className="wallet-heading">My Wallet</h1>
           <div className="balance-box">
@@ -44,7 +40,7 @@ function Wallet() {
               .filter((b) => b.user_id === u_id)
               .map((b, index) => (
                 <h2 key={index} className="balance-price">
-                  &#x20B9; {b.balance.toFixed(2) || "0.00"}
+                  &#x20B9; {b.balance?.toFixed(2) || "0.00"}
                 </h2>
               ))}
           </div>

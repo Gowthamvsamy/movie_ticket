@@ -16,29 +16,27 @@ function Carousel() {
     const poster: string[] = [two, three, four, five, six]
 
     return (
-        <>
-            <Swiper
-                spaceBetween={30}
-                centeredSlides={true}
-                autoplay={{
-                    delay: 2500,
-                    disableOnInteraction: false,
-                }}
-                pagination={{
-                    clickable: true,
-                }}
-                navigation={true}
-                modules={[Autoplay, Pagination, Navigation]}
-            >
-                {poster.map((post) => {
-                    return (
-                        <SwiperSlide>
-                            <img src={post} alt="404" />
-                        </SwiperSlide>
-                    )
-                })}
-            </Swiper>
-        </>
+        <Swiper
+            spaceBetween={30}
+            centeredSlides={true}
+            autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+            }}
+            pagination={{
+                clickable: true,
+            }}
+            navigation={true}
+            modules={[Autoplay, Pagination, Navigation]}
+        >
+            {poster.map((post) => {
+                return (
+                    <SwiperSlide>
+                        <img src={post} alt="404" />
+                    </SwiperSlide>
+                )
+            })}
+        </Swiper>
     )
 }
 

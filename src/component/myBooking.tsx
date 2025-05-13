@@ -11,7 +11,7 @@ const MyBooking: React.FC = () => {
   const [data, setData] = useState<Booking[]>([]);
   const [active, setActive] = useState<string>("upcoming")
   const [loading, setLoading] = useState<boolean>(false);
-  const [balance, setBalance] = useState<WalletData[]>([]);
+  const [balance, setBalance] = useState<WalletData | null>(null);
 
   // get Booking
   useEffect(() => {
@@ -45,8 +45,8 @@ const MyBooking: React.FC = () => {
       }
     }
     if (user_id) {
-    getBalance(user_id);
-  }
+      getBalance(user_id);
+    }
   }, [])
 
   // cancel Ticket
@@ -68,12 +68,12 @@ const MyBooking: React.FC = () => {
     }
 
     // new wallet balance(add the old balance and new refund amount)
-    const newBalance = balance.balance + Number(d_Price)
-    const w_id = balance._id
-    
+    const newBalance = (balance?.balance ?? 0) + Number(d_Price)
+    const w_id = balance?._id
+
     // update the wallet amount
     try {
-      await updateWallet(w_id, { balance: newBalance });
+      await updateWallet(w_id!, { balance: newBalance });
       setTimeout(() => {
         window.location.reload();
       }, 1000)
@@ -125,7 +125,7 @@ const MyBooking: React.FC = () => {
                         </div>
                         <div className="booking-cancel ">
                           <button
-                            className={`cancel-ticket ${current >= parseInt(b.time.split(':')[0]) + 11 && parseInt(today) >= parseInt(b.date.split(' ')[1]) ? 'hidden ' : ''} `}
+                            className={`cancel-ticket ${b.time.split(' ')[1] === 'PM' ? `${current >= parseInt(b.time.split(':')[0]) + 11 && parseInt(today) >= parseInt(b.date.split(' ')[1]) ? 'hidden ' : ''}` : `${current >= parseInt(b.time.split(':')[0]) && parseInt(today) >= parseInt(b.date.split(' ')[1]) ? 'hidden ' : ''}`}  `}
                             onClick={() => cancelTicket(b._id!, d_Price)}
                           >
                             Cancel&nbsp;Ticket

@@ -148,7 +148,6 @@ export interface MyTokenPayload {
     username: string;
 }
 
-
 export interface WalletData {
     user_id?: string | null;
     _id?: string;

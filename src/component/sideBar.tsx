@@ -26,7 +26,7 @@ function SideBar({ sideBar }: MyComponentProps) {
   // update the booking ticket
   const bookNow = async (id: string, d_Price: string | number) => {
     try {
-      await updateBooking(id, { isBooked: true, user_id: u_id, discountedPrice: d_Price});
+      await updateBooking(id, { isBooked: true, user_id: u_id, discountedPrice: d_Price });
       setData(prev => prev.map(item => item._id === id ? { ...item, isBooked: true, user_id: u_id } : item));
       window.location.reload();
     } catch (err) {
@@ -36,7 +36,7 @@ function SideBar({ sideBar }: MyComponentProps) {
 
   return (
     <div className='sidebar'>
-      {data 
+      {data
         .filter((b) => {
           if (typeof b.date !== 'string') return false;
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -45,8 +45,13 @@ function SideBar({ sideBar }: MyComponentProps) {
           const bookingDate = parseInt(date, 10);
           const cTime = new Date();
           const current = cTime.getHours();
+
           // filter the Ticket using user_id, date, time and isBooking 
-          return todayDate === bookingDate && b.isBooked === false && b._id && u_id !== b.user_id  && current < (parseInt(b.time.slice(0, 2)) + 12);
+          if (b.time.split(' ')[1] === 'PM') {
+            return todayDate === bookingDate && b.isBooked === false && b._id && u_id !== b.user_id && current < (parseInt(b.time.slice(0, 2)) + 12);
+          } else {
+            return todayDate === bookingDate && b.isBooked === false && b._id && u_id !== b.user_id && current < (parseInt(b.time.slice(0, 2)));
+          }
         })
         .map((b) => {
           // 30% of discount price
@@ -67,11 +72,7 @@ function SideBar({ sideBar }: MyComponentProps) {
                     <p className="sell-bold">
                       {(() => {
                         const [day, date, month] = b.date.split(' ');
-                        return (
-                          <>
-                            <span>{day}</span>, <span>{date}</span> <span>{month}</span> / {b.time}
-                          </>
-                        );
+                        return (<><span>{day}</span>, <span>{date}</span> <span>{month}</span> / {b.time}</>);
                       })()}
                     </p>
                   )}
@@ -91,10 +92,10 @@ function SideBar({ sideBar }: MyComponentProps) {
                 </div>
               </div>
             </div>
-          )})}
+          )
+        })}
       <button onClick={() => sideBar(prev => !prev)} className='cancel-ticket'>Close</button>
     </div>
-
   )
 }
 

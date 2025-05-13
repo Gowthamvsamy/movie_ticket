@@ -135,7 +135,7 @@ function Seat() {
                     await booking(bookingData);
                     toast.success("Ticket booked successfully!");
                     navigator(`/details/${movieId}/theatres/seat/ticket`)
-                      
+
                   } catch (error) {
                     console.error("Booking failed:", error);
                     toast.error("Booking failed. Please try again.");
@@ -144,18 +144,11 @@ function Seat() {
               >
                 Pay
               </button>
-
-              <button
-                className="cancel"
-                onClick={handleClose}
-              >
-                Cancel
-              </button>
+              <button className="cancel" onClick={handleClose}>Cancel</button>
             </div>
           </div>
         </div>
       )}
-
     </>
   );
 }

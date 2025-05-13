@@ -120,9 +120,14 @@ const SearchNav = () => {
           const bookingDate = parseInt(date, 10);
           const cTime = new Date();
           const current = cTime.getHours();
-          return b.isBooked === false && bookingDate === todayDate && u_id !== b.user_id && current < (parseInt(b.time.slice(0, 2)) + 12);
+        
+          if(b.time.split(' ')[1] === 'PM') {
+            return b.isBooked === false && bookingDate === todayDate && u_id !== b.user_id && current < (parseInt(b.time.slice(0, 2)) + 12);
+          } else {
+            return b.isBooked === false && bookingDate === todayDate && u_id !== b.user_id && current < (parseInt(b.time.slice(0, 2)));
+          }
         }).length;
-
+        
         setUnbookedCount(unbookedToday);
         
       } catch (err) {
@@ -131,7 +136,6 @@ const SearchNav = () => {
     }
     getData();
   }, [])
-
 
   return (
     <>

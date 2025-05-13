@@ -11,11 +11,9 @@ import theatresData from './theatre.json';
 function TheatreList() {
 
   const navigator = useNavigate();
-
   const [selectedInfoIndex, setSelectedInfoIndex] = useState<number | null>(null);
   const [selectedDateIndex, setSelectedDateIndex] = useState(0);
 
-  
   const { id } = useParams();
 
   const listMovie = useContext(ListContext);
@@ -110,8 +108,7 @@ function TheatreList() {
             </p>
           </div>
         </div>
-      ) : (null)
-      }
+      ) : (null)}
 
       {/* Moveie date */}
       <div className='date-list li-div'>
@@ -169,20 +166,39 @@ function TheatreList() {
                   </div>
                 )}
                 <div className='show-time-flex'>
-                  {th.showtime?.map((s, index) => (
-                    <div key={index}>
-                      {/* Filter the showtimes using the current time to display only the upcoming shows*/}
-                      {(s.trim() !== '' && (currentTime <= parseInt(s.split(':')[0]) + 10 || showDate[selectedDateIndex] !== currentDate) ) && (
-                        <div
-                          key={index}
-                          className="show-time"
-                          onClick={() => showSeat(s, th.place, th.name)}
-                        >
-                          {s}
+                  {th.showtime?.map((s, index) => {
+                    if (s.split(' ')[1] === 'PM') {
+                      return (
+                        <div key={index}>
+                          {/* Filter the showtimes using the current time to display only the upcoming shows*/}
+                          {(s.trim() !== '' && (currentTime < parseInt(s.split(':')[0]) + 11 || showDate[selectedDateIndex] !== currentDate)) && (
+                            <div
+                              key={index}
+                              className="show-time"
+                              onClick={() => showSeat(s, th.place, th.name)}
+                            >
+                              {s}
+                            </div>
+                          )}
                         </div>
-                      )}
-                    </div>
-                  ))}
+                      )
+                    } else {
+                      return (
+                        <div key={index}>
+                          {/* Filter the showtimes using the current time to display only the upcoming shows*/}
+                          {(s.trim() !== '' && (currentTime < parseInt(s.split(':')[0]) || showDate[selectedDateIndex] !== currentDate)) && (
+                            <div
+                              key={index}
+                              className="show-time"
+                              onClick={() => showSeat(s, th.place, th.name)}
+                            >
+                              {s}
+                            </div>
+                          )}
+                        </div>
+                      )
+                    }
+                  })}
                 </div>
               </div>
             </div>

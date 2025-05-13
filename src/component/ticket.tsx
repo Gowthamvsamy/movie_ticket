@@ -29,54 +29,11 @@ function Ticket() {
     };
     fetchTicket();
   }, []);
-  
+
   // close the ticket
   const closeTicket = () => {
     navigator('/');
   };
-
-  // calcel the ticket
-  // const cancelTicket = async (id: string) => {
-
-  //   const ticketToCancel = ticket.find(t => t._id === id);
-  //   if (!ticketToCancel) return;
-
-  //   get user id form local storage
-  //   const u_id = localStorage.getItem('user_id')
-
-  //   let refund: number = 0;
-
-  //   Example condition adjust based on your coupon logic
-  //   const price = ticketToCancel.price ? parseFloat(ticketToCancel.price) : 0;
-
-  //   Discout price
-  //   if (price > 0) {
-  //     refund = price / 2;
-  //   }
-
-  //   update the booking data and the wallet creation
-  //   try {
-  //     await updateBooking(id, { isBooked: false });
-  //     toast.success("Ticket cancelled");
-
-  //     POST wallet data
-  //     const walletData: WalletData = {
-  //       balance: refund,
-  //       user_id: u_id,
-  //       _id: ''
-  //     };
-      
-  //     POST wallet
-  //     await wallet(walletData);
-  //     toast.success(`₹${refund} refunded`);
-      
-  //     navigator('/');
-
-  //   } catch (error) {
-  //     console.error('Cancellation failed:', error);
-  //     toast.error("Cancellation failed");
-  //   }
-  // };
 
   return (
     <div className='tickets'>
@@ -108,16 +65,13 @@ function Ticket() {
                     <div>
                       <div>
                         <p>Screen</p>
-                        <h2>{lastTicket.screen}</h2> 
+                        <h2>{lastTicket.screen}</h2>
                       </div>
                       <div>
                         <p>Seats</p>
                         <h2>{lastTicket.seats}</h2>
                       </div>
                     </div>
-                    {/* <div className='flex flex-col'>
-                      <button className='cancel-ticket' onClick={() => cancelTicket(lastTicket._id!)}>Cancel Ticket</button>
-                    </div> */}
                   </div>
 
                   <div>
@@ -136,7 +90,6 @@ function Ticket() {
       </div>
     </div>
   );
-
 }
 
 export default Ticket
