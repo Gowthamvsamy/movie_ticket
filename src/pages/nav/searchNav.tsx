@@ -12,7 +12,6 @@ import { JwtPayload } from '../../Component/Type'
 import SideBar from '../../Component/SideBar'
 import { getBooking } from '../../context/Service/MovieService'
 
-
 const SearchNav = () => {
 
   // navigator
