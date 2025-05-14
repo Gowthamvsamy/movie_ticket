@@ -762,3 +762,11 @@ p {
     transform: rotate(360deg);
   }
 }
+
+.top {
+  @apply mt-[68px]
+}
+
+.upcoming{
+  @apply flex gap-x-10 w-full flex-wrap
+}

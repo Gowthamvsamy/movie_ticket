@@ -4,6 +4,7 @@ import { getBooking, getUserWallet, updateBooking, updateWallet } from '../conte
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import { toast, ToastContainer } from 'react-toastify';
 import Loader from './Loader';
+import { BookingDetail, BookingImg } from './BookingDetail';
 
 const MyBooking: React.FC = () => {
 
@@ -109,20 +110,9 @@ const MyBooking: React.FC = () => {
                 b.isBooked === true && b._id && user_id === b.user_id ? (
                   month <= b.date.split(' ')[2] && parseInt(today) <= parseInt(b.date.split(' ')[1]) ? (
                     <div key={b._id} className="booked-ticket">
-                      <div>
-                        <img src={b.poster} alt="poster" className='poster-img' />
-                      </div>
-                      <div className='flex gap-x-10 w-full flex-wrap'>
-                        <div className='booking-detail'>
-                          <h2 className='bold'>{b.title}</h2>
-                          <p>{b.certified} / {b.language}</p>
-                          <p>{b.theatre} / {b.place}</p>
-                          <p>{b.date} / {b.time}</p>
-                          <p>{b.screen}</p>
-                          <p><span>Ticket : {b.seats.split(',').length}</span>, Seats : {b.seats}</p>
-                          {/* Display the discounted price or actual price  */}
-                          <h2 className='bold'>Rs. {b.discountedPrice && Number(b.discountedPrice) > 0 ? b.discountedPrice : b.price}</h2>
-                        </div>
+                      <BookingImg b={b} />
+                      <div className='upcoming'>
+                        <BookingDetail b={b} />
                         <div className="booking-cancel ">
                           <button
                             className={`cancel-ticket ${b.time.split(' ')[1] === 'PM' ? `${current >= parseInt(b.time.split(':')[0]) + 11 && parseInt(today) >= parseInt(b.date.split(' ')[1]) ? 'hidden ' : ''}` : `${current >= parseInt(b.time.split(':')[0]) && parseInt(today) >= parseInt(b.date.split(' ')[1]) ? 'hidden ' : ''}`}  `}
@@ -146,19 +136,8 @@ const MyBooking: React.FC = () => {
                 month >= b.date.split(' ')[2] && parseInt(today) >= parseInt(b.date.split(' ')[1]) ? (
                   today > b.date.split(' ')[1] ? (
                     <div key={b._id} className="booked-ticket">
-                      <div>
-                        <img src={b.poster} alt="poster" className='poster-img' />
-                      </div>
-                      <div className='booking-detail'>
-                        <h2 className='bold'>{b.title}</h2>
-                        <p>{b.certified} / {b.language}</p>
-                        <p>{b.theatre} / {b.place}</p>
-                        <p>{b.date} / {b.time}</p>
-                        <p>{b.screen}</p>
-                        <p><span>Ticket : {b.seats.split(',').length}</span>, Seats : {b.seats}</p>
-                        {/* Display the discounted price or actual price  */}
-                        <h2 className='bold'>Rs. {b.discountedPrice && Number(b.discountedPrice) > 0 ? b.discountedPrice : b.price}</h2>
-                      </div>
+                      <BookingImg b={b} />
+                      <BookingDetail b={b} />
                     </div>
                   ) : null
                 ) : null

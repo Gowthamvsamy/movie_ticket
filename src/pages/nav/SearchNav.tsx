@@ -47,6 +47,12 @@ const SearchNav = () => {
 
   const token = localStorage.getItem('token');
 
+  const removeItem = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user_id');
+    localStorage.removeItem('u_name');
+  }
+
   // Verify the token and log out the user if the token has expired.
   useEffect(() => {
     if (token) {
@@ -54,17 +60,13 @@ const SearchNav = () => {
         const decoded: JwtPayload = jwtDecode(token);
         const isExpired = decoded.exp * 1000 < Date.now();
         if (isExpired) {
-          localStorage.removeItem('token');
-          localStorage.removeItem('user_id');
-          localStorage.removeItem('u_name');
+          removeItem();
           navigator('/');
           window.location.reload();
         }
       } catch (error) {
         console.error("Invalid token", error);
-        localStorage.removeItem('token');
-        localStorage.removeItem('user_id');
-          localStorage.removeItem('u_name');
+        removeItem();
         navigator('/');
         window.location.reload();
       }
@@ -119,16 +121,16 @@ const SearchNav = () => {
           const bookingDate = parseInt(date, 10);
           const cTime = new Date();
           const current = cTime.getHours();
-        
-          if(b.time.split(' ')[1] === 'PM') {
+
+          if (b.time.split(' ')[1] === 'PM') {
             return b.isBooked === false && bookingDate === todayDate && u_id !== b.user_id && current < (parseInt(b.time.slice(0, 2)) + 12);
           } else {
             return b.isBooked === false && bookingDate === todayDate && u_id !== b.user_id && current < (parseInt(b.time.slice(0, 2)));
           }
         }).length;
-        
+
         setUnbookedCount(unbookedToday);
-        
+
       } catch (err) {
         console.error("Fetch Booking error: ", err);
       }
@@ -136,7 +138,7 @@ const SearchNav = () => {
     getData();
   }, [])
 
-const location = useLocation();
+  const location = useLocation();
 
   return (
     <>
@@ -176,6 +178,7 @@ const location = useLocation();
                     <div className='dropdown-menu' id='dropdown-menu'>
                       <ul>
                         <li><Link to="/mybooking">My Bookings</Link></li>
+                        <li><Link to="/cancelled">Cancelled Booking</Link></li>
                         <li><Link to="/wallet">Wallet</Link></li>
                         <li onClick={logoutsession}>Logout</li>
                       </ul>
