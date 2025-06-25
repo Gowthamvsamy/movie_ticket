@@ -1,5 +1,5 @@
 // import
-import React from 'react'
+import React, { useEffect } from 'react';
 import two from '../assets/poster-2.jpg'
 import three from '../assets/poster-3.jpg'
 import four from '../assets/poster-4.jpg'
@@ -15,6 +15,18 @@ function Carousel() {
 
     const poster: string[] = [two, three, four, five, six]
 
+    useEffect(() => {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.href = two; // preload the first image
+        document.head.appendChild(link);
+
+        return () => {
+            document.head.removeChild(link);
+        };
+    }, []);
+
     return (
         <Swiper
             spaceBetween={30}
@@ -29,10 +41,10 @@ function Carousel() {
             navigation={true}
             modules={[Autoplay, Pagination, Navigation]}
         >
-            {poster.map((post) => {
+            {poster.map((post, index) => {
                 return (
-                    <SwiperSlide>
-                        <img src={post} alt="404" />
+                    <SwiperSlide key={index}>
+                        <img src={post} alt="Carousel" />
                     </SwiperSlide>
                 )
             })}
